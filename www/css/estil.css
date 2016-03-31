@@ -1,0 +1,86 @@
+html, body { /* sense marges ni padding */
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+
+	/*font-family: "Roboto";*/
+	font-size: 14px;
+
+  background: #a8caba;
+  background: -moz-linear-gradient(-45deg, #a8caba 0%, #5d4157 100%);
+  background: -webkit-linear-gradient(-45deg, #a8caba 0%,#5d4157 100%);
+  background: linear-gradient(135deg, #a8caba 0%,#5d4157 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a8caba', endColorstr='#5d4157',GradientType=1 );
+
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.topbar{
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 40px;
+  width: 100%;
+  background: rgba(240,240,240,0.7);
+  position: fixed;
+  top: 0px;
+}
+.topbar input[type=text] {
+  /*width: 100px;*/
+  background: rgba(255,255,255,0.6);
+  border: 0px;
+  width: 40%;
+  /*border-radius: 3px;*/
+/*  margin-top: 10px;*/
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  padding-left: 10px;
+  display: inline-block;
+}
+
+.topbar input[type=text]:focus {
+  /*border-color:#333;*/
+  background: rgba(255,255,255,1);
+}
+
+.topbarbuttons{
+    float: right;
+    cursor: default;
+}
+.signinbutton{
+  background: #6688AA;
+  color: #ffffff;
+  border-radius: 5px;
+  width: 60px;
+  display: inline-block;
+  padding: 5px;
+  text-align: center;
+
+
+}
+.loginbutton{
+  background: #66aa8a;
+  color: #ffffff;
+  border-radius: 5px;
+  width: 60px;
+  display: inline-block;
+  padding: 5px;
+  text-align: center;
+}
+
+.contingutMainPage{
+  margin-top: 50px;
+  padding: 30px;
+}
+
+.eventMainPage{
+  width: 200px;
+  background: rgba(200,200,200,0.4);
+  margin: 10px;
+  padding: 10px;
+  display: inline-block;
+  vertical-align: top;
+ }
