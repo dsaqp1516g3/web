@@ -73,7 +73,7 @@ html, body { /* sense marges ni padding */
 
 .contingutMainPage{
   margin-top: 50px;
-  padding: 30px;
+  padding: 2%;
 }
 
 .eventMainPage{
@@ -84,3 +84,64 @@ html, body { /* sense marges ni padding */
   display: inline-block;
   vertical-align: top;
  }
+
+
+
+ .casalHeader{
+ 	width: 100%;
+ 	display: inline-block;
+ }
+.casalPhoto{
+	margin-top: 10px;
+	display: inline-block;
+	vertical-align: top;
+}
+.imgCasalPhoto{
+	width: 200px;
+	height: 200px;
+	border-radius: 20px;
+	background: rgba(200,200,200,0.4);
+}
+.imgCasalPhoto:hover{
+	background: rgba(200,200,200,0.9);
+}
+.casalMainInfoBox{
+	width: calc(100% - 230px);
+	min-width: 250px;
+	min-height: 200px;
+	background: rgba(200,200,200,0.4);
+	margin: 10px;
+	margin-right: 0px;
+	padding: 10px;
+	display: inline-block;
+	vertical-align: top;
+}
+.casalMainInfoBox h1{
+	/*Nom casal*/
+	font-size: 18px;
+	font-weight: bold;
+	margin: 1px;
+}
+.casalMainInfoBox h2{
+	/*Direcció casal*/
+	font-size: 14px;
+	font-style: italic;
+	margin: 1px;
+}
+.casalMainInfoBox h3{
+	/*Direcció casal*/
+	font-size: 14px;
+	margin-top: 10px;
+}
+
+
+
+.casalActivitiesBox{
+	width: 100%;
+	display: inline-block;
+	background: rgba(200,200,200,0.4);
+	margin: 10px;
+	padding: 10px;
+	display: inline-block;
+	vertical-align: top;
+}
