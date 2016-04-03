@@ -116,6 +116,11 @@ html, body { /* sense marges ni padding */
 	display: inline-block;
 	vertical-align: top;
 }
+.casalMainInfoTextBox{
+	width: calc(100% - 310px);
+	display: inline-block;
+	vertical-align: top;
+}
 .casalMainInfoBox h1{
 	/*Nom casal*/
 	font-size: 18px;
@@ -132,6 +137,9 @@ html, body { /* sense marges ni padding */
 	/*Direcció casal*/
 	font-size: 14px;
 	margin-top: 10px;
+}
+.mapaCasal{
+	display: inline-block;
 }
 
 
