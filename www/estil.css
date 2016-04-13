@@ -1,0 +1,233 @@
+html, body { /* sense marges ni padding */
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+
+	/*font-family: "Roboto";*/
+	font-size: 14px;
+
+  background: #a8caba;
+  background: -moz-linear-gradient(-45deg, #a8caba 0%, #5d4157 100%);
+  background: -webkit-linear-gradient(-45deg, #a8caba 0%,#5d4157 100%);
+  background: linear-gradient(135deg, #a8caba 0%,#5d4157 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a8caba', endColorstr='#5d4157',GradientType=1 );
+
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.topbar{
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 40px;
+  width: 100%;
+  background: rgba(240,240,240,0.7);
+  position: fixed;
+  top: 0px;
+}
+.topbar input[type=text] {
+  /*width: 100px;*/
+  background: rgba(255,255,255,0.6);
+  border: 0px;
+  width: 40%;
+  /*border-radius: 3px;*/
+/*  margin-top: 10px;*/
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  padding-left: 10px;
+  display: inline-block;
+}
+
+.topbar input[type=text]:focus {
+  /*border-color:#333;*/
+  background: rgba(255,255,255,1);
+}
+
+.topbarbuttons{
+    float: right;
+    cursor: default;
+}
+.signinbutton{
+  background: #6688AA;
+  color: #ffffff;
+  border-radius: 5px;
+  width: 60px;
+  display: inline-block;
+  padding: 5px;
+  text-align: center;
+
+
+}
+.loginbutton{
+  background: #66aa8a;
+  color: #ffffff;
+  border-radius: 5px;
+  width: 60px;
+  display: inline-block;
+  padding: 5px;
+  text-align: center;
+}
+
+.emergencydiv{
+	margin: 0px;
+	padding: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	height: 30px;
+	width: 100%;
+	background: rgba(255, 0, 0, 0.5);
+	display:inline-block;
+	position: absolute;
+	text-align: center;
+	cursor: pointer;
+}
+.emergencydiv:hover{
+
+	background: rgba(255, 0, 0, 0.7);
+}
+.emergencydiv h1{ /* alerta */
+	font-size: 14px;
+	font-weight: bold;
+	display: inline-block;
+	margin: 0px;
+}
+.emergencydiv h2{ /* descripció */
+	font-size: 14px;
+	display: inline-block;
+	margin: 0px;
+}
+.emergencydiv h3{ /* convocatòria */
+	font-size: 14px;
+	display: inline-block;
+	margin: 0px;
+}
+
+.contingutMainPage{
+  margin-top: 40px;
+  padding: 2%;
+	padding-top: 4%;
+}
+
+.eventMainPage{
+  width: 200px;
+  background: rgba(200,200,200,0.4);
+  margin: 10px;
+  padding: 10px;
+  display: inline-block;
+  vertical-align: top;
+ }
+
+
+/* CASAL page */
+ .casalHeader{
+ 	width: 100%;
+ 	display: inline-block;
+ }
+.casalPhoto{
+	margin-top: 10px;
+	display: inline-block;
+	vertical-align: top;
+}
+.imgCasalPhoto{
+	width: 200px;
+	height: 200px;
+	border-radius: 20px;
+	background: rgba(200,200,200,0.4);
+}
+.imgCasalPhoto:hover{
+	background: rgba(200,200,200,0.9);
+}
+.casalMainInfoBox{
+	width: calc(100% - 230px);
+	min-width: 250px;
+	min-height: 200px;
+	background: rgba(200,200,200,0.4);
+	margin: 10px;
+	margin-right: 0px;
+	padding: 10px;
+	display: inline-block;
+	vertical-align: top;
+}
+.casalMainInfoTextBox{
+	width: calc(100% - 310px);
+	display: inline-block;
+	vertical-align: top;
+}
+.casalMainInfoBox h1{
+	/*Nom casal*/
+	font-size: 18px;
+	font-weight: bold;
+	margin: 1px;
+}
+.casalMainInfoBox h2{
+	/*Direcció casal*/
+	font-size: 14px;
+	font-style: italic;
+	margin: 1px;
+}
+.casalMainInfoBox h3{
+	/*Direcció casal*/
+	font-size: 14px;
+	margin-top: 10px;
+}
+.mapaCasal{
+	display: inline-block;
+}
+
+
+
+.casalActivitiesBox{
+	width: 100%;
+	display: inline-block;
+	background: rgba(200,200,200,0.4);
+	margin: 10px;
+	padding: 10px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+
+
+
+/* CASAL LIST */
+.boxCasalListCasals{
+	width: 200px;
+	background: rgba(200,200,200,0.4);
+	margin: 10px;
+	padding: 10px;
+	display: inline-block;
+	vertical-align: top;
+}
+.boxCasalListCasals h1{ /* Nom Casal */
+	font-size: 18px;
+	font-weight: bold;
+	display: block;
+	margin: 0px;
+	margin-bottom: 5px;
+}
+.boxCasalListCasals h2{ /* descripció */
+	font-size: 14px;
+	display: block;
+	margin: 0px;
+}
+.boxCasalListCasals h3{ /* web */
+	font-size: 12px;
+	color: #495772;
+	display: block;
+	margin: 0px;
+	margin-top: 5px;
+}
+.boxCasalListCasals h4{ /* direcció */
+	font-size: 12px;
+	font-style: italic;
+	display: block;
+	margin: 0px;
+	margin-top: 5px;
+	text-align: right;
+}
+.imatgeCasalListCasals{
+	width: 150px;
+}
