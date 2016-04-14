@@ -2,8 +2,11 @@
 
 
 var API_BASE_URL = "https://api.github.com";
-var USERNAME = "";
-var PASSWORD = "";
+var USERNAME = "idoctnef";
+//temporalment, x no posar la contrassenya directament al codi...
+var PASSWORD=prompt("entra contrassenya (és temporal, per pillar del github)", "contrassenya...");
+
+//var PASSWORD = "";
 $.ajaxSetup({
     headers: { 'Authorization': "Basic "+ btoa(USERNAME+':'+PASSWORD) }
 });
@@ -17,13 +20,20 @@ function getCasalsList() {
 	//$("#repos_result").text('');
 
   /* temporal pillant del github */
-  lc=[{
-    nom:"",
+  cl=[{
+    name:"",
     id:"",
     descr:"",
     web:"",
     dir:""
   }];
+  clAux={
+    name:"",
+    id:"",
+    descr:"",
+    web:"",
+    dir:""
+  };
   /* fi temporal */
 	$.ajax({
 		url : url,
@@ -35,11 +45,12 @@ function getCasalsList() {
         n=0;
 				$.each(repos, function(i, v) {
 					var repo = v;
-          lc[n].nom=repo.name;
-          lc[n].id=repo.id;
-          lc[n].descr=repo.description;
-          lc[n].web=repo.html_url;
-          lc[n].dir=repo.id;
+          clAux.name=repo.name;
+          clAux.id=repo.id;
+          clAux.descr=repo.description;
+          clAux.web=repo.html_url;
+          clAux.dir=repo.id;
+          cl.push(JSON.parse(JSON.stringify(clAux)));
 					/*$('<br><strong> Name: ' + repo.name + '</strong><br>').appendTo($('#repos_result'));
 					$('<strong> ID: </strong> ' + repo.id + '<br>').appendTo($('#repos_result'));
 					$('<strong> URL: </strong> ' + repo.html_url + '<br>').appendTo($('#repos_result'));
@@ -48,7 +59,9 @@ function getCasalsList() {
           n++;
 
 				});
-        return(lc);
+        //return(cl);
+        cl.shift(); //elimina el primer element q està buit de l'array
+        DisplayCasalsList(cl);
 
 
 	}).fail(function() {
