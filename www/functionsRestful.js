@@ -4,8 +4,8 @@
 var API_BASE_URL = "https://api.github.com";
 var USERNAME = "idoctnef";
 //temporalment, x no posar la contrassenya directament al codi...
-var PASSWORD=prompt("entra contrassenya (és temporal, per pillar del github)", "contrassenya...");
-
+//var PASSWORD=prompt("entra contrassenya (és temporal, per pillar del github)", "contrassenya...");
+var PASSWORD = "pleirlerpol11";
 //var PASSWORD = "";
 $.ajaxSetup({
     headers: { 'Authorization': "Basic "+ btoa(USERNAME+':'+PASSWORD) }

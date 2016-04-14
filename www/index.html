@@ -27,29 +27,36 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <!-- js main code -->
-    <script src="functions.js"></script>
-
-
     <!-- jsllibraries -->
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <!-- jQuery versio propia, no cal, la pillem d'internet -->
+    <!--<script src="js/jquery.js"></script>-->
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/extract.js"></script>
+
+    <!-- js main code -->
+    <script src="functionsRestful.js"></script>
+    <script src="functions.js"></script>
+
 
 </head>
 
-<body>
+<body onload="OnLoadIndex();">
 
 <div class="topbar">
   <input type="text" size ="80" id="nickname" placeholder="busca events..."></input>
+  <a href="index.html">OKUPAINFO</a>
+  <a href="llistacasals.html">CASALS</a>
+  <a href="llistaevents.html">ESDEVENIMENTS</a>
   <div class="topbarbuttons">
-    <div class="signinbutton">SignIn</div>
+    <div class="signinbutton" onclick="OpenPage('signin.html');">>SignIn</div>
     <div class="loginbutton">LogIn</div>
   </div>
 </div>
 <div id="emergencydiv" class="emergencydiv" onclick="DisplayAlertEmergency();">
-  <h1>Alerta!</h1>
-  <h2>Registre a BlokesFantasma</h2>
-  <h3>Concentració 20h pl.Revolució</h3>
 </div>
 
 

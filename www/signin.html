@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>OkupaInfo - LlistaCasals</title>
+    <title>OkupaInfo - SignIn</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -17,7 +17,7 @@
     <!-- Custom CSS -->
     <link href="css/small-business.css" rel="stylesheet">
 
-    <!-- css propi, main css -->
+    <!-- css propi, main css-->
     <link href="estil.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -26,8 +26,6 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-
 
     <!-- jsllibraries -->
     <!-- jQuery -->
@@ -46,25 +44,11 @@
 
 </head>
 
-<body onload="OnLoadLlistacasals();">
+<body onload="OnLoadSignIn();">
 
-<div class="topbar">
-  <input type="text" size ="80" id="nickname" placeholder="busca events..."></input>
-  <a href="index.html">OKUPAINFO</a>
-  <a href="llistacasals.html">CASALS</a>
-  <a href="llistaevents.html">ESDEVENIMENTS</a>
-  <div class="topbarbuttons">
-    <div class="signinbutton" onclick="OpenPage('signin.html');">SignIn</div>
-    <div class="loginbutton">LogIn</div>
-  </div>
-</div>
-<div id="emergencydiv" class="emergencydiv" onclick="DisplayAlertEmergency();">
-</div>
-
-<div class="contingutMainPage">
-  <div id="espaiBoxCasalListCasals">
-  </div>
-
+<div class="loginbox">
+  <input id="ilogin" type="text" placeholder="enter a loginid">
+  <input id="ipass" type="password" placeholder="password">
 </div>
 
 
