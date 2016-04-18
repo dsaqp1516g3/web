@@ -21,5 +21,5 @@ La lògica que hi ha darrera de l'organització de la web és:
 -d'aquesta manera, si canviem alguna cosa del servidor/basededades, només haurem d'ajustar les funcions del fitxer "functionsRestful.js", i la resta de funcions simplement criden una funció q fa consultes al server i reb uns paràmetres com a resposta i ja fa lu q calgui amb aquests valors
 ```
 
-![alt tag](http://s3.postimg.org/wgp98eojm/IMG_20160418_WA0004.jpg)
+![alt tag](https://raw.githubusercontent.com/dsaqp1516g3/web/master/organitzaciocodi.jpg)
 -a part, tot lu que és estil, està al bootstrap, i auxiliarment si cal posem classes extra que creem al fitxer "estil.css"
