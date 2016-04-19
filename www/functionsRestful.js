@@ -1,5 +1,6 @@
 /* aqí van les funcions de get, post, etc */
 
+//var API_BASE_URL = "http://0.0.0.0:8880/okupainfo";
 
 var API_BASE_URL = "https://api.github.com";
 var USERNAME = "idoctnef";
@@ -67,26 +68,29 @@ function getCasalsList() {
 }
 
 
+/*----------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------*/
+/*------------------BOTONES-QUE-TIENEN-LA-FUNCION-GET-Y-LLAMAN-UNA-FUNCION----------------------*/
 
-/*------------------BOTONES-QUE-TIENEN-LA-FUNCION-GET-Y-LLAMAN-UNA-FUNCION---------------------*/
-
-$("#get_casal_by_casalid").click(function(e) {   //el boton tiene que tener la id get_casal_by_casalid para que llegue aquí y llame a la función
+$("#get_casalbycasalid").click(function(e) {   //el boton tiene que tener la id get_casal_by_casalid para que llegue aquí y llame a la función
 	e.preventDefault();
 	getCasalByCasalid($("#CasalByCasalid").val());	//CasalByCasalid es el sitio donde se tiene que poner la id del casal para que llame a la función getCasalByCasalid
 	});
-$("#get_casal_by_email").click(function(e) {   //el boton tiene que tener la id get_casal_by_email para que llegue aquí y llame a la función
+$("#get_casalbyemail").click(function(e) {   //el boton tiene que tener la id get_casal_by_email para que llegue aquí y llame a la función
 	e.preventDefault();
 	getCasalByEmail($("#CasalByEmail").val());	//CasalByEmail es el sitio donde se tiene que poner la id del casal para que llame a la función getCasalByEmail
 	});
-$("#get_event_by_id").click(function(e) {   //el boton tiene que tener la id get_event_by_id para que llegue aquí y llame a la función
+$("#get_eventbyid").click(function(e) {   //el boton tiene que tener la id get_event_by_id para que llegue aquí y llame a la función
 	e.preventDefault();
 	getEventById($("#EventById").val());	//EventById es el sitio donde se tiene que poner la id del casal para que llame a la función getCasalByEmail
 	});
-$("#get_event_by_creatorid").click(function(e) {   //el boton tiene que tener la id get_event_by_creatorid para que llegue aquí y llame a la función
+$("#get_eventbycreatorid").click(function(e) {   //el boton tiene que tener la id get_event_by_creatorid para que llegue aquí y llame a la función
 	e.preventDefault();
 	getEventByCreatorId($("#EventByCreatorId").val());	//EventByCreatorId es el sitio donde se tiene que poner la id del casal para que llame a la función getCasalByEmail
 	});
-$("#get_event_by_userid").click(function(e) {   //el boton tiene que tener la id get_event_by_userid para que llegue aquí y llame a la función
+$("#get_eventbyuserid").click(function(e) {   //el boton tiene que tener la id get_event_by_userid para que llegue aquí y llame a la función
 	e.preventDefault();
 	getEventByUserId($("#EventByUserId").val());	//EventByUserId es el sitio donde se tiene que poner la id del casal para que llame a la función getCasalByEmail
 	});
@@ -216,8 +220,10 @@ function getCasalByUserId(CasalByUserId) {
 
 
 
-
-
+/*----------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------*/
 /*------------------BOTONES-QUE-TIENEN-LA-FUNCION-POST-Y-LLAMAN-UNA-FUNCION---------------------*/
 
 $("#post_createCasal").click(function(e) {   //el boton tiene que tener la id post_createCasal para que llegue aquí y llame a la función
@@ -309,6 +315,83 @@ function postCreateEvent(Event) {
 		});
 	
 }
+
+
+
+
+/*----------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------*/
+/*------------------BOTONES-QUE-TIENEN-LA-FUNCION-DELETE-Y-LLAMAN-UNA-FUNCION-------------------*/
+
+$("#delete_deleteCasal").click(function(e) {    //el boton tiene que tener la id delete_deleteCasal para que llegue aquí y llame a la función
+	e.preventDefault();	
+	deleteCasal($("#deleteCasal").val());
+});
+$("#delete_deleteEvent").click(function(e) {    //el boton tiene que tener la id delete_deleteEvent para que llegue aquí y llame a la función
+	e.preventDefault();	
+	deleteEvent($("#deleteEvent").val());
+});
+
+
+/*-----------------------------------------FUNCIONES-DELETE-------------------------------------*/
+
+function deleteCasal(deleteCasal) {   
+
+	var USERNAME = $.cookie('loginid');  //igual que antes, necesitamos pasarle el loginid y el password
+	var PASSWORD = $.cookie('password');
+
+	$.ajaxSetup({
+		headers: { 'Authorization': "Basic "+ btoa(USERNAME+':'+PASSWORD) }
+	});
+
+	var url = API_BASE_URL + '/casals/' + deleteCasal; //En el servidor se accede mediante /casals/{casalid}
+	
+	$("#result_deleteCasal").text('');
+
+	$.ajax({
+		url : url,
+		type : 'DELETE',
+		crossDomain : true,
+		dataType : 'json'
+                
+	}).done(function(data, status, jqxhr) {
+		$('<div class="alert alert-success"> <strong>Ok!</strong> Casal eliminado correctamente</div>').appendTo($("#result_deleteCasal"));
+		window.location.reload();
+  	}).fail(function() {
+		$('<div class="alert alert-danger"> <strong>Oh!</strong> No hay casals con esta ID! </div>').appendTo($("#result_deleteCasal"));
+	});
+
+}
+function deleteEvent(deleteEvent) {
+
+	var USERNAME = $.cookie('loginid');  //igual que antes, necesitamos pasarle el loginid y el password
+	var PASSWORD = $.cookie('password');
+
+	$.ajaxSetup({
+		headers: { 'Authorization': "Basic "+ btoa(USERNAME+':'+PASSWORD) }
+	});
+
+	var url = API_BASE_URL + '/eventos/' + deleteEvent; //En el servidor se accede mediante /eventos/{id}
+	
+	$("#result_deleteEvent").text('');
+
+	$.ajax({
+		url : url,
+		type : 'DELETE',
+		crossDomain : true,
+		dataType : 'json'
+                
+	}).done(function(data, status, jqxhr) {
+		$('<div class="alert alert-success"> <strong>Ok!</strong> Evento eliminado correctamente</div>').appendTo($("#result_deleteEvent"));
+		window.location.reload();
+  	}).fail(function() {
+		$('<div class="alert alert-danger"> <strong>Oh!</strong> No hay eventos con esta ID! </div>').appendTo($("#result_deleteEvent"));
+	});
+
+}
+
 
 
 
