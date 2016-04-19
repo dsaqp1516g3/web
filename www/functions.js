@@ -81,3 +81,16 @@ function DisplayCasalsList(casalsListFromServer){
 function OnCasalFromListCasalsClick(idcasal){
   alert("això al clicar et porta a la pàgina del casal");
 }
+
+
+$("#get_casal_by_casalid").click(function(e) {   //el boton tiene que tener la id get_casal_by_casalid para que llegue aquí y llame a la función
+	e.preventDefault();
+	getCasalByCasalid($("#casalid").val());	//casalid es el sitio donde se tiene que poner la id del casal para que llame a la función getCasalByCasalid
+	});
+
+$("#get_casal_by_email").click(function(e) {   //el boton tiene que tener la id get_casal_by_email para que llegue aquí y llame a la función
+	e.preventDefault();
+	getCasalByEmail($("#email").val());	//email es el sitio donde se tiene que poner la id del casal para que llame a la función getCasalByEmail
+	});
+	
+	
