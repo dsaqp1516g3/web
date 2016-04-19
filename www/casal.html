@@ -15,71 +15,139 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/small-business.css" rel="stylesheet">
+    <link href="css/portfolio-item.css" rel="stylesheet">
 
-    <!-- css propi, main css -->
-    <link href="estil.css" rel="stylesheet">
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+
+
+
+    <!-- css propi, main css -->
+    <link href="estil.css" rel="stylesheet">
+
     <!-- js main code -->
+    <script src="functionsRestful.js"></script>
     <script src="functions.js"></script>
-
-
-    <!-- jsllibraries -->
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-
-
 
 </head>
 
 <body>
 
-<div class="topbar">
-  <input type="text" size ="80" id="nickname" placeholder="busca events..."></input>
-  <div class="topbarbuttons">
-    <div class="signinbutton">SignIn</div>
-    <div class="loginbutton">LogIn</div>
-  </div>
-</div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="topbar">
+          <input type="text" size ="80" id="nickname" placeholder="busca events..."></input>
+          <div class="topbarbuttons">
+            <div class="signinbutton">SignIn</div>
+            <div class="loginbutton">LogIn</div>
+          </div>
+        </div>
+    </nav>
 
-<div class="contingutMainPage">
-  <div class="casalHeader">
-    <div class="casalPhoto">
-      <img src="imatgestemp/fotocasal1.png" class="imgCasalPhoto" />
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Portfolio Item Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 id="nomCasal" class="page-header">Ateneu La Porka
+                    <small id="casalBarri">Sant Antoni, Barcelona</small>
+                </h1>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Portfolio Item Row -->
+        <div class="row">
+
+            <div class="col-md-8">
+                <img class="img-responsive" src="http://placehold.it/750x500" alt="">
+            </div>
+
+            <div class="col-md-4">
+                <h3 id="casalName">Project Description</h3>
+                <p id="casalDescription">El Ateneu La Porka es un centro social okupado y autogestionado en una sucursal bancaria abandonada de Caja Madrid del barrio de Sant Antoni de Barcelona.</p>
+                <h4 id="casalWeb">www.laporka.org</h4>
+                <h5 id="casalDireccio">c/ Av.Mistral 33 baixos </h5>
+                <h5 id="casalMail">ateneulaporka@riseup.net</h5>
+                <div class="casalMap">
+                  <iframe width="350" height="280" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://www.openstreetmap.org/export/embed.html?bbox=2.1449947357177734%2C41.371849151666204%2C2.1689414978027344%2C41.38136509656854&amp;layer=mapnik&amp;marker=41.37659924742821%2C2.156968116760254" style="border: 1px solid black"></iframe><br/><small><a href="http://www.openstreetmap.org/?mlat=41.3766&amp;mlon=2.1570#map=16/41.3766/2.1570&amp;layers=N">View Larger Map</a></small>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <!-- Related Projects Row -->
+        <div class="row">
+
+            <div class="col-lg-12">
+                <h3 class="page-header">Activitats</h3>
+            </div>
+
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                <h4 id="actNom">Taller de Yoga</h4>
+                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+                </a>
+                <p id="actDescripcio">yoga matinal </p>
+                <p id="actDia">Dilluns</p>
+                <p id="actHorari">11h</p>
+            </div>
+
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                <h4 id="actNom">Xerrada Kurdistan</h4>
+                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+                </a>
+                <p id="actDescripcio"> text text text </p>
+                <p id="actDia">Dimarts</p>
+                <p id="actHorari">19h</p>
+            </div>
+
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                <h4 id="actNom">Taller de Yoga</h4>
+                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+                </a>
+                <p id="actDescripcio">yoga matinal </p>
+                <p id="actDia">Dimecres</p>
+                <p id="actHorari">11h</p>
+            </div>
+
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                <h4 id="actNom">Sopador</h4>
+                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+                </a>
+                <p id="actDescripcio">Sopador divendres nit</p>
+                <p id="actDia">Divendres</p>
+                <p id="actHorari">21h</p>
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+
+
     </div>
-    <div class="casalMainInfoBox">
-      <div class="casalMainInfoTextBox">
-        <h1>Ateneu Okupainfo</h1>
-        <h2>Barri Castelldefels</h2>
-        <h3>
-          El Ateneu La Porka es un centro social okupado y autogestionado en una sucursal bancaria abandonada de Caja Madrid del barrio de Sant Antoni de Barcelona.
-          Horari: cada tarda entre setmana. Els dimarts i els diumenges són, ara per ara, els dies amb una programació fixada: el dimarts es fa sopador obert al barri i el diumenge assemblea del centre social.
-        </h3>
-      </div>
-      <div class="mapaCasal">
-        <iframe width="300" height="220" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://www.openstreetmap.org/export/embed.html?bbox=2.1449947357177734%2C41.371849151666204%2C2.1689414978027344%2C41.38136509656854&amp;layer=mapnik&amp;marker=41.37659924742821%2C2.156968116760254" style="border: 1px solid black"></iframe><br/><small><a href="http://www.openstreetmap.org/?mlat=41.3766&amp;mlon=2.1570#map=16/41.3766/2.1570&amp;layers=N">View Larger Map</a></small>
-      </div>
-    </div>
+    <!-- /.container -->
 
-  </div>
-  <div class="casalActivitiesBox">
-  </div>
-</div>
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
 
-
-<!-- jQuery -->
-<script src="js/jquery.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
-<script src="js/extract.js"></script>
-
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
 
 </body>
+
+</html>

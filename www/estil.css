@@ -1,11 +1,10 @@
 body { /* sense marges ni padding */
-	margin: 0;
+	/*margin: 0;
 	padding: 0;
 	height: 100%;
 	width: 100%;
 
-	/*font-family: "Roboto";*/
-	font-size: 14px;
+	font-size: 14px;*/
 
   background: #a8caba;
   background: -moz-linear-gradient(-45deg, #a8caba 0%, #5d4157 100%);
