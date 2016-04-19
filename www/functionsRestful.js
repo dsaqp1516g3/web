@@ -68,6 +68,8 @@ function getCasalsList() {
 }
 
 
+
+
 /*----------------------------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------------------------------*/
@@ -215,7 +217,6 @@ function getCasalByUserId(CasalByUserId) {
 				$('<div class="alert alert-danger"> No existe un evento con este userid </div>').appendTo($("#result_getCasalByUserId"));
 	});
 }
-
 
 
 
@@ -392,6 +393,134 @@ function deleteEvent(deleteEvent) {
 
 }
 
+
+
+
+/*----------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------*/
+/*------------------BOTONES-QUE-TIENEN-LA-FUNCION-UPDATE-Y-LLAMAN-UNA-FUNCION-------------------*/
+
+$("#put_casal_updateProfile").click(function(e) {
+	e.preventDefault();		
+    var casal = new Object();
+	casal.casalid = $("#casalUpdateProfile_casalid").val();
+	casal.email = $("#casalUpdateProfile_email").val();
+	casal.name = $("#casalUpdateProfile_name").val();
+	casal.description = $("#casalUpdateProfile_description").val();		
+	casalUpdateProfile(casal);
+});
+$("#put_casal_updateLocation").click(function(e) {
+	e.preventDefault();		
+    var casal = new Object();
+	casal.casalid = $("#casalUpdateLocation_casalid").val();
+	casal.localization = $("#casalUpdateLocation_localization").val();
+	casal.latitude = $("#casalUpdateLocation_latitude").val();
+	casal.longitude = $("#casalUpdateLocation_longitude").val();		
+	casalUpdateLocation(casal);
+});
+$("#put_evento_updateProfile").click(function(e) {
+	e.preventDefault();		
+    var evento = new Object();
+	evento.id = $("#eventoUpdateProfile_id").val();
+	evento.title = $("#eventoUpdateProfile_title").val();	
+	evento.description = $("#eventoUpdateProfile_description").val();		
+	eventoUpdateProfile(evento);
+});
+$("#put_evento_updateLocation").click(function(e) {
+	e.preventDefault();		
+    var evento = new Object();
+	evento.id = $("#eventoUpdateLocation_id").val();
+	evento.localization = $("#eventoUpdateLocation_localization").val();
+	evento.latitude = $("#eventoUpdateLocation_latitude").val();
+	evento.longitude = $("#eventoUpdateLocation_longitude").val();		
+	eventoUpdateLocation(evento);
+});
+
+/*-----------------------------------------FUNCIONES-UPDATE-------------------------------------*/
+
+
+function casalUpdateProfile(casal) {
+	
+	var url = API_BASE_URL + '/casals/' + casal.casalid;
+	var data = JSON.stringify(casal);
+	
+	$("#result_casalUpdateProfile").text('');
+	
+	$.ajax({
+		url : url,
+		type : 'PATCH',
+		crossDomain : true,
+		dataType : 'json',
+		data : data,
+	}).done(function(data, status, jqxhr) {
+		$('<div class="alert alert-success"> <strong>Ok!</strong> Casal modificado</div>').appendTo($("#result_casalUpdateProfile"));
+	}).fail(function() {
+		$('<div class="alert alert-danger"> <strong>Error </strong></div>').appendTo($("#result_casalUpdateProfile"));
+	});	
+
+}
+function casalUpdateLocation(casal) {
+	
+	var url = API_BASE_URL + '/casals/' + casal.casalid;
+	var data = JSON.stringify(casal);
+	
+	$("#result_casalUpdateLocation").text('');
+	
+	$.ajax({
+		url : url,
+		type : 'PATCH',
+		crossDomain : true,
+		dataType : 'json',
+		data : data,
+	}).done(function(data, status, jqxhr) {
+		$('<div class="alert alert-success"> <strong>Ok!</strong> Localización modificada</div>').appendTo($("#result_casalUpdateLocation"));
+	}).fail(function() {
+		$('<div class="alert alert-danger"> <strong>Error </strong></div>').appendTo($("#result_casalUpdateLocation"));
+	});	
+
+}
+function eventoUpdateProfile(evento) {
+	
+	var url = API_BASE_URL + '/eventos/' + evento.id;
+	var data = JSON.stringify(evento);
+	
+	$("#result_eventoUpdateProfile").text('');
+	
+	$.ajax({
+		url : url,
+		type : 'PATCH',
+		crossDomain : true,
+		dataType : 'json',
+		data : data,
+	}).done(function(data, status, jqxhr) {
+		$('<div class="alert alert-success"> <strong>Ok!</strong> Comentario modificado</div>').appendTo($("#result_eventoUpdateProfile"));
+	}).fail(function() {
+		$('<div class="alert alert-danger"> <strong>Error </strong></div>').appendTo($("#result_eventoUpdateProfile"));
+	});	
+
+}
+function casalUpdateLocation(evento) {
+	
+	var url = API_BASE_URL + '/eventos/' + evento.id;
+	var data = JSON.stringify(evento);
+	
+	$("#result_eventoUpdateLocation").text('');
+	
+	$.ajax({
+		url : url,
+		type : 'PATCH',
+		crossDomain : true,
+		dataType : 'json',
+		data : data,
+	}).done(function(data, status, jqxhr) {
+		$('<div class="alert alert-success"> <strong>Ok!</strong> Localización modificada</div>').appendTo($("#result_eventoUpdateLocation"));
+	}).fail(function() {
+		$('<div class="alert alert-danger"> <strong>Error </strong></div>').appendTo($("#result_eventoUpdateLocation"));
+	});	
+
+}
 
 
 
