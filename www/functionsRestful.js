@@ -92,7 +92,7 @@ $("#get_event_by_userid").click(function(e) {   //el boton tiene que tener la id
 	});
 
 
-/*-----------------------------------------fUNCIONES-GET----------------------------------------*/
+/*-----------------------------------------FUNCIONES-GET----------------------------------------*/
 
 function getCasalByCasalid(CasalByCasalid) {
 	var url = API_BASE_URL + '/casals/' + CasalByCasalid; //En el servidor se accede mediante /casals/{Casalid}
@@ -218,11 +218,97 @@ function getCasalByUserId(CasalByUserId) {
 
 
 
+/*------------------BOTONES-QUE-TIENEN-LA-FUNCION-POST-Y-LLAMAN-UNA-FUNCION---------------------*/
+
+$("#post_createCasal").click(function(e) {   //el boton tiene que tener la id post_createCasal para que llegue aquí y llame a la función
+	e.preventDefault();	
+    var Casal = new Object();    
+    Casal.adminid = $("#post_createCasal_adminid").val(); //añadimos los valores que escribimos en su variable respectiva
+	Casal.email = $("#post_createCasal_email").val();
+	Casal.name = $("#post_createCasal_name").val(); 
+	Casal.description = $("#post_createCasal_description").val(); 
+	Casal.localization = $("#post_createCasal_localization").val();
+	Casal.latitude = $("#post_createCasal_latitude").val();
+	Casal.longitude = $("#post_createCasal_longitude").val(); 
+	Casal.validadet = $("#post_createCasal_validadet").val();	
+    postCreateCasal(Casal);  
+});
+$("#post_createEvent").click(function(e) {   //el boton tiene que tener la id post_createEvent para que llegue aquí y llame a la función
+	e.preventDefault();	
+    var Event = new Object();    
+    Event.casalid = $("#post_createEvent_casalid").val(); //añadimos los valores que escribimos en su variable respectiva
+	Event.title = $("#post_createEvent_title").val();	
+	Event.description = $("#post_createEvent_description").val(); 
+	Event.localization = $("#post_createEvent_localization").val();
+	Event.latitude = $("#post_createEvent_latitude").val();
+	Event.longitude = $("#post_createEvent_longitude").val(); 		
+    postCreateEvent(Event);  
+});
 
 
+/*-----------------------------------------FUNCIONES-POST---------------------------------------*/
 
-
-
+function postCreateCasal(Casal) {
+    var url = API_BASE_URL + '/casals';	
+	var data = $.param(Casal);	
+	var auth_tokens = $.cookie('token');      //Este sistema te da el token directamente a partir del usuario logueado, si no no puede hacer el post
+	/*var auth_tokens = '4ddf5787be1a11e5b0d800155d077819';*/	//Esta sería una forma de pasar el token directamente
+	$("#result_postCreateCasal").text('');
+	console.log(Casal.adminid);
+	console.log(Casal.email);
+	console.log(Casal.name);
+	
+		$.ajax({		
+			url : url,
+			type : 'POST',
+			crossDomain : true,
+			dataType : 'json',
+			data : data,
+			contentType : 'application/x-www-form-urlencoded',   //ahora tenemos que acceder mediante urlencoded
+			headers: { "X-Auth-Token":auth_tokens	}   //en la cabecera le pasamos el token, al igual que en la api
+			
+		}).done(function(data, status, jqxhr) {
+			$("#result_postCreateCasal").empty("#result_postCreateCasal");
+			$('Se ha creado el casal correctamente y su Casalid es:'+data.casalid+'').appendTo($("#result_postCreateCasal")); //Nos muestra por pantalla la Id del casal que se ha creado
+			alert("¡Se ha creado el casal correctamente y su Casalid es:"+data.casalid+"");
+			
+		}).fail(function() {
+			$("#result_postCreateCasal").empty("#result_postCreateCasal");
+			$('<div class="alert alert-danger"> <strong>Error</strong></div>').appendTo($("#result_postCreateCasal"));
+			alert("¡No se ha creado el casal!");
+		});
+	
+}
+function postCreateEvent(Event) {
+    var url = API_BASE_URL + '/eventos';	
+	var data = $.param(Event);	
+	var auth_tokens = $.cookie('token');      //Este sistema te da el token directamente a partir del usuario logueado, si no no puede hacer el post
+	/*var auth_tokens = '4ddf5787be1a11e5b0d800155d077819';*/	//Esta sería una forma de pasar el token directamente
+	$("#result_postCreateEvent").text('');
+	console.log(Event.casalid);
+	console.log(Event.title);	
+	
+		$.ajax({		
+			url : url,
+			type : 'POST',
+			crossDomain : true,
+			dataType : 'json',
+			data : data,
+			contentType : 'application/x-www-form-urlencoded',   //ahora tenemos que acceder mediante urlencoded
+			headers: { "X-Auth-Token":auth_tokens	}   //en la cabecera le pasamos el token, al igual que en la api
+			
+		}).done(function(data, status, jqxhr) {
+			$("#result_postCreateEvent").empty("#result_postCreateEvent");
+			$('Se ha creado el evento correctamente y su ID es:'+data.id+'').appendTo($("#result_postCreateEvent")); //Nos muestra por pantalla la Id del evento que se ha creado
+			alert("¡Se ha creado el evento correctamente y su ID es:"+data.id+"");
+			
+		}).fail(function() {
+			$("#result_postCreateEvent").empty("#result_postCreateEvent");
+			$('<div class="alert alert-danger"> <strong>Error</strong></div>').appendTo($("#result_postCreateEvent"));
+			alert("¡No se ha creado el evento!");
+		});
+	
+}
 
 
 
