@@ -66,8 +66,36 @@ function getCasalsList() {
 
 }
 
-function getCasalByCasalid(casalid) {
-	var url = API_BASE_URL + '/casals/' + casalid; //En el servidor se accede mediante /casals/{casalid}
+
+
+/*------------------BOTONES-QUE-TIENEN-LA-FUNCION-GET-Y-LLAMAN-UNA-FUNCION---------------------*/
+
+$("#get_casal_by_casalid").click(function(e) {   //el boton tiene que tener la id get_casal_by_casalid para que llegue aquí y llame a la función
+	e.preventDefault();
+	getCasalByCasalid($("#CasalByCasalid").val());	//CasalByCasalid es el sitio donde se tiene que poner la id del casal para que llame a la función getCasalByCasalid
+	});
+$("#get_casal_by_email").click(function(e) {   //el boton tiene que tener la id get_casal_by_email para que llegue aquí y llame a la función
+	e.preventDefault();
+	getCasalByEmail($("#CasalByEmail").val());	//CasalByEmail es el sitio donde se tiene que poner la id del casal para que llame a la función getCasalByEmail
+	});
+$("#get_event_by_id").click(function(e) {   //el boton tiene que tener la id get_event_by_id para que llegue aquí y llame a la función
+	e.preventDefault();
+	getEventById($("#EventById").val());	//EventById es el sitio donde se tiene que poner la id del casal para que llame a la función getCasalByEmail
+	});
+$("#get_event_by_creatorid").click(function(e) {   //el boton tiene que tener la id get_event_by_creatorid para que llegue aquí y llame a la función
+	e.preventDefault();
+	getEventByCreatorId($("#EventByCreatorId").val());	//EventByCreatorId es el sitio donde se tiene que poner la id del casal para que llame a la función getCasalByEmail
+	});
+$("#get_event_by_userid").click(function(e) {   //el boton tiene que tener la id get_event_by_userid para que llegue aquí y llame a la función
+	e.preventDefault();
+	getEventByUserId($("#EventByUserId").val());	//EventByUserId es el sitio donde se tiene que poner la id del casal para que llame a la función getCasalByEmail
+	});
+
+
+/*-----------------------------------------fUNCIONES-GET----------------------------------------*/
+
+function getCasalByCasalid(CasalByCasalid) {
+	var url = API_BASE_URL + '/casals/' + CasalByCasalid; //En el servidor se accede mediante /casals/{Casalid}
 	$("#result_getCasalByCasalid").text(''); // En result_getCasalByCasalid es donde se van a poner los resultados
 
 	$.ajax({
@@ -90,10 +118,8 @@ function getCasalByCasalid(casalid) {
 				$('<div class="alert alert-danger"> No existe un casal con esta id </div>').appendTo($("#result_getCasalByCasalid"));
 	});
 }
-
-
-function getCasalByEmail(email) {
-	var url = API_BASE_URL + '/casals/' + email; //En el servidor se accede mediante /casals/{email}
+function getCasalByEmail(CasalByEmail) {
+	var url = API_BASE_URL + '/casals/' + CasalByEmail; //En el servidor se accede mediante /casals/{email}
 	$("#result_getCasalByEmail").text(''); // En result_getCasalByEmail es donde se van a poner los resultados
 
 	$.ajax({
@@ -116,10 +142,75 @@ function getCasalByEmail(email) {
 				$('<div class="alert alert-danger"> No existe un casal con este email </div>').appendTo($("#result_getCasalByEmail"));
 	});
 }
+function getEventById(EventById) {
+	var url = API_BASE_URL + '/eventos/' + EventById; //En el servidor se accede mediante /eventos/{id}
+	$("#result_getEventById").text(''); // En result_getEventById es donde se van a poner los resultados
 
+	$.ajax({
+		url : url,
+		type : 'GET',
+		crossDomain : true,
+		dataType : 'json',
+	}).done(function(data, status, jqxhr) {
 
+				var event = data;
+				//Esto es lo que nos va a escribir en el html donde tengamos puesto el result_getEventById
+				$("#result_getEventById").text();
+				$('<strong> Id: </strong>' + event.id + '<br>').appendTo($('#result_getEventById'));
+				$('<strong> Casalid: </strong> ' + event.casalid + '<br>').appendTo($('#result_getEventById'));
+				$('<strong> Title: </strong>' + event.title + '<br>').appendTo($('#result_getEventById'));				
+				$('<strong> Descripción: </strong>' + event.description + '<br>').appendTo($('#result_getEventById'));
+			
+			}).fail(function() {
+				$('<div class="alert alert-danger"> No existe un evento con este id </div>').appendTo($("#result_getEventById"));
+	});
+}
+function getEventByCreatorId(EventByCreatorId) {
+	var url = API_BASE_URL + '/eventos/' + EventByCreatorId; //En el servidor se accede mediante /eventos/{creatorid}
+	$("#result_getEventByCreatorId").text(''); // En result_getCasalByEmail es donde se van a poner los resultados
 
+	$.ajax({
+		url : url,
+		type : 'GET',
+		crossDomain : true,
+		dataType : 'json',
+	}).done(function(data, status, jqxhr) {
 
+				var event = data;
+				//Esto es lo que nos va a escribir en el html donde tengamos puesto el result_getEventByCreatorId
+				$("#result_getEventByCreatorId").text();
+				$('<strong> Id: </strong>' + event.id + '<br>').appendTo($('#result_getEventByCreatorId'));
+				$('<strong> Casalid: </strong> ' + event.casalid + '<br>').appendTo($('#result_getEventByCreatorId'));
+				$('<strong> Title: </strong>' + event.title + '<br>').appendTo($('#result_getEventByCreatorId'));				
+				$('<strong> Descripción: </strong>' + event.description + '<br>').appendTo($('#result_getEventByCreatorId'));
+			
+			}).fail(function() {
+				$('<div class="alert alert-danger"> No existe un evento con este creatorid </div>').appendTo($("#result_getEventByCreatorId"));
+	});
+}
+function getCasalByUserId(CasalByUserId) {
+	var url = API_BASE_URL + '/casals/' + CasalByUserId; //En el servidor se accede mediante /eventos/{userid}
+	$("#result_getCasalByUserId").text(''); // En result_getCasalByUserId es donde se van a poner los resultados
+
+	$.ajax({
+		url : url,
+		type : 'GET',
+		crossDomain : true,
+		dataType : 'json',
+	}).done(function(data, status, jqxhr) {
+
+				var event = data;
+				//Esto es lo que nos va a escribir en el html donde tengamos puesto el result_getCasalByUserId
+				$("#result_getCasalByUserId").text();
+				$('<strong> Id: </strong>' + event.id + '<br>').appendTo($('#result_getCasalByUserId'));
+				$('<strong> Casalid: </strong> ' + event.casalid + '<br>').appendTo($('#result_getCasalByUserId'));
+				$('<strong> Title: </strong>' + event.title + '<br>').appendTo($('#result_getCasalByUserId'));				
+				$('<strong> Descripción: </strong>' + event.description + '<br>').appendTo($('#result_getCasalByUserId'));
+			
+			}).fail(function() {
+				$('<div class="alert alert-danger"> No existe un evento con este userid </div>').appendTo($("#result_getCasalByUserId"));
+	});
+}
 
 
 
