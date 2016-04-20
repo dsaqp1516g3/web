@@ -6,7 +6,7 @@ var API_BASE_URL = "https://api.github.com";
 var USERNAME = "idoctnef";
 //temporalment, x no posar la contrassenya directament al codi...
 //var PASSWORD=prompt("entra contrassenya (és temporal, per pillar del github)", "contrassenya...");
-var PASSWORD = "pleirlerpol11";
+var PASSWORD = "";
 //var PASSWORD = "";
 $.ajaxSetup({
     headers: { 'Authorization': "Basic "+ btoa(USERNAME+':'+PASSWORD) }
@@ -58,7 +58,7 @@ function getCasalsList() {
 				});
         //return(cl);
         cl.shift(); //elimina el primer element q està buit de l'array
-        DisplayCasalsList(cl);
+        DisplayHtmlCasalsList(cl);
 
 
 	}).fail(function() {
@@ -75,7 +75,7 @@ function getCasalsList() {
 /*----------------------------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------------------------------*/
 /*------------------BOTONES-QUE-TIENEN-LA-FUNCION-GET-Y-LLAMAN-UNA-FUNCION----------------------*/
-
+/*
 $("#get_casalbycasalid").click(function(e) {   //el boton tiene que tener la id get_casal_by_casalid para que llegue aquí y llame a la función
 	e.preventDefault();
 	getCasalByCasalid($("#CasalByCasalid").val());	//CasalByCasalid es el sitio donde se tiene que poner la id del casal para que llame a la función getCasalByCasalid
@@ -95,7 +95,7 @@ $("#get_eventbycreatorid").click(function(e) {   //el boton tiene que tener la i
 $("#get_eventbyuserid").click(function(e) {   //el boton tiene que tener la id get_event_by_userid para que llegue aquí y llame a la función
 	e.preventDefault();
 	getEventByUserId($("#EventByUserId").val());	//EventByUserId es el sitio donde se tiene que poner la id del casal para que llame a la función getCasalByEmail
-	});
+});*/
 
 
 /*-----------------------------------------FUNCIONES-GET----------------------------------------*/
@@ -119,7 +119,7 @@ function getCasalByCasalid(CasalByCasalid) {
 				$('<strong> Email: </strong>' + casal.email + '<br>').appendTo($('#result_getCasalByCasalid'));
 				$('<strong> Nombre: </strong> ' + casal.fullname + '<br>').appendTo($('#result_getCasalByCasalid'));
 				$('<strong> Descripción: </strong>' + casal.description + '<br>').appendTo($('#result_getCasalByCasalid'));
-			
+
 			}).fail(function() {
 				$('<div class="alert alert-danger"> No existe un casal con esta id </div>').appendTo($("#result_getCasalByCasalid"));
 	});
@@ -143,7 +143,7 @@ function getCasalByEmail(CasalByEmail) {
 				$('<strong> Email: </strong>' + casal.email + '<br>').appendTo($('#result_getCasalByEmail'));
 				$('<strong> Nombre: </strong> ' + casal.fullname + '<br>').appendTo($('#result_getCasalByEmail'));
 				$('<strong> Descripción: </strong>' + casal.description + '<br>').appendTo($('#result_getCasalByEmail'));
-			
+
 			}).fail(function() {
 				$('<div class="alert alert-danger"> No existe un casal con este email </div>').appendTo($("#result_getCasalByEmail"));
 	});
@@ -164,9 +164,9 @@ function getEventById(EventById) {
 				$("#result_getEventById").text();
 				$('<strong> Id: </strong>' + event.id + '<br>').appendTo($('#result_getEventById'));
 				$('<strong> Casalid: </strong> ' + event.casalid + '<br>').appendTo($('#result_getEventById'));
-				$('<strong> Title: </strong>' + event.title + '<br>').appendTo($('#result_getEventById'));				
+				$('<strong> Title: </strong>' + event.title + '<br>').appendTo($('#result_getEventById'));
 				$('<strong> Descripción: </strong>' + event.description + '<br>').appendTo($('#result_getEventById'));
-			
+
 			}).fail(function() {
 				$('<div class="alert alert-danger"> No existe un evento con este id </div>').appendTo($("#result_getEventById"));
 	});
@@ -187,9 +187,9 @@ function getEventByCreatorId(EventByCreatorId) {
 				$("#result_getEventByCreatorId").text();
 				$('<strong> Id: </strong>' + event.id + '<br>').appendTo($('#result_getEventByCreatorId'));
 				$('<strong> Casalid: </strong> ' + event.casalid + '<br>').appendTo($('#result_getEventByCreatorId'));
-				$('<strong> Title: </strong>' + event.title + '<br>').appendTo($('#result_getEventByCreatorId'));				
+				$('<strong> Title: </strong>' + event.title + '<br>').appendTo($('#result_getEventByCreatorId'));
 				$('<strong> Descripción: </strong>' + event.description + '<br>').appendTo($('#result_getEventByCreatorId'));
-			
+
 			}).fail(function() {
 				$('<div class="alert alert-danger"> No existe un evento con este creatorid </div>').appendTo($("#result_getEventByCreatorId"));
 	});
@@ -210,9 +210,9 @@ function getCasalByUserId(CasalByUserId) {
 				$("#result_getCasalByUserId").text();
 				$('<strong> Id: </strong>' + event.id + '<br>').appendTo($('#result_getCasalByUserId'));
 				$('<strong> Casalid: </strong> ' + event.casalid + '<br>').appendTo($('#result_getCasalByUserId'));
-				$('<strong> Title: </strong>' + event.title + '<br>').appendTo($('#result_getCasalByUserId'));				
+				$('<strong> Title: </strong>' + event.title + '<br>').appendTo($('#result_getCasalByUserId'));
 				$('<strong> Descripción: </strong>' + event.description + '<br>').appendTo($('#result_getCasalByUserId'));
-			
+
 			}).fail(function() {
 				$('<div class="alert alert-danger"> No existe un evento con este userid </div>').appendTo($("#result_getCasalByUserId"));
 	});
@@ -228,44 +228,44 @@ function getCasalByUserId(CasalByUserId) {
 /*------------------BOTONES-QUE-TIENEN-LA-FUNCION-POST-Y-LLAMAN-UNA-FUNCION---------------------*/
 
 $("#post_createCasal").click(function(e) {   //el boton tiene que tener la id post_createCasal para que llegue aquí y llame a la función
-	e.preventDefault();	
-    var Casal = new Object();    
+	e.preventDefault();
+    var Casal = new Object();
     Casal.adminid = $("#post_createCasal_adminid").val(); //añadimos los valores que escribimos en su variable respectiva
 	Casal.email = $("#post_createCasal_email").val();
-	Casal.name = $("#post_createCasal_name").val(); 
-	Casal.description = $("#post_createCasal_description").val(); 
+	Casal.name = $("#post_createCasal_name").val();
+	Casal.description = $("#post_createCasal_description").val();
 	Casal.localization = $("#post_createCasal_localization").val();
 	Casal.latitude = $("#post_createCasal_latitude").val();
-	Casal.longitude = $("#post_createCasal_longitude").val(); 
-	Casal.validadet = $("#post_createCasal_validadet").val();	
-    postCreateCasal(Casal);  
+	Casal.longitude = $("#post_createCasal_longitude").val();
+	Casal.validadet = $("#post_createCasal_validadet").val();
+    postCreateCasal(Casal);
 });
 $("#post_createEvent").click(function(e) {   //el boton tiene que tener la id post_createEvent para que llegue aquí y llame a la función
-	e.preventDefault();	
-    var Event = new Object();    
+	e.preventDefault();
+    var Event = new Object();
     Event.casalid = $("#post_createEvent_casalid").val(); //añadimos los valores que escribimos en su variable respectiva
-	Event.title = $("#post_createEvent_title").val();	
-	Event.description = $("#post_createEvent_description").val(); 
+	Event.title = $("#post_createEvent_title").val();
+	Event.description = $("#post_createEvent_description").val();
 	Event.localization = $("#post_createEvent_localization").val();
 	Event.latitude = $("#post_createEvent_latitude").val();
-	Event.longitude = $("#post_createEvent_longitude").val(); 		
-    postCreateEvent(Event);  
+	Event.longitude = $("#post_createEvent_longitude").val();
+    postCreateEvent(Event);
 });
 
 
 /*-----------------------------------------FUNCIONES-POST---------------------------------------*/
 
 function postCreateCasal(Casal) {
-    var url = API_BASE_URL + '/casals';	
-	var data = $.param(Casal);	
+    var url = API_BASE_URL + '/casals';
+	var data = $.param(Casal);
 	var auth_tokens = $.cookie('token');      //Este sistema te da el token directamente a partir del usuario logueado, si no no puede hacer el post
 	/*var auth_tokens = '4ddf5787be1a11e5b0d800155d077819';*/	//Esta sería una forma de pasar el token directamente
 	$("#result_postCreateCasal").text('');
 	console.log(Casal.adminid);
 	console.log(Casal.email);
 	console.log(Casal.name);
-	
-		$.ajax({		
+
+		$.ajax({
 			url : url,
 			type : 'POST',
 			crossDomain : true,
@@ -273,29 +273,29 @@ function postCreateCasal(Casal) {
 			data : data,
 			contentType : 'application/x-www-form-urlencoded',   //ahora tenemos que acceder mediante urlencoded
 			headers: { "X-Auth-Token":auth_tokens	}   //en la cabecera le pasamos el token, al igual que en la api
-			
+
 		}).done(function(data, status, jqxhr) {
 			$("#result_postCreateCasal").empty("#result_postCreateCasal");
 			$('Se ha creado el casal correctamente y su Casalid es:'+data.casalid+'').appendTo($("#result_postCreateCasal")); //Nos muestra por pantalla la Id del casal que se ha creado
 			alert("¡Se ha creado el casal correctamente y su Casalid es:"+data.casalid+"");
-			
+
 		}).fail(function() {
 			$("#result_postCreateCasal").empty("#result_postCreateCasal");
 			$('<div class="alert alert-danger"> <strong>Error</strong></div>').appendTo($("#result_postCreateCasal"));
 			alert("¡No se ha creado el casal!");
 		});
-	
+
 }
 function postCreateEvent(Event) {
-    var url = API_BASE_URL + '/eventos';	
-	var data = $.param(Event);	
+    var url = API_BASE_URL + '/eventos';
+	var data = $.param(Event);
 	var auth_tokens = $.cookie('token');      //Este sistema te da el token directamente a partir del usuario logueado, si no no puede hacer el post
 	/*var auth_tokens = '4ddf5787be1a11e5b0d800155d077819';*/	//Esta sería una forma de pasar el token directamente
 	$("#result_postCreateEvent").text('');
 	console.log(Event.casalid);
-	console.log(Event.title);	
-	
-		$.ajax({		
+	console.log(Event.title);
+
+		$.ajax({
 			url : url,
 			type : 'POST',
 			crossDomain : true,
@@ -303,18 +303,18 @@ function postCreateEvent(Event) {
 			data : data,
 			contentType : 'application/x-www-form-urlencoded',   //ahora tenemos que acceder mediante urlencoded
 			headers: { "X-Auth-Token":auth_tokens	}   //en la cabecera le pasamos el token, al igual que en la api
-			
+
 		}).done(function(data, status, jqxhr) {
 			$("#result_postCreateEvent").empty("#result_postCreateEvent");
 			$('Se ha creado el evento correctamente y su ID es:'+data.id+'').appendTo($("#result_postCreateEvent")); //Nos muestra por pantalla la Id del evento que se ha creado
 			alert("¡Se ha creado el evento correctamente y su ID es:"+data.id+"");
-			
+
 		}).fail(function() {
 			$("#result_postCreateEvent").empty("#result_postCreateEvent");
 			$('<div class="alert alert-danger"> <strong>Error</strong></div>').appendTo($("#result_postCreateEvent"));
 			alert("¡No se ha creado el evento!");
 		});
-	
+
 }
 
 
@@ -327,18 +327,18 @@ function postCreateEvent(Event) {
 /*------------------BOTONES-QUE-TIENEN-LA-FUNCION-DELETE-Y-LLAMAN-UNA-FUNCION-------------------*/
 
 $("#delete_deleteCasal").click(function(e) {    //el boton tiene que tener la id delete_deleteCasal para que llegue aquí y llame a la función
-	e.preventDefault();	
+	e.preventDefault();
 	deleteCasal($("#deleteCasal").val());
 });
 $("#delete_deleteEvent").click(function(e) {    //el boton tiene que tener la id delete_deleteEvent para que llegue aquí y llame a la función
-	e.preventDefault();	
+	e.preventDefault();
 	deleteEvent($("#deleteEvent").val());
 });
 
 
 /*-----------------------------------------FUNCIONES-DELETE-------------------------------------*/
 
-function deleteCasal(deleteCasal) {   
+function deleteCasal(deleteCasal) {
 
 	var USERNAME = $.cookie('loginid');  //igual que antes, necesitamos pasarle el loginid y el password
 	var PASSWORD = $.cookie('password');
@@ -348,7 +348,7 @@ function deleteCasal(deleteCasal) {
 	});
 
 	var url = API_BASE_URL + '/casals/' + deleteCasal; //En el servidor se accede mediante /casals/{casalid}
-	
+
 	$("#result_deleteCasal").text('');
 
 	$.ajax({
@@ -356,7 +356,7 @@ function deleteCasal(deleteCasal) {
 		type : 'DELETE',
 		crossDomain : true,
 		dataType : 'json'
-                
+
 	}).done(function(data, status, jqxhr) {
 		$('<div class="alert alert-success"> <strong>Ok!</strong> Casal eliminado correctamente</div>').appendTo($("#result_deleteCasal"));
 		window.location.reload();
@@ -375,7 +375,7 @@ function deleteEvent(deleteEvent) {
 	});
 
 	var url = API_BASE_URL + '/eventos/' + deleteEvent; //En el servidor se accede mediante /eventos/{id}
-	
+
 	$("#result_deleteEvent").text('');
 
 	$.ajax({
@@ -383,7 +383,7 @@ function deleteEvent(deleteEvent) {
 		type : 'DELETE',
 		crossDomain : true,
 		dataType : 'json'
-                
+
 	}).done(function(data, status, jqxhr) {
 		$('<div class="alert alert-success"> <strong>Ok!</strong> Evento eliminado correctamente</div>').appendTo($("#result_deleteEvent"));
 		window.location.reload();
@@ -403,38 +403,38 @@ function deleteEvent(deleteEvent) {
 /*------------------BOTONES-QUE-TIENEN-LA-FUNCION-UPDATE-Y-LLAMAN-UNA-FUNCION-------------------*/
 
 $("#put_casal_updateProfile").click(function(e) {
-	e.preventDefault();		
+	e.preventDefault();
     var casal = new Object();
 	casal.casalid = $("#casalUpdateProfile_casalid").val();
 	casal.email = $("#casalUpdateProfile_email").val();
 	casal.name = $("#casalUpdateProfile_name").val();
-	casal.description = $("#casalUpdateProfile_description").val();		
+	casal.description = $("#casalUpdateProfile_description").val();
 	casalUpdateProfile(casal);
 });
 $("#put_casal_updateLocation").click(function(e) {
-	e.preventDefault();		
+	e.preventDefault();
     var casal = new Object();
 	casal.casalid = $("#casalUpdateLocation_casalid").val();
 	casal.localization = $("#casalUpdateLocation_localization").val();
 	casal.latitude = $("#casalUpdateLocation_latitude").val();
-	casal.longitude = $("#casalUpdateLocation_longitude").val();		
+	casal.longitude = $("#casalUpdateLocation_longitude").val();
 	casalUpdateLocation(casal);
 });
 $("#put_evento_updateProfile").click(function(e) {
-	e.preventDefault();		
+	e.preventDefault();
     var evento = new Object();
 	evento.id = $("#eventoUpdateProfile_id").val();
-	evento.title = $("#eventoUpdateProfile_title").val();	
-	evento.description = $("#eventoUpdateProfile_description").val();		
+	evento.title = $("#eventoUpdateProfile_title").val();
+	evento.description = $("#eventoUpdateProfile_description").val();
 	eventoUpdateProfile(evento);
 });
 $("#put_evento_updateLocation").click(function(e) {
-	e.preventDefault();		
+	e.preventDefault();
     var evento = new Object();
 	evento.id = $("#eventoUpdateLocation_id").val();
 	evento.localization = $("#eventoUpdateLocation_localization").val();
 	evento.latitude = $("#eventoUpdateLocation_latitude").val();
-	evento.longitude = $("#eventoUpdateLocation_longitude").val();		
+	evento.longitude = $("#eventoUpdateLocation_longitude").val();
 	eventoUpdateLocation(evento);
 });
 
@@ -442,12 +442,12 @@ $("#put_evento_updateLocation").click(function(e) {
 
 
 function casalUpdateProfile(casal) {
-	
+
 	var url = API_BASE_URL + '/casals/' + casal.casalid;
 	var data = JSON.stringify(casal);
-	
+
 	$("#result_casalUpdateProfile").text('');
-	
+
 	$.ajax({
 		url : url,
 		type : 'PATCH',
@@ -458,16 +458,16 @@ function casalUpdateProfile(casal) {
 		$('<div class="alert alert-success"> <strong>Ok!</strong> Casal modificado</div>').appendTo($("#result_casalUpdateProfile"));
 	}).fail(function() {
 		$('<div class="alert alert-danger"> <strong>Error </strong></div>').appendTo($("#result_casalUpdateProfile"));
-	});	
+	});
 
 }
 function casalUpdateLocation(casal) {
-	
+
 	var url = API_BASE_URL + '/casals/' + casal.casalid;
 	var data = JSON.stringify(casal);
-	
+
 	$("#result_casalUpdateLocation").text('');
-	
+
 	$.ajax({
 		url : url,
 		type : 'PATCH',
@@ -478,16 +478,16 @@ function casalUpdateLocation(casal) {
 		$('<div class="alert alert-success"> <strong>Ok!</strong> Localización modificada</div>').appendTo($("#result_casalUpdateLocation"));
 	}).fail(function() {
 		$('<div class="alert alert-danger"> <strong>Error </strong></div>').appendTo($("#result_casalUpdateLocation"));
-	});	
+	});
 
 }
 function eventoUpdateProfile(evento) {
-	
+
 	var url = API_BASE_URL + '/eventos/' + evento.id;
 	var data = JSON.stringify(evento);
-	
+
 	$("#result_eventoUpdateProfile").text('');
-	
+
 	$.ajax({
 		url : url,
 		type : 'PATCH',
@@ -498,16 +498,16 @@ function eventoUpdateProfile(evento) {
 		$('<div class="alert alert-success"> <strong>Ok!</strong> Comentario modificado</div>').appendTo($("#result_eventoUpdateProfile"));
 	}).fail(function() {
 		$('<div class="alert alert-danger"> <strong>Error </strong></div>').appendTo($("#result_eventoUpdateProfile"));
-	});	
+	});
 
 }
 function casalUpdateLocation(evento) {
-	
+
 	var url = API_BASE_URL + '/eventos/' + evento.id;
 	var data = JSON.stringify(evento);
-	
+
 	$("#result_eventoUpdateLocation").text('');
-	
+
 	$.ajax({
 		url : url,
 		type : 'PATCH',
@@ -518,12 +518,6 @@ function casalUpdateLocation(evento) {
 		$('<div class="alert alert-success"> <strong>Ok!</strong> Localización modificada</div>').appendTo($("#result_eventoUpdateLocation"));
 	}).fail(function() {
 		$('<div class="alert alert-danger"> <strong>Error </strong></div>').appendTo($("#result_eventoUpdateLocation"));
-	});	
+	});
 
 }
-
-
-
-
-
-

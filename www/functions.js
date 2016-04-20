@@ -3,20 +3,39 @@ function DisplayAlertEmergency(){
   alert("+info");
 }
 
-function OnLoadIndex(){
+/* funcions OnLoad */
+function OnLoadDefault(){
+  /* les funcions q s'executen casi sempre, agrupades */
     EmergencyBar();
+}
+function OnLoadIndex(){
+    OnLoadDefault();
 }
 /* funcions de llistacasals.html */
 function OnLoadLlistacasals(){
-  EmergencyBar();
+  OnLoadDefault();
   casalsListFromServer = getCasalsList();
 /*  alert(casalsListFromServer);
   DisplayCasalsList(casalsListFromServer);*/
 }
+function OnLoadLlistaEvents(){
+  OnLoadDefault();
+  casalsListFromServer = getCasalsList();
+/*  alert(casalsListFromServer);
+  DisplayCasalsList(casalsListFromServer);*/
+}
+function OnLoadCasal(){
+  OnLoadDefault();
+  // aquí va la crida a la funció que agafa del sessionstorage la uri on anar a buscar la info del casal
+}
 function OnLoadSignIn(){
   document.body.style.backgroundImage = "url('images/backgroundSignin1.jpg')";
   document.body.style.backgroundSize = "cover";
+  document.body.style.overflow= "hidden";
 }
+
+
+
 function EmergencyBar(){
   document.getElementById("emergencydiv").innerHTML="";
   content="";
@@ -29,22 +48,18 @@ function OpenPage(linkgiv){
   window.open (linkgiv,'_self',false)
 }
 
-function DisplayCasalsList(casalsListFromServer){
+function DisplayHtmlCasalsList(casalsListFromServer){
   var cl; //CasalsList
   var itemrow;
   cl=casalsListFromServer;
   itemrow=0;
-
   document.getElementById("espaiBoxCasalListCasals").innerHTML="";
   content="";
   content+="<div class='row'>";
-  /*
-  content+="";
-  */
   for(var i=0; i<cl.length; i++)
   {
       if(itemrow>2)
-      {
+      {/* cada 3 canvia de row */
           itemrow=0;
           content+="</div>";
           content+="<div class='row'>";
@@ -63,16 +78,6 @@ function DisplayCasalsList(casalsListFromServer){
       content+="<p>"+cl[i].dir+"</p>";
       content+="</div>";
       itemrow++;
-
-
-    /*versio anterior, sense bootstrap
-    content+="<div id='"+cl[i].name+"_Box' class='boxCasalListCasals'>";
-    content+="<h1 onClick='OnCasalFromListCasalsClick(this.id);'>"+cl[i].name+"</h1>";
-    content+="<img class='imatgeCasalListCasals' src='imatgestemp/fotocasal1.png' onClick='OnCasalFromListCasalsClick(this.id);' />";
-    content+="<h2>"+cl[i].descr+"</h2>";
-    content+="<h3><a href='"+cl[i].web+"' target='_blank'>"+cl[i].web+"</a></h3>";
-    content+="<h4>"+cl[i].dir+"</h4>";
-    content+="</div>";*/
   }
   content+="</div>";
   document.getElementById("espaiBoxCasalListCasals").innerHTML=content;
@@ -81,6 +86,3 @@ function DisplayCasalsList(casalsListFromServer){
 function OnCasalFromListCasalsClick(idcasal){
   alert("això al clicar et porta a la pàgina del casal");
 }
-
-
-	

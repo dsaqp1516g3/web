@@ -5,7 +5,8 @@ body { /* sense marges ni padding */
 	width: 100%;
 
 	font-size: 14px;*/
-
+/* clar #B9CDC4 816E7D */
+/* fosc a8caba 5d4157 */
   background: #a8caba;
   background: -moz-linear-gradient(-45deg, #a8caba 0%, #5d4157 100%);
   background: -webkit-linear-gradient(-45deg, #a8caba 0%,#5d4157 100%);
@@ -18,9 +19,10 @@ body { /* sense marges ni padding */
 
 .topbar{
   padding: 5px;
+  padding-top:10px;
   padding-left: 10px;
   padding-right: 10px;
-  height: 40px;
+  height: 50px;
   width: 100%;
   background: rgba(240,240,240,0.7);
   position: fixed;
@@ -95,6 +97,7 @@ body { /* sense marges ni padding */
 	position: absolute;
 	text-align: center;
 	cursor: pointer;
+  margin-top: -20px;
 }
 .emergencydiv:hover{
 
@@ -116,7 +119,7 @@ body { /* sense marges ni padding */
 	display: inline-block;
 	margin: 0px;
 }
-
+/*
 .contingutMainPage{
   margin-top: 40px;
   padding: 2%;
@@ -130,11 +133,11 @@ body { /* sense marges ni padding */
   padding: 10px;
   display: inline-block;
   vertical-align: top;
- }
+ }*/
 
 
 /* CASAL page */
- .casalHeader{
+ /*.casalHeader{
  	width: 100%;
  	display: inline-block;
  }
@@ -169,28 +172,25 @@ body { /* sense marges ni padding */
 	vertical-align: top;
 }
 .casalMainInfoBox h1{
-	/*Nom casal*/
 	font-size: 18px;
 	font-weight: bold;
 	margin: 1px;
 }
 .casalMainInfoBox h2{
-	/*Direcció casal*/
 	font-size: 14px;
 	font-style: italic;
 	margin: 1px;
 }
 .casalMainInfoBox h3{
-	/*Direcció casal*/
 	font-size: 14px;
 	margin-top: 10px;
 }
 .mapaCasal{
 	display: inline-block;
-}
+}*/
 
 
-
+/*
 .casalActivitiesBox{
 	width: 100%;
 	display: inline-block;
@@ -199,7 +199,7 @@ body { /* sense marges ni padding */
 	padding: 10px;
 	display: inline-block;
 	vertical-align: top;
-}
+}*/
 
 
 
@@ -295,4 +295,34 @@ body { /* sense marges ni padding */
 /*    -webkit-box-shadow: 0px 0px 5px 3px lightblue;
     -moz-box-shadow: 0px 0px 5px 3px lightblue;
     box-shadow: 0px 0px 5px 3px lightblue;*/
+}
+
+
+
+
+/* extres a bootstrap */
+.linknegre:link{
+  color: #000000;
+}
+.linknegre:hover{
+  color: #000000;
+}
+.linknegre:visited{
+  color: #000000;
+}
+.linknegre:active{
+  color: #000000;
+}
+
+.linkblanc:link{
+  color: #ffffff;
+}
+.linkblanc:hover{
+  color: #ffffff;
+}
+.linkblanc:visited{
+  color: #ffffff;
+}
+.linkblanc:active{
+  color: #ffffff;
 }
