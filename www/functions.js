@@ -27,6 +27,7 @@ index.html
 */
 function OnLoadIndex(){
     OnLoadDefault();
+
 }
 
 
@@ -62,17 +63,17 @@ function DisplayHtmlCasalsList(casalsListFromServer){
       if(itemrow>2)
       {/* cada 3 canvia de row */
           itemrow=0;
-          content+="</div>";
+          content+="</div><br>";
           content+="<div class='row'>";
           content+="";
           content+="";
       }
       content+="<div id='"+cl[i].name+"_Box' class='col-md-4 portfolio-item'>";
-      content+="<a href='#'>";
+      content+="<a href='casal.html'>";
       content+="<img class='img-responsive' src='http://placehold.it/700x400' alt=''>";
       content+="</a>";
       content+="<h3>";
-      content+="<a href='#'>"+cl[i].name+"</a>";
+      content+="<a class='linknegre' href='#'>"+cl[i].name+"</a>";
       content+="</h3>";
       content+="<p>"+cl[i].descr+"</p>";
       content+="<p>"+cl[i].web+"</p>";
@@ -132,6 +133,40 @@ function OnLoadLlistaEvents(){
   casalsListFromServer = getCasalsList();
 /*  alert(casalsListFromServer);
   DisplayCasalsList(casalsListFromServer);*/
+}
+/* -----------------------------------EVENT---------------------------------
+funcions de la pàgina
+Event.html
+*/
+function OnLoadEvent(){
+  OnLoadDefault();
+  // aquí va la crida a la funció que agafa del sessionstorage la uri on anar a buscar la info del Event
+
+//  getEventById(idEvent); <-- funcio q encara no està, és la que pilla del restful
+          /* mentre no tenim la api a punt, poso l'objecte hardcoded */
+            var objEvent={
+              title: "Taller de reparació bicis",
+              description: "<b>Vine a apendre a reparar la teva bici!</b> <br> Material necessari: <br>-bici",
+              localization: "c/ Av.Mistral 33 baixos",
+              mail: "ateneulaporka@riseup.net",
+              casalsid: "idcasalcreador",
+              hora: "18h-20h"
+            };
+            /* quan tinguem la api a punt, s'elimina això, i s'afegeix la crida a la funció q pilla el data del restful */
+
+  DisplayHTMLEvent(objEvent);
+}
+function DisplayHTMLEvent(oE){
+  /* 'oC' és la variable objecte on va tota la info del Event */
+
+
+  document.getElementById("eventTitle").innerHTML=oE.title;
+  document.getElementById("eventHora").innerHTML=oE.hora;
+  document.getElementById("eventDescription").innerHTML=oE.description;
+  document.getElementById("eventLocalization").innerHTML=oE.localization;
+  // aqí a partir de les coordenades es monta la url a la api q mostra el lloc
+  document.getElementById("eventMap").src="http://www.openstreetmap.org/export/embed.html?bbox=2.1449947357177734%2C41.371849151666204%2C2.1689414978027344%2C41.38136509656854&amp;layer=mapnik&amp;marker=41.37659924742821%2C2.156968116760254";
+
 }
 
 /* ------------------------------------SIGNIN--------------------------------
