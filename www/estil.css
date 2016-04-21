@@ -326,3 +326,8 @@ body { /* sense marges ni padding */
 .linkblanc:active{
   color: #ffffff;
 }
+
+
+.borderradius7{
+  border-radius: 7px;
+}

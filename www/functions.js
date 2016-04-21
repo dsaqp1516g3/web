@@ -5,12 +5,20 @@ function EmergencyBar(){
   document.getElementById("emergencydiv").innerHTML="";
   content="";
   content+="<h1>Alerta!</h1> ";
-  content+="<h2>Registre a BlokesFantasma</h2> ";
-  content+="<h3>Concentració 20h pl.Revolució</h3>";
+  content+="<h2>Estan desallotjant Can Vies</h2> ";
+  content+="<u>Concentració 20h plaça de Sants</u>";
   document.getElementById("emergencydiv").innerHTML=content;
+
+  toastr.error("ULTIMA HORA: estan desallotjant Can Vies");
 }
 function DisplayAlertEmergency(){
-  toastr.info("funcionalitat encara no disponible");
+  //toastr.info("funcionalitat encara no disponible");
+  window.open("alerta.html");
+}
+
+function OnLoadAlerta(){
+    OnLoadDefault();
+
 }
 
 /* ---------------------------------------DEFAULT-----------------------------
@@ -44,7 +52,7 @@ function OpenPage(linkgiv){
 funcions de la pàgina
 llistacasals.html
 */
-function OnLoadLlistacasals(){
+function OnLoadLlistaCasals(){
   OnLoadDefault();
   casalsListFromServer = getCasalsList();
 /*  alert(casalsListFromServer);
@@ -130,9 +138,8 @@ llistaevents.html
 */
 function OnLoadLlistaEvents(){
   OnLoadDefault();
-  casalsListFromServer = getCasalsList();
-/*  alert(casalsListFromServer);
-  DisplayCasalsList(casalsListFromServer);*/
+  //casalsListFromServer = getEventsList();
+
 }
 /* -----------------------------------EVENT---------------------------------
 funcions de la pàgina
