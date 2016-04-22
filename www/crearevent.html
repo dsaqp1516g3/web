@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>OkupaInfo - Llista Casals</title>
+    <title>OkupaInfo - Crear Event</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -44,7 +44,7 @@
 
 </head>
 
-<body onload="OnLoadLlistaCasals();">
+<body onload="OnLoadCrearEvent();">
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -64,17 +64,13 @@
 
     <!-- Page Content -->
     <div class="container">
+<br><br>
+      <form role="form">
+          <input type="text" placeholder="Nom Event" class="form-control" id="eventName">
+          <input type="text" placeholder="descripció" class="form-control" id="eventDescription">
+          <input type="text" placeholder="localització" class="form-control" id="eventLocalization">
 
-      <div class='row'>
-                <div class='col-lg-12'>
-                    <h1 class='page-header'>Llista espais
-                        <small>Mostra tots</small>
-                    </h1>
-                </div>
-            </div>
-            <!-- /.row -->
-          <div id="espaiBoxCasalListCasals">
-          </div>
+      </form>
 
 
 

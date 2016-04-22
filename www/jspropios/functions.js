@@ -18,7 +18,9 @@ function DisplayAlertEmergency(){
 
 function OnLoadAlerta(){
     OnLoadDefault();
-
+    document.body.style.backgroundImage = "url('http://3.bp.blogspot.com/-tFynHGR4fhY/U4W61P6WySI/AAAAAAAAIw8/eGoi_cJTSdw/s1600/golpe.jpg')";
+    document.body.style.backgroundSize = "cover";
+    document.body.style.overflow= "hidden";
 }
 
 /* ---------------------------------------DEFAULT-----------------------------
@@ -77,7 +79,7 @@ function DisplayHtmlCasalsList(casalsListFromServer){
           content+="";
       }
       content+="<div id='"+cl[i].name+"_Box' class='col-md-4 portfolio-item'>";
-      content+="<a href='../casal.html'>";
+      content+="<a href='casal.html'>";
       content+="<img class='img-responsive' src='http://placehold.it/700x400' alt=''>";
       content+="</a>";
       content+="<h3>";
@@ -197,6 +199,14 @@ perfiluser.html
 function  OnloadPerfilmodificar()
 {
     document.body.style.backgroundImage = "url('images/Can Vies.jpg')";
-    
-    
+    document.body.style.backgroundSize = "cover";
+    document.body.style.overflow= "hidden";
+}
+
+/* ------------------------------------SIGNIN--------------------------------
+funcions de la pàgina
+signin.html
+*/
+function OnLoadCrearEvent(){
+  EmergencyBar();
 }
