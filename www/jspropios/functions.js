@@ -4,6 +4,7 @@ barra emergències */
 function EmergencyBar(){
   document.getElementById("emergencydiv").innerHTML="";
   content="";
+  content="<span class='glyphicon glyphicon-bullhorn'></span> ";
   content+="<h1>Alerta!</h1> ";
   content+="<h2>Estan desallotjant Can Vies</h2> ";
   content+="<u>Concentració 20h plaça de Sants</u>";
@@ -28,14 +29,24 @@ lu que s'executa casi sempre a la majoria de les pàgines
 les funcions q s'executen casi sempre, agrupades */
 function OnLoadDefault(){
   HTMLMenu();
+  HTMLFooter();
   //EmergencyBar();
 }
 function HTMLMenu(){
   /* carrega l'html del menú i el pinta al <div id="HTMLMenu">, d'aquesta manera
   només editem el fitxer menu.html, i els canvis s'apliquen a totes les pàgines */
   $(document).ready(function(e) {
-      $('#HTMLMenu').load('menu.html',function(){
+      $('#HTMLMenu').load('HTMLMenu.html',function(){
         EmergencyBar();
+      });
+  });
+}
+function HTMLFooter(){
+  /* carrega l'html del menú i el pinta al <div id="HTMLMenu">, d'aquesta manera
+  només editem el fitxer menu.html, i els canvis s'apliquen a totes les pàgines */
+  $(document).ready(function(e) {
+      $('#HTMLFooter').load('HTMLFooter.html',function(){
+
       });
   });
 }

@@ -329,3 +329,19 @@ body { /* sense marges ni padding */
 .borderradius7{
   border-radius: 7px;
 }
+
+
+.navbar {
+  /* sobreescriu algunes coses xungues del bootstrap */
+    margin-bottom: 0 !important;
+    border-radius: 0px !important;
+}
+.fonsgris{
+  background: #333333;
+  color: #a6a6a6;
+}
+
+
+.padding-top-20{
+  padding-top: 20px;
+}
