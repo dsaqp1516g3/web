@@ -63,27 +63,25 @@ body { /* sense marges ni padding */
     float: right;
     cursor: default;
 }
-.signinbutton{
-  background: #6688AA;
+.userButton{
+
   color: #ffffff;
   border-radius: 5px;
-  width: 60px;
+  /*width: 60px;*/
   display: inline-block;
   padding: 5px;
   text-align: center;
 	cursor: pointer;
 
 }
-.loginbutton{
-  background: #66aa8a;
-  color: #ffffff;
-  border-radius: 5px;
-  width: 60px;
-  display: inline-block;
-  padding: 5px;
-  text-align: center;
-	cursor: pointer;
+.customGreen{
+
+    background: #66aa8a;
 }
+.customBlue{
+  background: #6688AA;
+}
+
 
 .emergencydiv{
 	margin: 0px;

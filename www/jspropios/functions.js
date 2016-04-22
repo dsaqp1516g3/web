@@ -27,7 +27,17 @@ function OnLoadAlerta(){
 lu que s'executa casi sempre a la majoria de les pàgines
 les funcions q s'executen casi sempre, agrupades */
 function OnLoadDefault(){
-    EmergencyBar();
+  HTMLMenu();
+  //EmergencyBar();
+}
+function HTMLMenu(){
+  /* carrega l'html del menú i el pinta al <div id="HTMLMenu">, d'aquesta manera
+  només editem el fitxer menu.html, i els canvis s'apliquen a totes les pàgines */
+  $(document).ready(function(e) {
+      $('#HTMLMenu').load('menu.html',function(){
+        EmergencyBar();
+      });
+  });
 }
 
 
