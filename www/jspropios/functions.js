@@ -139,6 +139,7 @@ function OnLoadCasal(){
             /* quan tinguem la api a punt, s'elimina això, i s'afegeix la crida a la funció q pilla el data del restful */
 
   DisplayHTMLCasal(objCasal);
+  getEventsListByCasal();
 }
 function DisplayHTMLCasal(oC){
   /* 'oC' és la variable objecte on va tota la info del casal */
@@ -155,15 +156,81 @@ function DisplayHTMLCasal(oC){
 }
 
 
+function DisplayHtmlEventsListByCasal(eventsListFromServer){
+  var el; //EventsList
+  el=eventsListFromServer;
+  document.getElementById("llistaEventsByCasal").innerHTML="";
+  content="";
+  content+="<div class='row'>";
+  for(var i=0; i<el.length; i++)
+  {
+      content+="<div id='"+el[i].name+"_Box' class='col-sm-3 col-xs-6'>";
+      content+="<a class='linknegre' href='event.html'>";
+      content+="    <h4 id='"+el[i].name+"'>"+el[i].name+"</h4>";
+      content+="        <img class='img-responsive portfolio-item' src='http://placehold.it/500x300' alt=''>";
+      content+="    </a>";
+      content+="    <p id='actDescripcio'>"+el[i].descr+"</p>";
+      content+="    <p id='actDia'>"+el[i].dia+"</p>";
+      //content+="    <p id='actHorari'>11h</p>";
+      content+="</div>";
+
+      /*content+="<img class='img-responsive' src='http://placehold.it/700x400' alt=''>";
+      content+="</a>";
+      content+="<h3>";
+      content+="<a class='linknegre' href='#'>"+el[i].name+"</a>";
+      content+="</h3>";
+      content+="<p>"+el[i].descr+"</p>";
+      content+="<p>"+el[i].web+"</p>";
+      content+="<p>"+el[i].dir+"</p>";
+      content+="</div>";*/
+  }
+  content+="</div>";
+  document.getElementById("llistaEventsByCasal").innerHTML=content;
+
+}
+
 /* ---------------------------------LLISTAEVENTS-----------------------------------
 funcions de la pàgina
 llistaevents.html
 */
 function OnLoadLlistaEvents(){
   OnLoadDefault();
-  //casalsListFromServer = getEventsList();
+  getEventsList();
 
 }
+function DisplayHtmlEventsList(eventsListFromServer){
+  var el; //EventsList
+  el=eventsListFromServer;
+  document.getElementById("espaiBoxEventListEvents").innerHTML="";
+  content="";
+  content+="<div class='row'>";
+  for(var i=0; i<el.length; i++)
+  {
+      content+="<div id='"+el[i].name+"_Box' class='col-sm-3 col-xs-6'>";
+      content+="<a class='linknegre' href='event.html'>";
+      content+="    <h4 id='"+el[i].name+"'>"+el[i].name+"</h4>";
+      content+="        <img class='img-responsive portfolio-item' src='http://placehold.it/500x300' alt=''>";
+      content+="    </a>";
+      content+="    <p id='actDescripcio'>"+el[i].descr+"</p>";
+      content+="    <p id='actDia'>"+el[i].dia+"</p>";
+      //content+="    <p id='actHorari'>11h</p>";
+      content+="</div>";
+
+      /*content+="<img class='img-responsive' src='http://placehold.it/700x400' alt=''>";
+      content+="</a>";
+      content+="<h3>";
+      content+="<a class='linknegre' href='#'>"+el[i].name+"</a>";
+      content+="</h3>";
+      content+="<p>"+el[i].descr+"</p>";
+      content+="<p>"+el[i].web+"</p>";
+      content+="<p>"+el[i].dir+"</p>";
+      content+="</div>";*/
+  }
+  content+="</div>";
+  document.getElementById("espaiBoxEventListEvents").innerHTML=content;
+
+}
+
 /* -----------------------------------EVENT---------------------------------
 funcions de la pàgina
 Event.html

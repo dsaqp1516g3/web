@@ -66,6 +66,114 @@ function getCasalsList() {
 	});
 
 }
+function getEventsList() {
+	var url = API_BASE_URL + '/users/' + USERNAME + '/repos'; // del github de moment
+	//$("#repos_result").text('');
+
+  /* temporal pillant del github */
+  el=[{
+    name:"",
+    id:"",
+    descr:"",
+    img:"",
+    dia:""
+  }];
+  elAux={
+    name:"",
+    id:"",
+    descr:"",
+    img:"",
+    dia:""
+  };
+  /* fi temporal */
+	$.ajax({
+		url : url,
+		type : 'GET',
+		crossDomain : true,
+		dataType : 'json',
+	}).done(function(data, status, jqxhr) {
+				var repos = data;
+        n=0;
+				$.each(repos, function(i, v) {
+					var repo = v;
+          elAux.name=repo.name;
+          elAux.id=repo.id;
+          elAux.descr=repo.description;
+          elAux.img=repo.html_url;
+          elAux.dia=repo.id;
+          el.push(JSON.parse(JSON.stringify(elAux)));
+					/*$('<br><strong> Name: ' + repo.name + '</strong><br>').appendTo($('#repos_result'));
+					$('<strong> ID: </strong> ' + repo.id + '<br>').appendTo($('#repos_result'));
+					$('<strong> URL: </strong> ' + repo.html_url + '<br>').appendTo($('#repos_result'));
+					$('<strong> Description: </strong> ' + repo.description + '<br>').appendTo($('#repos_result'));
+          */
+          n++;
+
+				});
+        //return(el);
+        el.shift(); //elimina el primer element q està buit de l'array
+        DisplayHtmlEventsList(el);
+
+
+	}).fail(function() {
+		$("#repos_result").text("No repositories.");
+	});
+
+}
+function getEventsListByCasal() {
+	var url = API_BASE_URL + '/users/' + USERNAME + '/repos'; // del github de moment
+	//$("#repos_result").text('');
+
+  /* temporal pillant del github */
+  el=[{
+    name:"",
+    id:"",
+    descr:"",
+    img:"",
+    dia:""
+  }];
+  elAux={
+    name:"",
+    id:"",
+    descr:"",
+    img:"",
+    dia:""
+  };
+  /* fi temporal */
+	$.ajax({
+		url : url,
+		type : 'GET',
+		crossDomain : true,
+		dataType : 'json',
+	}).done(function(data, status, jqxhr) {
+				var repos = data;
+        n=0;
+				$.each(repos, function(i, v) {
+					var repo = v;
+          elAux.name=repo.name;
+          elAux.id=repo.id;
+          elAux.descr=repo.description;
+          elAux.img=repo.html_url;
+          elAux.dia=repo.id;
+          el.push(JSON.parse(JSON.stringify(elAux)));
+					/*$('<br><strong> Name: ' + repo.name + '</strong><br>').appendTo($('#repos_result'));
+					$('<strong> ID: </strong> ' + repo.id + '<br>').appendTo($('#repos_result'));
+					$('<strong> URL: </strong> ' + repo.html_url + '<br>').appendTo($('#repos_result'));
+					$('<strong> Description: </strong> ' + repo.description + '<br>').appendTo($('#repos_result'));
+          */
+          n++;
+
+				});
+        //return(el);
+        el.shift(); //elimina el primer element q està buit de l'array
+        DisplayHtmlEventsListByCasal(el);
+
+
+	}).fail(function() {
+		$("#repos_result").text("No repositories.");
+	});
+
+}
 
 
 
