@@ -158,12 +158,22 @@ function DisplayHTMLCasal(oC){
 
 function DisplayHtmlEventsListByCasal(eventsListFromServer){
   var el; //EventsList
+  var itemrow;
+  itemrow=0;
   el=eventsListFromServer;
   document.getElementById("llistaEventsByCasal").innerHTML="";
   content="";
   content+="<div class='row'>";
   for(var i=0; i<el.length; i++)
   {
+    if(itemrow>3)
+    {/* cada 3 canvia de row */
+        itemrow=0;
+        content+="</div><br>";
+        content+="<div class='row'>";
+        content+="";
+        content+="";
+    }
       content+="<div id='"+el[i].name+"_Box' class='col-sm-3 col-xs-6'>";
       content+="<a class='linknegre' href='event.html'>";
       content+="    <h4 id='"+el[i].name+"'>"+el[i].name+"</h4>";
@@ -183,6 +193,7 @@ function DisplayHtmlEventsListByCasal(eventsListFromServer){
       content+="<p>"+el[i].web+"</p>";
       content+="<p>"+el[i].dir+"</p>";
       content+="</div>";*/
+      itemrow++;
   }
   content+="</div>";
   document.getElementById("llistaEventsByCasal").innerHTML=content;
@@ -295,10 +306,10 @@ function OnSubmitLogin(){
 	{
 		var loginn = new Object();
 		loginn.loginid = $("#username").val();
-		loginn.password = $("#password").val();		
+		loginn.password = $("#password").val();
 		log(loginn);
 	}
-    
+
   //toastr.warning("encara no disponible");
 }
 
@@ -350,7 +361,7 @@ e.preventDefault();
 function OnSubmitLogout(){
 e.preventDefault();
 	if(($.removeCookie('loginid'))&&($.removeCookie('password'))&&($.removeCookie('token'))){
-		alert("¡Hasta pronto!");		
+		alert("¡Hasta pronto!");
 		window.location = "index.html"
 	}
 	else
