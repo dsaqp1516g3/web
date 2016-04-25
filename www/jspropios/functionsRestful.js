@@ -178,6 +178,38 @@ function getEventsListByCasal() {
 
 
 
+
+
+
+
+/*----------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------*/
+/*--------------SISTEMA-PARA-LOGUEAR-MEDIANTE-LAS-COOKIES-Y-SABER-SI-ESTAMOS-LOGUEADOS----------*/
+
+$(document).ready(function(){		
+	getCookie();	
+});
+function getCookie() {
+
+	if($.cookie('loginid')) {
+		console.log("logeado");
+		var user_tag = $.cookie('loginid'); // Nos guarda el nombre del usuario y lo muestra en login_info, cuando nos logueamos aparece nuestro usuario
+	    $('#login_info').html('<a style="color:#1C1C1C" href="logout.html"><strong> '+ user_tag +' </strong></a>');		 
+    }
+	else
+	{
+		console.log('no logueado');
+		$('#login_info').html('<a style="color:#1C1C1C" href="login.html" ><strong> Iniciar sesión - Registrarse </strong></a>');			
+	}
+
+}
+
+
+
+
+
 /*----------------------------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------------------------------*/
