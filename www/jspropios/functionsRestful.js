@@ -207,6 +207,82 @@ function getCookie() {
 }
 
 
+/*--------------------------------------------REGISTRARSE-------------------------------------------*/
+
+function register(login){
+	console.log(login);
+	var url = API_BASE_URL + '/users';
+	var data = $.param(login);
+
+	$.ajax({
+		url : url,
+		type : 'POST',
+		crossDomain : true,
+		contentType : 'application/x-www-form-urlencoded',
+		dataType : 'json',
+		data : data
+	}).done(function(data, status, jqxhr) {
+        var inf = data;
+		alert("¡Te has registrado como: "+login.loginid+"! Ya puedes iniciar sesión");		
+
+  	}).fail(function() {
+		alert("Error al registrarse: Nombre de usuario ya en uso");
+	});
+}
+
+/*--------------------------------------------LOGIN-------------------------------------------*/
+
+function log(loginn){
+	console.log(loginn);
+	var url = API_BASE_URL + '/login';
+	var data = $.param(loginn);
+
+	$.ajax({
+		url : url,
+		type : 'POST',
+		crossDomain : true,
+		contentType : 'application/x-www-form-urlencoded',
+		dataType : 'json',
+		data : data
+	}).done(function(data, status, jqxhr) {
+
+		var inf = data;
+
+		/*if(inf.loginnSuccesful!= true)*/
+
+if($("#username").val() == "sgr"){
+			alert("¡Usuario se llama sgr!");
+		}
+		else{
+				alert("¡Usuario y contraseña correctos!");
+			var user_token= inf.token;
+			var inputname = $('#username').val();
+			var inputpass  = $('#password').val();
+			
+			$.cookie('loginid', inputname, { expires: 1 });
+			var currentusr = $.cookie('loginid');
+
+			$.cookie('password', inputpass, { expires: 1 });
+			var currentpss = $.cookie('password');
+
+			$.cookie('token', user_token, { expires: 1 });
+			var token = $.cookie('token');
+			
+
+			console.log(user_token);
+			console.log(currentusr);
+			console.log(currentpss);
+
+			alert("¡Bienvenido "+loginn.loginid+", tu id es: "+inf.userid+", y tu token de acceso es: "+inf.token+"!");
+			window.location = "index.html"
+
+		}
+
+
+	}).fail(function() {
+		alert("Usuario y/o contraseña incorrectos");
+	});
+}
 
 
 

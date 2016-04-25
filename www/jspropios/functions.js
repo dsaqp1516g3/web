@@ -276,8 +276,88 @@ function OnLoadSignIn(){
   document.body.style.overflow= "hidden";
 }
 
+function OnSubmitLogin(){
+  e.preventDefault();
+	if($("#username").val() == "" || $("#password").val() == "")
+	{
+		if($("#username").val() == "")
+		{
+			document.getElementById('username').style.background='#585858';
+			$('#username').attr('placeholder','Usuario...');
+		}
+		if($("#password").val() == "")
+		{
+			document.getElementById('password').style.background='#585858';
+			$('#password').attr('placeholder','Contraseña...');
+		}
+	}
+	else
+	{
+		var loginn = new Object();
+		loginn.loginid = $("#username").val();
+		loginn.password = $("#password").val();		
+		log(loginn);
+	}
+    
+  //toastr.warning("encara no disponible");
+}
+
 function OnSubmitSignin(){
-  toastr.warning("encara no disponible");
+e.preventDefault();
+	if($("#username").val() == "" || $("#password").val() == "" || $("#email").val() == "" || $("#description").val() == "" || $("#fullname").val() == "")
+	{
+		if($("#username").val() == "")
+		{
+			document.getElementById('username').style.background='#585858';
+			$('#username').attr('placeholder','Usuario...');
+		}
+		if($("#password").val() == "")
+		{
+			document.getElementById('password').style.background='#585858';
+			$('#password').attr('placeholder','Contraseña...');
+		}
+
+		if($("#email").val() == "")
+		{
+			document.getElementById('email').style.background='#585858';
+			$('#email').attr('placeholder','email...');
+		}
+		if($("#description").val() == "")
+		{
+			document.getElementById('description').style.background='#585858';
+			$('#description').attr('placeholder','description...');
+		}
+		if($("#fullname").val() == "")
+		{
+			document.getElementById('fullname').style.background='#585858';
+			$('#fullname').attr('placeholder','fullname...');
+		}
+
+	}
+	else
+	{
+		var login = new Object();
+		login.loginid = $("#username").val();
+		login.password = $("#password").val();
+		login.email = $("#email").val();
+		login.fullname = $("#fullname").val();
+		login.description = $("#description").val();
+		register(login);
+	}
+//toastr.warning("encara no disponible");
+}
+
+function OnSubmitLogout(){
+e.preventDefault();
+	if(($.removeCookie('loginid'))&&($.removeCookie('password'))&&($.removeCookie('token'))){
+		alert("¡Hasta pronto!");		
+		window.location = "index.html"
+	}
+	else
+	{
+		alert("¡Antes debes iniciar sesión");
+	}
+//toastr.warning("encara no disponible");
 }
 
 /* ------------------------------------Editar Perfil--------------------------------
