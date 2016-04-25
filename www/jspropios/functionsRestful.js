@@ -188,20 +188,20 @@ function getEventsListByCasal() {
 /*----------------------------------------------------------------------------------------------*/
 /*--------------SISTEMA-PARA-LOGUEAR-MEDIANTE-LAS-COOKIES-Y-SABER-SI-ESTAMOS-LOGUEADOS----------*/
 
-$(document).ready(function(){		
-	getCookie();	
+$(document).ready(function(){
+	getCookie();
 });
 function getCookie() {
 
 	if($.cookie('loginid')) {
 		console.log("logeado");
 		var user_tag = $.cookie('loginid'); // Nos guarda el nombre del usuario y lo muestra en login_info, cuando nos logueamos aparece nuestro usuario
-	    $('#login_info').html('<a style="color:#1C1C1C" href="logout.html"><strong> '+ user_tag +' </strong></a>');		 
+	    $('#login_info').html('<a style="color:#1C1C1C" href="logout.html"><strong> '+ user_tag +' </strong></a>');
     }
 	else
 	{
 		console.log('no logueado');
-		$('#login_info').html('<a style="color:#1C1C1C" href="login.html" ><strong> Iniciar sesión - Registrarse </strong></a>');			
+		$('#login_info').html('<a style="color:#1C1C1C" href="login.html" ><strong> Iniciar sesión - Registrarse </strong></a>');
 	}
 
 }
@@ -223,7 +223,7 @@ function register(login){
 		data : data
 	}).done(function(data, status, jqxhr) {
         var inf = data;
-		alert("¡Te has registrado como: "+login.loginid+"! Ya puedes iniciar sesión");		
+		alert("¡Te has registrado como: "+login.loginid+"! Ya puedes iniciar sesión");
 
   	}).fail(function() {
 		alert("Error al registrarse: Nombre de usuario ya en uso");
@@ -258,7 +258,7 @@ if($("#username").val() == "sgr"){
 			var user_token= inf.token;
 			var inputname = $('#username').val();
 			var inputpass  = $('#password').val();
-			
+
 			$.cookie('loginid', inputname, { expires: 1 });
 			var currentusr = $.cookie('loginid');
 
@@ -267,7 +267,7 @@ if($("#username").val() == "sgr"){
 
 			$.cookie('token', user_token, { expires: 1 });
 			var token = $.cookie('token');
-			
+
 
 			console.log(user_token);
 			console.log(currentusr);

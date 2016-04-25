@@ -1,4 +1,4 @@
-
+var logged;
 /* ---------------------------------------EMERGÈNCIES-----------------------------
 barra emergències */
 function EmergencyBar(){
@@ -28,7 +28,10 @@ function OnLoadAlerta(){
 lu que s'executa casi sempre a la majoria de les pàgines
 les funcions q s'executen casi sempre, agrupades */
 function OnLoadDefault(){
+  logged="false";
   HTMLMenu();
+
+  setTimeout(function(){ HTMLMenuUser(); }, 0);//afegeixo un delay de 0 ms pq sinó encara no ho ha carregat bé
   HTMLFooter();
   //EmergencyBar();
 }
@@ -40,6 +43,27 @@ function HTMLMenu(){
         EmergencyBar();
       });
   });
+
+}
+function HTMLMenuUser(){
+  //si està true, mostra les opcions d'user
+  //si està false, mostra el botó de signin i login
+  if(logged=="true")
+  {
+    document.getElementById("loginlogoutbox").innerHTML="";
+    $(document).ready(function(e) {
+        $('#loginlogoutbox').load('HTMLMenuUserLogged.html',function(){
+
+        });
+    });
+  }else{
+    document.getElementById("loginlogoutbox").innerHTML="";
+    $(document).ready(function(e) {
+        $('#loginlogoutbox').load('HTMLMenuUserUnlogged.html',function(){
+
+        });
+    });
+  }
 }
 function HTMLFooter(){
   /* carrega l'html del menú i el pinta al <div id="HTMLMenu">, d'aquesta manera
@@ -181,18 +205,8 @@ function DisplayHtmlEventsListByCasal(eventsListFromServer){
       content+="    </a>";
       content+="    <p id='actDescripcio'>"+el[i].descr+"</p>";
       content+="    <p id='actDia'>"+el[i].dia+"</p>";
-      //content+="    <p id='actHorari'>11h</p>";
       content+="</div>";
 
-      /*content+="<img class='img-responsive' src='http://placehold.it/700x400' alt=''>";
-      content+="</a>";
-      content+="<h3>";
-      content+="<a class='linknegre' href='#'>"+el[i].name+"</a>";
-      content+="</h3>";
-      content+="<p>"+el[i].descr+"</p>";
-      content+="<p>"+el[i].web+"</p>";
-      content+="<p>"+el[i].dir+"</p>";
-      content+="</div>";*/
       itemrow++;
   }
   content+="</div>";
@@ -211,12 +225,22 @@ function OnLoadLlistaEvents(){
 }
 function DisplayHtmlEventsList(eventsListFromServer){
   var el; //EventsList
+  var itemrow;
+  itemrow=0;
   el=eventsListFromServer;
   document.getElementById("espaiBoxEventListEvents").innerHTML="";
   content="";
   content+="<div class='row'>";
   for(var i=0; i<el.length; i++)
   {
+    if(itemrow>3)
+    {/* cada 3 canvia de row */
+        itemrow=0;
+        content+="</div><br>";
+        content+="<div class='row'>";
+        content+="";
+        content+="";
+    }
       content+="<div id='"+el[i].name+"_Box' class='col-sm-3 col-xs-6'>";
       content+="<a class='linknegre' href='event.html'>";
       content+="    <h4 id='"+el[i].name+"'>"+el[i].name+"</h4>";
@@ -236,6 +260,7 @@ function DisplayHtmlEventsList(eventsListFromServer){
       content+="<p>"+el[i].web+"</p>";
       content+="<p>"+el[i].dir+"</p>";
       content+="</div>";*/
+      itemrow++;
   }
   content+="</div>";
   document.getElementById("espaiBoxEventListEvents").innerHTML=content;
