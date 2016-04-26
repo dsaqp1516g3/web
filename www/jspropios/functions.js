@@ -128,7 +128,7 @@ function DisplayHtmlCasalsList(casalsListFromServer){
       content+="<img class='img-responsive' src='http://placehold.it/700x400' alt=''>";
       content+="</a>";
       content+="<h3>";
-      content+="<a class='linknegre' href='#'>"+cl[i].name+"</a>";
+      content+="<a href='#'>"+cl[i].name+"</a>";
       content+="</h3>";
       content+="<p>"+cl[i].descr+"</p>";
       content+="<p>"+cl[i].web+"</p>";
@@ -199,7 +199,7 @@ function DisplayHtmlEventsListByCasal(eventsListFromServer){
         content+="";
     }
       content+="<div id='"+el[i].name+"_Box' class='col-sm-3 col-xs-6'>";
-      content+="<a class='linknegre' href='event.html'>";
+      content+="<a href='event.html'>";
       content+="    <h4 id='"+el[i].name+"'>"+el[i].name+"</h4>";
       content+="        <img class='img-responsive portfolio-item' src='http://placehold.it/500x300' alt=''>";
       content+="    </a>";
@@ -242,7 +242,7 @@ function DisplayHtmlEventsList(eventsListFromServer){
         content+="";
     }
       content+="<div id='"+el[i].name+"_Box' class='col-sm-3 col-xs-6'>";
-      content+="<a class='linknegre' href='event.html'>";
+      content+="<a href='event.html'>";
       content+="    <h4 id='"+el[i].name+"'>"+el[i].name+"</h4>";
       content+="        <img class='img-responsive portfolio-item' src='http://placehold.it/500x300' alt=''>";
       content+="    </a>";
