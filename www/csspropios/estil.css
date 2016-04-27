@@ -327,7 +327,9 @@ body { /* sense marges ni padding */
   color: #ffffff;
 }
 
-
+.borderradius5{
+  border-radius: 5px;
+}
 .borderradius7{
   border-radius: 7px;
 }
@@ -342,8 +344,15 @@ body { /* sense marges ni padding */
   background: #14161a;
   color: #a6a6a6;
 }
+.fonsgris2{
+  background: #3E444C;
+}
 
 
 .padding-top-20{
   padding-top: 20px;
+}
+.paddings-lateral{
+  padding-left: 10px;
+  padding-right: 10px;
 }

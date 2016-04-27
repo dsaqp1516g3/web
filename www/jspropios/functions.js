@@ -28,7 +28,7 @@ function OnLoadAlerta(){
 lu que s'executa casi sempre a la majoria de les pàgines
 les funcions q s'executen casi sempre, agrupades */
 function OnLoadDefault(){
-  logged="false";
+  logged="true";
   HTMLMenu();
 
   setTimeout(function(){ HTMLMenuUser(); }, 0);//afegeixo un delay de 0 ms pq sinó encara no ho ha carregat bé
@@ -139,6 +139,8 @@ function DisplayHtmlCasalsList(casalsListFromServer){
   content+="</div>";
   document.getElementById("espaiBoxCasalListCasals").innerHTML=content;
 
+  //afegeix el núm de casals al badge del títol
+  document.getElementById("badgeNumCasals").innerHTML=cl.length;
 }
 function OnCasalFromListCasalsClick(idcasal){
   alert("això al clicar et porta a la pàgina del casal");
@@ -198,20 +200,37 @@ function DisplayHtmlEventsListByCasal(eventsListFromServer){
         content+="";
         content+="";
     }
-      content+="<div id='"+el[i].name+"_Box' class='col-sm-3 col-xs-6'>";
+    content+="<div id='"+el[i].name+"_Box' class='col-sm-3 col-xs-6'>";
+    content+="<div class='panel panel-primary paddings-lateral fonsgris2'>";
+    //content+="<div class='panel-heading'>";
+    content+="  <a href='event.html'>";
+    content+="    <h4 id='"+el[i].name+"' class='text-info'>"+el[i].name;//al badge surtirà el dia de l'events
+    content+="      <text id='actDia' class='label label-info pull-right'>"+el[i].dia+"</text>";
+    content+="    </h4>";
+    //content+="  </div>";// </panel-heading
+    content+="    <img class='img-responsive portfolio-item borderradius5' src='http://placehold.it/500x300' alt=''>";
+    content+="  </a>";
+    content+="    <p id='actDescripcio'>"+el[i].descr+"</p>";
+
+    //content+="    <p id='actHorari'>11h</p>";
+    content+="</div>";// </ panel panel-info
+    content+="</div>";// </ el[i].name+"_Box'
+      /*content+="<div id='"+el[i].name+"_Box' class='col-sm-3 col-xs-6'>";
       content+="<a href='event.html'>";
       content+="    <h4 id='"+el[i].name+"'>"+el[i].name+"</h4>";
       content+="        <img class='img-responsive portfolio-item' src='http://placehold.it/500x300' alt=''>";
       content+="    </a>";
       content+="    <p id='actDescripcio'>"+el[i].descr+"</p>";
       content+="    <p id='actDia'>"+el[i].dia+"</p>";
-      content+="</div>";
+      content+="</div>";*/
 
       itemrow++;
   }
   content+="</div>";
   document.getElementById("llistaEventsByCasal").innerHTML=content;
 
+  //afegeix el núm d'events al badge del títol de l'inici de mostrar els events del casal
+  document.getElementById("badgeNumEvents").innerHTML=el.length;
 }
 
 /* ---------------------------------LLISTAEVENTS-----------------------------------
@@ -242,15 +261,20 @@ function DisplayHtmlEventsList(eventsListFromServer){
         content+="";
     }
       content+="<div id='"+el[i].name+"_Box' class='col-sm-3 col-xs-6'>";
-      content+="<a href='event.html'>";
-      content+="    <h4 id='"+el[i].name+"'>"+el[i].name+"</h4>";
-      content+="        <img class='img-responsive portfolio-item' src='http://placehold.it/500x300' alt=''>";
-      content+="    </a>";
+      content+="<div class='panel panel-primary paddings-lateral fonsgris2'>";
+      //content+="<div class='panel-heading'>";
+      content+="  <a href='event.html'>";
+      content+="    <h4 id='"+el[i].name+"' class=''>"+el[i].name;//al badge surtirà el dia de l'events
+      content+="      <text id='actDia' class='label label-primary pull-right'>"+el[i].dia+"</text>";
+      content+="    </h4>";
+      //content+="  </div>";// </panel-heading
+      content+="    <img class='img-responsive portfolio-item borderradius5' src='http://placehold.it/500x300' alt=''>";
+      content+="  </a>";
       content+="    <p id='actDescripcio'>"+el[i].descr+"</p>";
-      content+="    <p id='actDia'>"+el[i].dia+"</p>";
-      //content+="    <p id='actHorari'>11h</p>";
-      content+="</div>";
 
+      //content+="    <p id='actHorari'>11h</p>";
+      content+="</div>";// </ panel panel-info
+      content+="</div>";// </ el[i].name+"_Box'
       /*content+="<img class='img-responsive' src='http://placehold.it/700x400' alt=''>";
       content+="</a>";
       content+="<h3>";
@@ -265,6 +289,8 @@ function DisplayHtmlEventsList(eventsListFromServer){
   content+="</div>";
   document.getElementById("espaiBoxEventListEvents").innerHTML=content;
 
+  //afegeix el núm d'events al badge del títol
+  document.getElementById("badgeNumEvents").innerHTML=el.length;
 }
 
 /* -----------------------------------EVENT---------------------------------
@@ -384,9 +410,12 @@ e.preventDefault();
 }
 
 function OnSubmitLogout(){
+  alert("logout button clicked");
+
+  //aqesta part li falta passar-li l'event
 e.preventDefault();
 	if(($.removeCookie('loginid'))&&($.removeCookie('password'))&&($.removeCookie('token'))){
-		alert("¡Hasta pronto!");
+		//alert("¡Hasta pronto!");
 		window.location = "index.html"
 	}
 	else
