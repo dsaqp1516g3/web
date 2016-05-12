@@ -1,4 +1,11 @@
 var logged;
+
+/* ------ coses que es carreguen al començar ----*/
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
+
 /* ---------------------------------------EMERGÈNCIES-----------------------------
 barra emergències */
 function EmergencyBar(){
@@ -436,10 +443,15 @@ function  OnloadPerfilmodificar()
     document.body.style.overflow= "hidden";
 }
 
-/* ------------------------------------SIGNIN--------------------------------
+/* ------------------------------------CREAREVENT--------------------------------
 funcions de la pàgina
-signin.html
+crearevent.html
 */
+
 function OnLoadCrearEvent(){
+  OnLoadDefault();
   EmergencyBar();
+}
+function OnClickBtnCrearEvent(){
+  toastr.warning("funcionalitat a implementar");
 }
