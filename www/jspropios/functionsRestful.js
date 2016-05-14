@@ -2,7 +2,7 @@
 
 //var API_BASE_URL = "http://0.0.0.0:8880/okupainfo";
 
-var API_BASE_URL = "https://api.github.com";
+var API_BASE_URL = "http://127.0.0.1:8080/okupainfo";
 var USERNAME = "idoctnef";
 //temporalment, x no posar la contrassenya directament al codi...
 //var PASSWORD=prompt("entra contrassenya (és temporal, per pillar del github)", "contrassenya...");
@@ -13,7 +13,7 @@ $.ajaxSetup({
 });
 
 function getCasalsList() {
-	var url = API_BASE_URL + '/users/' + USERNAME + '/repos';
+	var url = "https://api.github.com" + '/users/idoctnef/repos';
 	//$("#repos_result").text('');
 
   /* temporal pillant del github */
@@ -65,42 +65,55 @@ function getCasalsList() {
 		$("#repos_result").text("No repositories.");
 	});
 
+
 }
 function getEventsList() {
-	var url = API_BASE_URL + '/users/' + USERNAME + '/repos'; // del github de moment
+	var url = API_BASE_URL + '/events';
 	//$("#repos_result").text('');
 
-  /* temporal pillant del github */
   el=[{
-    name:"",
     id:"",
-    descr:"",
-    img:"",
-    dia:""
+    title:"",
+    description:"",
+    localization:"",
+    latitude:"",
+    longitude:"",
+    eventdate:"",
+    creationTimestamp:"",
+    lastModified:""
   }];
   elAux={
-    name:"",
     id:"",
-    descr:"",
-    img:"",
-    dia:""
+    title:"",
+    description:"",
+    localization:"",
+    latitude:"",
+    longitude:"",
+    eventdate:"",
+    creationTimestamp:"",
+    lastModified:""
   };
-  /* fi temporal */
+
 	$.ajax({
 		url : url,
 		type : 'GET',
 		crossDomain : true,
 		dataType : 'json',
 	}).done(function(data, status, jqxhr) {
-				var repos = data;
-        n=0;
+				var repos = data.events;
+        var n=0;
 				$.each(repos, function(i, v) {
 					var repo = v;
-          elAux.name=repo.name;
+
           elAux.id=repo.id;
-          elAux.descr=repo.description;
-          elAux.img=repo.html_url;
-          elAux.dia=repo.id;
+          elAux.title=repo.title;
+          elAux.description=repo.description;
+          elAux.localization=repo.localization;
+          elAux.latitude=repo.latitude;
+          elAux.longitude=repo.longitude;
+          elAux.eventdate=repo.eventdate;
+          elAux.creationTimestamp=repo.creationTimestamp;
+          elAux.lastModified=repo.lastModified;
           el.push(JSON.parse(JSON.stringify(elAux)));
 					/*$('<br><strong> Name: ' + repo.name + '</strong><br>').appendTo($('#repos_result'));
 					$('<strong> ID: </strong> ' + repo.id + '<br>').appendTo($('#repos_result'));
@@ -116,12 +129,12 @@ function getEventsList() {
 
 
 	}).fail(function() {
-		$("#repos_result").text("No repositories.");
+		toastr.warning("no casals");
 	});
 
 }
 function getEventsListByCasal() {
-	var url = API_BASE_URL + '/users/' + USERNAME + '/repos'; // del github de moment
+	var url = 'https://api.github.com/users/idoctnef/repos'; // del github de moment
 	//$("#repos_result").text('');
 
   /* temporal pillant del github */
@@ -187,7 +200,7 @@ function getEventsListByCasal() {
 /*----------------------------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------------------------------*/
 /*--------------SISTEMA-PARA-LOGUEAR-MEDIANTE-LAS-COOKIES-Y-SABER-SI-ESTAMOS-LOGUEADOS----------*/
-
+/*
 $(document).ready(function(){
 	getCookie();
 });
@@ -205,7 +218,7 @@ function getCookie() {
 	}
 
 }
-
+*/
 
 /*--------------------------------------------REGISTRARSE-------------------------------------------*/
 

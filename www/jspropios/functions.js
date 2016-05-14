@@ -267,17 +267,17 @@ function DisplayHtmlEventsList(eventsListFromServer){
         content+="";
         content+="";
     }
-      content+="<div id='"+el[i].name+"_Box' class='col-sm-3 col-xs-6'>";
+      content+="<div id='"+el[i].id+"_Box' class='col-sm-3 col-xs-6'>";
       content+="<div class='panel panel-primary paddings-lateral fonsgris2'>";
       //content+="<div class='panel-heading'>";
       content+="  <a href='event.html'>";
-      content+="    <h4 id='"+el[i].name+"' class=''>"+el[i].name;//al badge surtirà el dia de l'events
-      content+="      <text id='actDia' class='label label-primary pull-right'>"+el[i].dia+"</text>";
+      content+="    <h4 id='"+el[i].title+"' class=''>"+el[i].title;//al badge surtirà el dia de l'events
+      content+="      <text id='actDia' class='label label-primary pull-right'>"+el[i].eventdate+"</text>";
       content+="    </h4>";
       //content+="  </div>";// </panel-heading
       content+="    <img class='img-responsive portfolio-item borderradius5' src='http://placehold.it/500x300' alt=''>";
       content+="  </a>";
-      content+="    <p id='actDescripcio'>"+el[i].descr+"</p>";
+      content+="    <p id='actDescripcio'>"+el[i].description+"</p>";
 
       //content+="    <p id='actHorari'>11h</p>";
       content+="</div>";// </ panel panel-info
