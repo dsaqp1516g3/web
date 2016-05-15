@@ -2,7 +2,7 @@
 
 //var API_BASE_URL = "http://0.0.0.0:8880/okupainfo";
 
-var API_BASE_URL = "http://127.0.0.1:8080/okupainfo";
+var API_BASE_URL = "http://localhost:8080/okupainfo";
 var USERNAME = "idoctnef";
 //temporalment, x no posar la contrassenya directament al codi...
 //var PASSWORD=prompt("entra contrassenya (és temporal, per pillar del github)", "contrassenya...");
@@ -13,23 +13,27 @@ $.ajaxSetup({
 });
 
 function getCasalsList() {
-	var url = "https://api.github.com" + '/users/idoctnef/repos';
+	var url = API_BASE_URL + '/casals';
 	//$("#repos_result").text('');
 
   /* temporal pillant del github */
   cl=[{
+    casalid:"",
+    adminid:"",
+    email:"",
     name:"",
-    id:"",
-    descr:"",
-    web:"",
-    dir:""
+    description:"",
+    latitude:"",
+    longitude:""
   }];
   clAux={
+    casalid:"",
+    adminid:"",
+    email:"",
     name:"",
-    id:"",
-    descr:"",
-    web:"",
-    dir:""
+    description:"",
+    latitude:"",
+    longitude:""
   };
   /* fi temporal */
 	$.ajax({
@@ -42,11 +46,16 @@ function getCasalsList() {
         n=0;
 				$.each(repos, function(i, v) {
 					var repo = v;
+
+
+          clAux.casalid=repo.casalid;
+          clAux.adminid=repo.adminid;
+          clAux.email=repo.email;
           clAux.name=repo.name;
-          clAux.id=repo.id;
-          clAux.descr=repo.description;
-          clAux.web=repo.html_url;
-          clAux.dir=repo.id;
+          clAux.description=repo.description;
+          clAux.latitude=repo.latitude;
+          clAux.longitude=repo.longitude;
+
           cl.push(JSON.parse(JSON.stringify(clAux)));
 					/*$('<br><strong> Name: ' + repo.name + '</strong><br>').appendTo($('#repos_result'));
 					$('<strong> ID: </strong> ' + repo.id + '<br>').appendTo($('#repos_result'));
@@ -128,8 +137,9 @@ function getEventsList() {
         DisplayHtmlEventsList(el);
 
 
-	}).fail(function() {
-		toastr.warning("no casals");
+	}).fail(function(data) {
+		toastr.warning("no events");
+
 	});
 
 }

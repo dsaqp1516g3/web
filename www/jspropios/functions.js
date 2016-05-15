@@ -130,16 +130,16 @@ function DisplayHtmlCasalsList(casalsListFromServer){
           content+="";
           content+="";
       }
-      content+="<div id='"+cl[i].name+"_Box' class='col-md-4 portfolio-item'>";
+      content+="<div id='"+cl[i].casalid+"_Box' class='col-md-4 portfolio-item'>";
       content+="<a href='casal.html'>";
       content+="<img class='img-responsive' src='http://placehold.it/700x400' alt=''>";
       content+="</a>";
       content+="<h3>";
       content+="<a href='#'>"+cl[i].name+"</a>";
       content+="</h3>";
-      content+="<p>"+cl[i].descr+"</p>";
-      content+="<p>"+cl[i].web+"</p>";
-      content+="<p>"+cl[i].dir+"</p>";
+      content+="<p>"+cl[i].description+"</p>";
+      content+="<p>"+cl[i].email+"</p>";
+      content+="<p>" + cl[i].latitude + " - " + cl[i].longitude + "</p>";
       content+="</div>";
       itemrow++;
   }
