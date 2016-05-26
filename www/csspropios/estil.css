@@ -356,3 +356,13 @@ body { /* sense marges ni padding */
   padding-left: 10px;
   padding-right: 10px;
 }
+
+.own-casalBox{
+  background: rgba(255, 255, 255, 0.05);
+  margin: 10px;
+  padding-top: 10px;
+  cursor: pointer;
+}
+.own-casalBox:hover{
+  background: rgba(255, 255, 255, 0.2);
+}

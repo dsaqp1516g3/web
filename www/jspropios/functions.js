@@ -108,7 +108,7 @@ llistacasals.html
 */
 function OnLoadLlistaCasals(){
   OnLoadDefault();
-  casalsListFromServer = getCasalsList();
+  getCasalsList();
 /*  alert(casalsListFromServer);
   DisplayCasalsList(casalsListFromServer);*/
 }
@@ -130,12 +130,12 @@ function DisplayHtmlCasalsList(casalsListFromServer){
           content+="";
           content+="";
       }
-      content+="<div id='"+cl[i].casalid+"_Box' class='col-md-4 portfolio-item'>";
-      content+="<a href='casal.html'>";
+      content+="<div id='"+cl[i].casalid+"_Box' onclick='OnClickOverCasalBox(this.id)' class='col-md-4 portfolio-item own-casalBox'>";
+      //content+="<a href='casal.html'>";
       content+="<img class='img-responsive' src='http://placehold.it/700x400' alt=''>";
-      content+="</a>";
+      //content+="</a>";
       content+="<h3>";
-      content+="<a href='#'>"+cl[i].name+"</a>";
+      content+=cl[i].name;
       content+="</h3>";
       content+="<p>"+cl[i].description+"</p>";
       content+="<p>"+cl[i].email+"</p>";

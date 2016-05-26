@@ -42,7 +42,7 @@ function getCasalsList() {
 		crossDomain : true,
 		dataType : 'json',
 	}).done(function(data, status, jqxhr) {
-				var repos = data;
+				var repos = data.casals;
         n=0;
 				$.each(repos, function(i, v) {
 					var repo = v;
