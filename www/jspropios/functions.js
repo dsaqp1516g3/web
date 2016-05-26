@@ -35,7 +35,13 @@ function OnLoadAlerta(){
 lu que s'executa casi sempre a la majoria de les pàgines
 les funcions q s'executen casi sempre, agrupades */
 function OnLoadDefault(){
-  logged="true";
+  if(localStorage.getItem("user"))
+  {
+
+    logged="true";
+  }else{
+    logged="false";
+  }
   HTMLMenu();
 
   setTimeout(function(){ HTMLMenuUser(); }, 0);//afegeixo un delay de 0 ms pq sinó encara no ho ha carregat bé
@@ -149,8 +155,11 @@ function DisplayHtmlCasalsList(casalsListFromServer){
   //afegeix el núm de casals al badge del títol
   document.getElementById("badgeNumCasals").innerHTML=cl.length;
 }
-function OnCasalFromListCasalsClick(idcasal){
-  alert("això al clicar et porta a la pàgina del casal");
+function OnClickOverCasalBox(idcasal){
+  idcasal=idcasal.replace("_Box", "");
+  //getCasalByCasalid(idcasal);
+  //localStorage.setItem("idCasal",idcasal);
+  window.open("casal.html?value="+idcasal, "_self");
 }
 
 /* -----------------------------------CASAL---------------------------------
@@ -170,20 +179,28 @@ function OnLoadCasal(){
               mail: "ateneulaporka@riseup.net"
             };
             /* quan tinguem la api a punt, s'elimina això, i s'afegeix la crida a la funció q pilla el data del restful */
+  objCasal=getCasalByCasalid(window.location.href.split("?value=")[1]);
+  /*if(localStorage.getItem("idCasal")) {
+    console.log(localStorage.getItem("idCasal"));
+    objCasal=getCasalByCasalid(localStorage.getItem("idCasal"));
+    //getEventsListByCasal();
+    // set the ID here
+    // after setting remember to remove it, if it's not required
+    //localStorage.removeItem("idCasal");
+  }*/
 
-  DisplayHTMLCasal(objCasal);
-  getEventsListByCasal();
 }
 function DisplayHTMLCasal(oC){
   /* 'oC' és la variable objecte on va tota la info del casal */
 
 
+  document.getElementById("casalName").innerHTML=oC.name;
   document.getElementById("casalDescription").innerHTML=oC.description;
-  document.getElementById("casalWeb").innerHTML=oC.web;
-  document.getElementById("casalDireccio").innerHTML=oC.direccio;
+  document.getElementById("casalWeb").innerHTML=oC.email;
+  document.getElementById("casalDireccio").innerHTML=oC.description;
   document.getElementById("casalMail").innerHTML=oC.mail;
   // aqí a partir de les coordenades es monta la url a la api q mostra el lloc
-  document.getElementById("casalDescription").src="http://www.openstreetmap.org/export/embed.html?bbox=2.1449947357177734%2C41.371849151666204%2C2.1689414978027344%2C41.38136509656854&amp;layer=mapnik&amp;marker=41.37659924742821%2C2.156968116760254";
+  document.getElementById("casalDescription").src="http://www.openstreetmap.org/#map=16/"+oC.latitude+"/"+oC.longitude+"&amp;layers=N";
 
   document.getElementById("casalDescription").innerHTML=oC.description;
 }
@@ -267,7 +284,7 @@ function DisplayHtmlEventsList(eventsListFromServer){
         content+="";
         content+="";
     }
-      content+="<div id='"+el[i].id+"_Box' class='col-sm-3 col-xs-6'>";
+      content+="<div id='"+el[i].id+"_Box' onclick='OnClickOverEventBox(this.id)' class='col-sm-3 col-xs-6'>";
       content+="<div class='panel panel-primary paddings-lateral fonsgris2'>";
       //content+="<div class='panel-heading'>";
       content+="  <a href='event.html'>";
@@ -299,6 +316,12 @@ function DisplayHtmlEventsList(eventsListFromServer){
   //afegeix el núm d'events al badge del títol
   document.getElementById("badgeNumEvents").innerHTML=el.length;
 }
+function OnClickOverEventBox(idevent){
+  idcasal=idcasal.replace("_Box", "");
+  //getCasalByCasalid(idcasal);
+  //localStorage.setItem("idCasal",idcasal);
+  window.open("event.html?value="+idevent, "_self");
+}
 
 /* -----------------------------------EVENT---------------------------------
 funcions de la pàgina
@@ -319,6 +342,7 @@ function OnLoadEvent(){
               hora: "18h-20h"
             };
             /* quan tinguem la api a punt, s'elimina això, i s'afegeix la crida a la funció q pilla el data del restful */
+  objEvent=getEventByEventid(window.location.href.split("?value=")[1]);
 
   DisplayHTMLEvent(objEvent);
 }

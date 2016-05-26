@@ -350,15 +350,7 @@ function getCasalByCasalid(CasalByCasalid) {
 		dataType : 'json',
 	}).done(function(data, status, jqxhr) {
 
-				var casal = data;
-				//Esto es lo que nos va a escribir en el html donde tengamos puesto el result_getCasalByCasalid
-				$("#result_getCasalByCasalid").text();
-				$('<strong> Casalid: </strong>' + casal.casalid + '<br>').appendTo($('#result_getCasalByCasalid'));
-				$('<strong> Loginid: </strong> ' + casal.loginid + '<br>').appendTo($('#result_getCasalByCasalid'));
-				$('<strong> Email: </strong>' + casal.email + '<br>').appendTo($('#result_getCasalByCasalid'));
-				$('<strong> Nombre: </strong> ' + casal.fullname + '<br>').appendTo($('#result_getCasalByCasalid'));
-				$('<strong> Descripción: </strong>' + casal.description + '<br>').appendTo($('#result_getCasalByCasalid'));
-
+				DisplayHTMLCasal(data);
 			}).fail(function() {
 				$('<div class="alert alert-danger"> No existe un casal con esta id </div>').appendTo($("#result_getCasalByCasalid"));
 	});
