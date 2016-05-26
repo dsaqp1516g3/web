@@ -383,13 +383,13 @@ function OnSubmitLogin(){
 			document.getElementById('password').style.background='#585858';
 			$('#password').attr('placeholder','Contraseña...');
 		}
-	}
-	else
-	{
+	}else{
 		var loginn = new Object();
 		loginn.loginid = $("#username").val();
 		loginn.password = $("#password").val();
 		log(loginn);
+    localStorage.setItem("user",loginn.loginid);
+    localStorage.setItem("pass", loginn.password);
 	}
 
   //toastr.warning("encara no disponible");
