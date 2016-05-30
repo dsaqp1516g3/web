@@ -254,10 +254,8 @@ function signUp2Restful(data){
 
 /*--------------------------------------------LOGIN-------------------------------------------*/
 
-function log(loginn){
-	console.log(loginn);
+function logIn2Restful(data){
 	var url = API_BASE_URL + '/login';
-	var data = $.param(loginn);
 
 	$.ajax({
 		url : url,
@@ -267,42 +265,15 @@ function log(loginn){
 		dataType : 'json',
 		data : data
 	}).done(function(data, status, jqxhr) {
-
-		var inf = data;
-
-		/*if(inf.loginnSuccesful!= true)*/
-
-if($("#username").val() == "sgr"){
-			alert("¡Usuario se llama sgr!");
-		}
-		else{
-				alert("¡Usuario y contraseña correctos!");
-			var user_token= inf.token;
-			var inputname = $('#username').val();
-			var inputpass  = $('#password').val();
-
-			$.cookie('loginid', inputname, { expires: 1 });
-			var currentusr = $.cookie('loginid');
-
-			$.cookie('password', inputpass, { expires: 1 });
-			var currentpss = $.cookie('password');
-
-			$.cookie('token', user_token, { expires: 1 });
-			var token = $.cookie('token');
-
-
-			console.log(user_token);
-			console.log(currentusr);
-			console.log(currentpss);
-
-			alert("¡Bienvenido "+loginn.loginid+", tu id es: "+inf.userid+", y tu token de acceso es: "+inf.token+"!");
-			window.location = "index.html"
-
-		}
+    /*document.cookie = "token="+data.token;
+    document.cookie = "userid="+data.userid;*/
+    localStorage.setItem("token",data.token);
+    localStorage.setItem("userid",data.userid);
+    toastr.success("ets dins");
 
 
 	}).fail(function() {
-		alert("Usuario y/o contraseña incorrectos");
+    toastr.error("oooops, user o contrassenya incorrectes");
 	});
 }
 

@@ -35,7 +35,7 @@ function OnLoadAlerta(){
 lu que s'executa casi sempre a la majoria de les pàgines
 les funcions q s'executen casi sempre, agrupades */
 function OnLoadDefault(){
-  if(localStorage.getItem("user"))
+  if(localStorage.getItem("userid"))
   {
 
     logged="true";
@@ -359,7 +359,7 @@ function DisplayHTMLEvent(oE){
 
 }
 
-/* ------------------------------------SIGNUp--------------------------------
+/* ------------------------------------SIGNUP--------------------------------
 funcions de la pàgina
 signup.html
 */
@@ -385,6 +385,25 @@ function OnBtnSignUp(){
     signUp2Restful(d);
   }else{
     toastr.error("format email incorrecte");
+  }
+}
+/* ------------------------------------LOGIN--------------------------------
+funcions de la pàgina
+login.html
+*/
+function OnBtnLogIn(){
+  var d;
+  d={
+    loginid: "",
+    password: "",
+  };
+  d.loginid=getValById("username");
+  d.password=getValById("password");
+  if((d.loginid!="")&&(d.password!=""))
+  {
+    logIn2Restful(d);
+  }else{
+    toastr.error("user o password buida");
   }
 }
 
