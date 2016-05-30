@@ -359,101 +359,33 @@ function DisplayHTMLEvent(oE){
 
 }
 
-/* ------------------------------------SIGNIN--------------------------------
+/* ------------------------------------SIGNUp--------------------------------
 funcions de la pàgina
-signin.html
+signup.html
 */
-function OnLoadSignIn(){
-  document.body.style.backgroundImage = "url('images/backgroundSignin1.jpg')";
-  document.body.style.backgroundSize = "cover";
-  document.body.style.overflow= "hidden";
+function getValById(idgiv){
+  return(document.getElementById(idgiv).value);
 }
-
-function OnSubmitLogin(){
-  e.preventDefault();
-	if($("#username").val() == "" || $("#password").val() == "")
-	{
-		if($("#username").val() == "")
-		{
-			document.getElementById('username').style.background='#585858';
-			$('#username').attr('placeholder','Usuario...');
-		}
-		if($("#password").val() == "")
-		{
-			document.getElementById('password').style.background='#585858';
-			$('#password').attr('placeholder','Contraseña...');
-		}
-	}else{
-		var loginn = new Object();
-		loginn.loginid = $("#username").val();
-		loginn.password = $("#password").val();
-		log(loginn);
-    localStorage.setItem("user",loginn.loginid);
-    localStorage.setItem("pass", loginn.password);
-	}
-
-  //toastr.warning("encara no disponible");
-}
-
-function OnSubmitSignin(){
-e.preventDefault();
-	if($("#username").val() == "" || $("#password").val() == "" || $("#email").val() == "" || $("#description").val() == "" || $("#fullname").val() == "")
-	{
-		if($("#username").val() == "")
-		{
-			document.getElementById('username').style.background='#585858';
-			$('#username').attr('placeholder','Usuario...');
-		}
-		if($("#password").val() == "")
-		{
-			document.getElementById('password').style.background='#585858';
-			$('#password').attr('placeholder','Contraseña...');
-		}
-
-		if($("#email").val() == "")
-		{
-			document.getElementById('email').style.background='#585858';
-			$('#email').attr('placeholder','email...');
-		}
-		if($("#description").val() == "")
-		{
-			document.getElementById('description').style.background='#585858';
-			$('#description').attr('placeholder','description...');
-		}
-		if($("#fullname").val() == "")
-		{
-			document.getElementById('fullname').style.background='#585858';
-			$('#fullname').attr('placeholder','fullname...');
-		}
-
-	}
-	else
-	{
-		var login = new Object();
-		login.loginid = $("#username").val();
-		login.password = $("#password").val();
-		login.email = $("#email").val();
-		login.fullname = $("#fullname").val();
-		login.description = $("#description").val();
-		register(login);
-	}
-//toastr.warning("encara no disponible");
-}
-
-function OnSubmitLogout(){
-  alert("logout button clicked");
-
-  //aqesta part li falta passar-li l'event
-e.preventDefault();
-	if(($.removeCookie('loginid'))&&($.removeCookie('password'))&&($.removeCookie('token'))){
-		//alert("¡Hasta pronto!");
-		window.location = "index.html"
-	}
-	else
-	{
-		alert("¡Antes debes iniciar sesión");
-	}
-//toastr.warning("encara no disponible");
+function OnBtnSignUp(){
+  var d;
+  d={
+    loginid: "",
+    password: "",
+    email: "",
+    fullname: "",
+    description: ""
+  };
+  d.loginid=getValById("username");
+  d.password=getValById("password");
+  d.email=getValById("email");
+  d.fullname=getValById("fullname");
+  d.description=getValById("description");
+  if((d.email.indexOf("@") > -1)&&(d.email.indexOf(".") > -1))
+  {
+    signUp2Restful(d);
+  }else{
+    toastr.error("format email incorrecte");
+  }
 }
 
 /* ------------------------------------Editar Perfil--------------------------------

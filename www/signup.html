@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>OkupaInfo - LogIn</title>
+    <title>OkupaInfo - SignUp</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -54,9 +54,15 @@
 
       <div class="panel panel-primary own-centerBox">
         <div class="panel-heading">
-          <h3 class="panel-title">Log in</h3>
+          <h3 class="panel-title">Sign up</h3>
         </div>
         <div class="panel-body">
+          <input type="text" id="username" placeholder="user" required class="form-control input-lg" value="" />
+          <input type="text" id="password" placeholder="password" required class="form-control input-lg" value="" />
+          <input type="text" id="email" placeholder="email" required class="form-control input-lg" value="" />
+          <input type="text" id="fullname" placeholder="fullname" required class="form-control input-lg" value="" />
+          <input type="text" id="description" placeholder="description" required class="form-control input-lg" value="" />
+          <div class='btn btn-success pull-right' onclick='OnBtnSignUp()'>SignUp</div>
 
         </div>
       </div>

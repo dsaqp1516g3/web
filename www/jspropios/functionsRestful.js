@@ -232,26 +232,25 @@ function getCookie() {
 
 /*--------------------------------------------REGISTRARSE-------------------------------------------*/
 
-function register(login){
-	console.log(login);
-	var url = API_BASE_URL + '/users';
-	var data = $.param(login);
 
-	$.ajax({
-		url : url,
-		type : 'POST',
-		crossDomain : true,
-		contentType : 'application/x-www-form-urlencoded',
-		dataType : 'json',
-		data : data
-	}).done(function(data, status, jqxhr) {
+function signUp2Restful(data){
+  var url = API_BASE_URL + '/users';
+  $.ajax({
+    url : url,
+    type : 'POST',
+    crossDomain : true,
+    contentType : 'application/x-www-form-urlencoded',
+    dataType : 'json',
+    data : data
+  }).done(function(data, status, jqxhr) {
         var inf = data;
-		alert("¡Te has registrado como: "+login.loginid+"! Ya puedes iniciar sesión");
+        toastr.success("registrat correctament");
 
-  	}).fail(function() {
-		alert("Error al registrarse: Nombre de usuario ya en uso");
-	});
+    }).fail(function() {
+      toastr.error("error al signup");
+  });
 }
+
 
 /*--------------------------------------------LOGIN-------------------------------------------*/
 
