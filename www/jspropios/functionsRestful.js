@@ -245,6 +245,9 @@ function signUp2Restful(data){
   }).done(function(data, status, jqxhr) {
         var inf = data;
         toastr.success("registrat correctament");
+        setTimeout(function(){
+          window.open("login.html", "_self");
+        }, 1000);
 
     }).fail(function() {
       toastr.error("error al signup");
@@ -270,11 +273,44 @@ function logIn2Restful(data){
     localStorage.setItem("token",data.token);
     localStorage.setItem("userid",data.userid);
     toastr.success("ets dins");
-
+    setTimeout(function(){
+      window.open("index.html", "_self");
+    }, 1000);
 
 	}).fail(function() {
     toastr.error("oooops, user o contrassenya incorrectes");
 	});
+}
+/*--------------------------------------------LOGOUT-------------------------------------------*/
+
+function logOut2Restful(data){
+	var url = API_BASE_URL + '/login';
+
+//aquestes dues següents linies estan aquí temporalment
+  localStorage.removeItem("token");
+  localStorage.removeItem("userid");
+	$.ajax({
+		url : url,
+		type : 'DELETE',
+		crossDomain : true,
+		contentType : 'application/x-www-form-urlencoded',
+		dataType : 'json',
+		data : data
+	}).done(function(data, status, jqxhr) {
+    /*document.cookie = "token="+data.token;
+    document.cookie = "userid="+data.userid;*/
+    localStorage.removeItem("token");
+    localStorage.removeItem("userid");
+    toastr.success("logged out");
+
+
+	}).fail(function() {
+    toastr.error("oooops, no has pogut fer log out");
+	});
+
+  setTimeout(function(){
+    window.open("index.html", "_self");
+  }, 1000);
 }
 
 

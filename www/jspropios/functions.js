@@ -406,6 +406,19 @@ function OnBtnLogIn(){
     toastr.error("user o password buida");
   }
 }
+/* ------------------------------------LOGOUT--------------------------------
+funcions de logout
+*/
+function OnBtnLogOut(){
+  var d;
+  d={
+    token: "",
+    userid: "",
+  };
+  d.token=localStorage.getItem("token");
+  d.userid=localStorage.getItem("userid");
+  logOut2Restful(d);
+}
 
 /* ------------------------------------Editar Perfil--------------------------------
 perfiluser.html
