@@ -203,10 +203,13 @@ function OnLoadCasal(){
               mail: "ateneulaporka@riseup.net"
             };
             /* quan tinguem la api a punt, s'elimina això, i s'afegeix la crida a la funció q pilla el data del restful */
-  objCasal=getCasalByCasalid(window.location.href.split("?value=")[1]);
+  getCasalByCasalid(window.location.href.split("?value=")[1]);
 
   //ara cal posar els esdeveniments del casal
 
+
+  //i ara els comments del casal
+  getCommentsCasalByCasalid(window.location.href.split("?value=")[1]);
 
 }
 function DisplayHTMLCasal(oC){
@@ -222,6 +225,10 @@ function DisplayHTMLCasal(oC){
   document.getElementById("casalDescription").src="http://www.openstreetmap.org/#map=16/"+oC.latitude+"/"+oC.longitude+"&amp;layers=N";
 
   document.getElementById("casalDescription").innerHTML=oC.description;
+}
+
+function DisplayHTMLCommentsCasal(data){
+  alert(data);
 }
 
 

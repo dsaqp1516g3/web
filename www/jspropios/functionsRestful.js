@@ -1,11 +1,11 @@
 /* aqí van les funcions de get, post, etc */
 
-var API_BASE_URL = "http://localhost:8080/okupainfo";
+var API_BASE_URL = "http://localhost:8088/okupainfo";
 
-
+/*
 $.ajaxSetup({
     headers: { 'Authorization': "Basic "+ btoa(USERNAME+':'+PASSWORD) }
-});
+});*/
 
 
 
@@ -306,7 +306,6 @@ function logOut2Restful(data){
 
 function getCasalByCasalid(CasalByCasalid) {
 	var url = API_BASE_URL + '/casals/' + CasalByCasalid; //En el servidor se accede mediante /casals/{Casalid}
-	$("#result_getCasalByCasalid").text(''); // En result_getCasalByCasalid es donde se van a poner los resultados
 
 	$.ajax({
 		url : url,
@@ -317,8 +316,23 @@ function getCasalByCasalid(CasalByCasalid) {
 
 				DisplayHTMLCasal(data);
 			}).fail(function() {
-				$('<div class="alert alert-danger"> No existe un casal con esta id </div>').appendTo($("#result_getCasalByCasalid"));
-	});
+        toastr.warning("casal no trobat");
+    	});
+}
+function getCommentsCasalByCasalid(CasalByCasalid) {
+	var url = API_BASE_URL + "/" + CasalByCasalid + "/comments"; //En el servidor se accede mediante /casals/{Casalid}
+
+	$.ajax({
+		url : url,
+		type : 'GET',
+		crossDomain : true,
+		dataType : 'json',
+	}).done(function(data, status, jqxhr) {
+
+				DisplayHTMLCommentsCasal(data);
+			}).fail(function() {
+        toastr.warning("error als comentaris");
+    	});
 }
 function getCasalByEmail(CasalByEmail) {
 	var url = API_BASE_URL + '/casals/' + CasalByEmail; //En el servidor se accede mediante /casals/{email}
