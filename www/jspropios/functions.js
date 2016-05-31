@@ -66,7 +66,7 @@ function HTMLMenuUser(){
     document.getElementById("loginlogoutbox").innerHTML="";
     $(document).ready(function(e) {
         $('#loginlogoutbox').load('HTMLMenuUserLogged.html',function(){
-
+          document.getElementById("usernameid").innerHTML=localStorage.getItem("username");
         });
     });
   }else{
@@ -161,6 +161,30 @@ function OnClickOverCasalBox(idcasal){
   //localStorage.setItem("idCasal",idcasal);
   window.open("casal.html?value="+idcasal, "_self");
 }
+/* crear casal */
+function OnBtnValidateCasal(){
+  d={
+    adminid:"",
+    name:"",
+    description:"",
+    email:"",
+    localization:"",
+    validated:""
+  };
+  d.adminid=localStorage.getItem("userid");
+  d.name=getValById("name");
+  d.description=getValById("description");
+  d.email=getValById("email");
+  d.localization=getValById("localization");
+  d.validated=false;
+  if((d.email.indexOf("@") > -1)&&(d.email.indexOf(".") > -1))
+  {
+    crearCasal2Restful(d);
+  }else{
+    toastr.error("format email incorrecte");
+  }
+}
+
 
 /* -----------------------------------CASAL---------------------------------
 funcions de la pàgina

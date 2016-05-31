@@ -12,6 +12,29 @@ $.ajaxSetup({
     headers: { 'Authorization': "Basic "+ btoa(USERNAME+':'+PASSWORD) }
 });
 
+
+
+
+function crearCasal2Restful(data){
+  var url = API_BASE_URL + '/casals';
+  $.ajax({
+    url : url,
+    type : 'POST',
+    crossDomain : true,
+    contentType : 'application/x-www-form-urlencoded',
+    dataType : 'json',
+    data : data
+  }).done(function(data, status, jqxhr) {
+        //var inf = data;
+        toastr.success("casal creat correctament, falta que el validin");
+        setTimeout(function(){
+          window.open("index.html", "_self");
+        }, 1000);
+
+    }).fail(function() {
+      toastr.error("error al crear casal");
+  });
+}
 function getCasalsList() {
 	var url = API_BASE_URL + '/casals';
 	//$("#repos_result").text('');
@@ -272,6 +295,7 @@ function logIn2Restful(data){
     document.cookie = "userid="+data.userid;*/
     localStorage.setItem("token",data.token);
     localStorage.setItem("userid",data.userid);
+    localStorage.setItem("username", getValById("username"));
     toastr.success("ets dins");
     setTimeout(function(){
       window.open("index.html", "_self");
