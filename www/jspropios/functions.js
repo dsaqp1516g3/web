@@ -204,14 +204,9 @@ function OnLoadCasal(){
             };
             /* quan tinguem la api a punt, s'elimina això, i s'afegeix la crida a la funció q pilla el data del restful */
   objCasal=getCasalByCasalid(window.location.href.split("?value=")[1]);
-  /*if(localStorage.getItem("idCasal")) {
-    console.log(localStorage.getItem("idCasal"));
-    objCasal=getCasalByCasalid(localStorage.getItem("idCasal"));
-    //getEventsListByCasal();
-    // set the ID here
-    // after setting remember to remove it, if it's not required
-    //localStorage.removeItem("idCasal");
-  }*/
+
+  //ara cal posar els esdeveniments del casal
+
 
 }
 function DisplayHTMLCasal(oC){
