@@ -218,7 +218,7 @@ function getEventsListByCasal() {
 
 
 
-/*--------------------------------------------REGISTRARSE-------------------------------------------*/
+/*--------------------------------------------Signup-------------------------------------------*/
 
 
 function signUp2Restful(data){
@@ -320,7 +320,7 @@ function getCasalByCasalid(CasalByCasalid) {
     	});
 }
 function getCommentsCasalByCasalid(CasalByCasalid) {
-	var url = API_BASE_URL + "/" + CasalByCasalid + "/comments"; //En el servidor se accede mediante /casals/{Casalid}
+	var url = API_BASE_URL + "/casals/" + CasalByCasalid + "/comments"; //En el servidor se accede mediante /casals/{Casalid}
 
 	$.ajax({
 		url : url,

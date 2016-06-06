@@ -228,7 +228,22 @@ function DisplayHTMLCasal(oC){
 }
 
 function DisplayHTMLCommentsCasal(data){
-  alert(data);
+  var content="";
+  for(var i=0; i<data.comments_casals.length; i++)
+  {
+    content+="<div class='panel panel-default'>";
+    content+="<div class='panel-body'>";
+    content+=data.comments_casals[i].content;
+    content+="</div></div>";
+  }
+/*
+<div class="panel panel-default">
+  <div class="panel-body">
+    Basic panel
+  </div>
+</div>
+*/
+  document.getElementById("commentsByCasal").innerHTML=content;
 }
 
 
