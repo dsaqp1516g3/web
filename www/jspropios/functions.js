@@ -234,7 +234,8 @@ function DisplayHTMLCommentsCasal(data){
     content+="<div class='panel panel-default'>";
     content+="<div class='panel-body'>";
     content+=data.comments_casals[i].content;
-    content+="</div></div>";
+    content+="</div>";
+    content+="</div>";
   }
 /*
 <div class="panel panel-default">
@@ -298,6 +299,20 @@ function DisplayHtmlEventsListByCasal(eventsListFromServer){
   document.getElementById("badgeNumEvents").innerHTML=el.length;
 }
 
+function OnClickBtnShowAddComment(idbtn){
+  document.getElementById(idbtn).style.display="none";
+  document.getElementById("commentAdderBox").style.display="block";
+}
+function OnClickBtnAddComment(){
+  var d;
+  d={
+    casalid:"",
+    content:""
+  }
+  d.casalid=window.location.href.split("?value=")[1];
+  d.content=document.getElementById("textAreaComment").value;
+  postComment2Restful(d);
+}
 /* ---------------------------------LLISTAEVENTS-----------------------------------
 funcions de la pàgina
 llistaevents.html

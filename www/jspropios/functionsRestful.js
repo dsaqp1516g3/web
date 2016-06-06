@@ -334,6 +334,26 @@ function getCommentsCasalByCasalid(CasalByCasalid) {
         toastr.warning("error als comentaris");
     	});
 }
+function postComment2Restful(data){
+  var url = API_BASE_URL + "/casals/" + data.casalid + "/comments";;
+  $.ajax({
+    url : url,
+    type : 'POST',
+    crossDomain : true,
+    contentType : 'application/x-www-form-urlencoded',
+    dataType : 'json',
+    data : data
+  }).done(function(data, status, jqxhr) {
+        //var inf = data;
+        toastr.success("comment afegit");
+        setTimeout(function(){
+          location.reload();
+        }, 1000);
+
+    }).fail(function() {
+      location.reload();
+  });
+}
 function getCasalByEmail(CasalByEmail) {
 	var url = API_BASE_URL + '/casals/' + CasalByEmail; //En el servidor se accede mediante /casals/{email}
 	$("#result_getCasalByEmail").text(''); // En result_getCasalByEmail es donde se van a poner los resultados
