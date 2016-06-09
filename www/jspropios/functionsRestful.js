@@ -1,6 +1,6 @@
 /* aqí van les funcions de get, post, etc */
 
-var API_BASE_URL = "http://localhost:8088/okupainfo";
+var API_BASE_URL = "http://localhost:8080/okupainfo";
 
 /*
 $.ajaxSetup({
@@ -317,6 +317,21 @@ function getCasalByCasalid(CasalByCasalid) {
 				DisplayHTMLCasal(data);
 			}).fail(function() {
         toastr.warning("casal no trobat");
+    	});
+}
+function getEventByEventid(EventByEventid) {
+	var url = API_BASE_URL + '/events/' + EventByEventid; //En el servidor se accede mediante /casals/{Casalid}
+
+	$.ajax({
+		url : url,
+		type : 'GET',
+		crossDomain : true,
+		dataType : 'json',
+	}).done(function(data, status, jqxhr) {
+
+				DisplayHTMLEvent(data);
+			}).fail(function() {
+        toastr.warning("event no trobat");
     	});
 }
 function getCommentsCasalByCasalid(CasalByCasalid) {

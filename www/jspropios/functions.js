@@ -222,7 +222,15 @@ function DisplayHTMLCasal(oC){
   document.getElementById("casalDireccio").innerHTML=oC.description;
   document.getElementById("casalMail").innerHTML=oC.mail;
   // aqí a partir de les coordenades es monta la url a la api q mostra el lloc
-  document.getElementById("casalDescription").src="http://www.openstreetmap.org/#map=16/"+oC.latitude+"/"+oC.longitude+"&amp;layers=N";
+  var urlMap, marc1, marc2, marc3, marc4;
+  //urlMap="http://www.openstreetmap.org/export/embed.html?bbox=2.1449947357177734%2C41.371849151666204%2C2.1689414978027344%2C41.38136509656854&amp;layer=mapnik&amp;marker=41.37659924742821%2C2.156968116760254";
+  marc1=oC.latitude-0.00475009576;//longitude
+  marc2=oC.longitude-0.00475009576;
+  marc3=oC.latitude+0.00475009576;
+  marc4=oC.longitude+0.00475009576;
+  urlMap="http://www.openstreetmap.org/export/embed.html?bbox="+marc1+"%2C"+marc2+"%2C"+marc3+"%2C"+marc4+"&amp;layer=mapnik&amp;marker="+oC.longitude+"%2C"+oC.latitude;
+//                                                                                                    NaN %2C   41.26815520.01     %2C  1.96617210.01&amp;layer=mapnik&amp;marker=1.9661721%2C41.2681552
+  document.getElementById("iframeMap").src=urlMap;
 
   document.getElementById("casalDescription").innerHTML=oC.description;
 }
@@ -373,7 +381,7 @@ function DisplayHtmlEventsList(eventsListFromServer){
   document.getElementById("badgeNumEvents").innerHTML=el.length;
 }
 function OnClickOverEventBox(idevent){
-  idcasal=idcasal.replace("_Box", "");
+  idevent=idevent.replace("_Box", "");
   //getCasalByCasalid(idcasal);
   //localStorage.setItem("idCasal",idcasal);
   window.open("event.html?value="+idevent, "_self");
@@ -398,9 +406,9 @@ function OnLoadEvent(){
               hora: "18h-20h"
             };
             /* quan tinguem la api a punt, s'elimina això, i s'afegeix la crida a la funció q pilla el data del restful */
-  objEvent=getEventByEventid(window.location.href.split("?value=")[1]);
+  getEventByEventid(window.location.href.split("?value=")[1]);
 
-  DisplayHTMLEvent(objEvent);
+  //DisplayHTMLEvent(objEvent);
 }
 function DisplayHTMLEvent(oE){
   /* 'oC' és la variable objecte on va tota la info del Event */
