@@ -1,6 +1,6 @@
 /* aqí van les funcions de get, post, etc */
 
-var API_BASE_URL = "http://localhost:8080/okupainfo";
+var API_BASE_URL = "http://147.83.7.204:8080/okupainfo";
 
 /*
 $.ajaxSetup({
@@ -31,7 +31,7 @@ function crearCasal2Restful(data){
   });
 }
 function getCasalsList() {
-	var url = API_BASE_URL + '/casals';
+	var url = API_BASE_URL + '/casals/validated';
 	//$("#repos_result").text('');
 
   /* temporal pillant del github */
@@ -94,6 +94,68 @@ function getCasalsList() {
 
 
 }
+function getCasalsListValidated() {
+	var url = API_BASE_URL + '/casals/validated';
+	//$("#repos_result").text('');
+
+
+	$.ajax({
+		url : url,
+		type : 'GET',
+		crossDomain : true,
+    headers: {"X-Auth-Token": "41c46d242e5a11e69a23dc85de8e365f"},
+		dataType : 'json',
+	}).done(function(data, status, jqxhr) {
+				console.log(data);
+        ValidationHTMLValidated(data);
+
+	}).fail(function() {
+		$("#repos_result").text("No repositories.");
+	});
+
+
+}
+function getCasalsListUnvalidated() {
+	var url = API_BASE_URL + '/casals/unvalidated';
+	//$("#repos_result").text('');
+
+
+	$.ajax({
+		url : url,
+		type : 'GET',
+		crossDomain : true,
+    headers: {"X-Auth-Token": "41c46d242e5a11e69a23dc85de8e365f"},
+		dataType : 'json',
+	}).done(function(data, status, jqxhr) {
+				console.log(data);
+        ValidationHTMLUnvalidated(data);
+
+	}).fail(function() {
+		$("#repos_result").text("No repositories.");
+	});
+
+
+}
+function validate2Restful(data){
+  var url = API_BASE_URL + '/casals/'+data.casalid;
+  $.ajax({
+    url : url,
+    type : 'PUT',
+    crossDomain : true,
+    contentType : 'application/x-www-form-urlencoded',
+    headers: {"X-Auth-Token": "41c46d242e5a11e69a23dc85de8e365f"},
+    dataType : 'json',
+    data : data
+  }).done(function(data, status, jqxhr) {
+        console.log(data);
+        setTimeout(function(){
+          window.open("validation.html", "_self");
+        }, 1000);
+    }).fail(function() {
+      toastr.error("error al update");
+  });
+}
+
 function getEventsList() {
 	var url = API_BASE_URL + '/events';
 	//$("#repos_result").text('');

@@ -507,3 +507,63 @@ function OnLoadCrearEvent(){
 function OnClickBtnCrearEvent(){
   toastr.warning("funcionalitat a implementar");
 }
+
+
+/* -------------------------- validation ----------------------------------*/
+function OnLoadValidation(){
+  OnLoadDefault();
+  getCasalsListValidated();
+  getCasalsListUnvalidated();
+}
+function ValidationHTMLValidated(d){
+  var aux="";
+
+  for(var i=0; i<d.casals.length; i++)
+  {
+    aux+="<div class='panel panel-default'>";
+    aux+="<div class='panel-body'>";
+    aux+=d.casals[i].name;
+    aux+="<div id='"+d.casals[i].casalid+"' onclick='Unvalidate(this.id)' class='btn btn-danger pull-right'> Unvalidate </div>";
+    aux+="</div>";
+    aux+="</div>";
+  }
+  document.getElementById("listCasalsValidated").innerHTML=aux;
+}
+function ValidationHTMLUnvalidated(d){
+  var aux="";
+
+  for(var i=0; i<d.casals.length; i++)
+  {
+    aux+="<div class='panel panel-default'>";
+    aux+="<div class='panel-body'>";
+    aux+=d.casals[i].name;
+    aux+="<div id='"+d.casals[i].casalid+"' onclick='Validate(this.id)' class='btn btn-success pull-right'> Validate </div>";
+    aux+="</div>";
+    aux+="</div>";
+  }
+  document.getElementById("listCasalsUnvalidated").innerHTML=aux;
+}
+function Unvalidate(idg){
+  var d;
+  d={
+    casalid: "",
+    adminid:"",
+    validated:""
+  };
+  d.casalid=idg;
+  d.adminid=localStorage.getItem("userid");
+  d.validated=false;
+  validate2Restful(d);
+}
+function Validate(idg){
+  var d;
+  d={
+    casalid: "",
+    adminid:"",
+    validated:""
+  };
+  d.casalid=idg;
+  d.adminid=localStorage.getItem("userid");
+  d.validated=true;
+  validate2Restful(d);
+}
