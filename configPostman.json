@@ -1,0 +1,848 @@
+
+
+{
+	"id": "53bd5e3d-0676-3f0a-6017-9a0cbc651bc7",
+	"name": "OkupaInfo",
+	"description": "",
+	"order": [
+		"a48867b4-bd69-b8dc-3c3f-b8bb0d5668f8",
+		"006e4ba4-1636-959f-ea6e-afa0799e8635",
+		"25db731d-83b2-73c3-f99c-d74527e8081b",
+		"7e94d871-bafc-c16a-d3cb-2c6bc0a3db74",
+		"b0fb2816-8220-abf9-5eca-c61c508064b3",
+		"705a0663-f840-4ae2-8895-aea459a7dc97",
+		"bc67b1b7-e00e-dee3-ac60-ab5bc6814092",
+		"bb81494e-63e2-b74b-d150-91312b71014d",
+		"4b08febf-d0bb-839d-9a79-c301a95276dd",
+		"eca9e56b-a243-784c-73b0-e854918268f9",
+		"32436935-9235-9685-535f-8d6db2937ce0",
+		"88a49b2b-a276-5a2d-d13a-7bbb39e5e607",
+		"d99d30e5-4512-2ffd-3a1f-15587d6987cb",
+		"8c5340df-893b-1997-8ea3-e314e9081b16",
+		"fd54cb50-d60d-3380-aa48-204d55214311",
+		"432ae54c-4d27-5b05-1dc4-9b4204f552ca",
+		"bdbb4eab-4c7a-e87a-03da-83a1a7d9b63d",
+		"aa717959-5d1d-b1d8-fd3b-0b159aacbb5d",
+		"a801ef84-cdb9-abc7-a07f-1fd4dfa4aad5",
+		"45517d0d-68ac-f5eb-cf5c-052f560cf430",
+		"3203dbc0-cf14-37da-3d72-13f5cafb79c0"
+	],
+	"folders": [],
+	"timestamp": 1464268647100,
+	"owner": 0,
+	"remoteLink": "",
+	"public": false,
+	"requests": [
+		{
+			"id": "006e4ba4-1636-959f-ea6e-afa0799e8635",
+			"headers": "Content-Type: application/vnd.dsa.okupainfo.user+json\n",
+			"url": "http://localhost:8080/okupainfo/login",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "53bd5e3d-0676-3f0a-6017-9a0cbc651bc7",
+			"data": [
+				{
+					"key": "loginid",
+					"value": "palindromo",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "herbivoro",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:8080/okupainfo/users/BB6D88F3258411E6B6F808002764EE77",
+			"description": "Login",
+			"descriptionFormat": "html",
+			"time": 1464518179957,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "25db731d-83b2-73c3-f99c-d74527e8081b",
+			"headers": "X-Auth-Token: F8CF3547258811E6B6F808002764EE77\n",
+			"url": "http://localhost:8080/okupainfo/casals/comments",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "53bd5e3d-0676-3f0a-6017-9a0cbc651bc7",
+			"data": [
+				{
+					"key": "title",
+					"value": "Defensem Gracia 22634634763",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "description",
+					"value": "Okupem el banc de nou i siguem feliÃ§os",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "localization",
+					"value": "Passeig de Gracia, 223, 08010, Barcelona, Spain",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "eventdate",
+					"value": "1491991200",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:8080/okupainfo/casals/comments",
+			"description": "Comentarios de un casal obtenidos",
+			"descriptionFormat": "html",
+			"time": 1464686721700,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "3203dbc0-cf14-37da-3d72-13f5cafb79c0",
+			"headers": "",
+			"url": "http://localhost:8080/okupainfo/casals/6F20EB5E2E7011E6B96F08002764EE77",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "53bd5e3d-0676-3f0a-6017-9a0cbc651bc7",
+			"data": [
+				{
+					"key": "title",
+					"value": "Barbacoa okupa",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "description",
+					"value": "THe best plaace fro all the okupas around the world",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "localization",
+					"value": "Av. Roma, 49, Barcelona, Spain",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "eventdate",
+					"value": "05/10/2016",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "image",
+					"value": "",
+					"type": "file",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"name": "http://localhost:8080/okupainfo/casals/6F20EB5E2E7011E6B96F08002764EE77",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1465554341940,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "32436935-9235-9685-535f-8d6db2937ce0",
+			"headers": "Content-Type: application/vnd.dsa.okupainfo.casal+json\nX-Auth-Token: FD9EA6E1274D11E6BB4508002764EE77\n",
+			"url": "http://localhost:8080/okupainfo/casals/AE769E99275011E6BB4508002764EE77",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "PUT",
+			"collectionId": "53bd5e3d-0676-3f0a-6017-9a0cbc651bc7",
+			"data": [],
+			"dataMode": "raw",
+			"name": "http://localhost:8080/okupainfo/casals/AE769E99275011E6BB4508002764EE77",
+			"description": "Actualizar Casal",
+			"descriptionFormat": "html",
+			"time": 1464714177628,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n  \"casalid\": \"AE769E99275011E6BB4508002764EE77\",\n  \"adminid\": \"FD9CCA3B274D11E6BB4508002764EE77\",\n  \"email\": \"now@okupaplis.com\",\n  \"name\": \"superokupa\",\n  \"description\": \"muy feliz con mi okupacionde okupa profesional\",\n  \"localization\": \"Passeig de Gracia, 223, 08010, Barcelona, Spain\",\n  \"latitude\": 2.1679474,\n  \"longitude\": 41.3897264\n}"
+		},
+		{
+			"id": "432ae54c-4d27-5b05-1dc4-9b4204f552ca",
+			"headers": "X-Auth-Token: FD9EA6E1274D11E6BB4508002764EE77\nContent-Type: application/vnd.dsa.okupainfo.casals.events+json\n",
+			"url": "http://localhost:8088/okupainfo/casals/AE769E99275011E6BB4508002764EE77/events/62719E9B275311E6BB4508002764EE77",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "PUT",
+			"collectionId": "53bd5e3d-0676-3f0a-6017-9a0cbc651bc7",
+			"data": [],
+			"dataMode": "raw",
+			"name": "http://localhost:8088/okupainfo/casals/AE769E99275011E6BB4508002764EE77/events/62719E9B275311E6BB4508002764EE77",
+			"description": "Actualizar Evento",
+			"descriptionFormat": "html",
+			"time": 1464784683108,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n  \"id\": \"62719E9B275311E6BB4508002764EE77\",\n  \"title\": \"Defensem Gracia fins al mes enllÃ \",\n  \"description\": \"Okupem el banc de nou i siguem feliÃ§os com las perdices\",\n  \"localization\": \"Passeig de Gracia, 345, 08010, Barcelona, Spain\",\n  \"eventdate\": \"1491991200000\"\n}"
+		},
+		{
+			"id": "45517d0d-68ac-f5eb-cf5c-052f560cf430",
+			"headers": "",
+			"url": "http://localhost:8080/okupainfo/casals/6F20EB5E2E7011E6B96F08002764EE77",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "53bd5e3d-0676-3f0a-6017-9a0cbc651bc7",
+			"data": [
+				{
+					"key": "title",
+					"value": "Barbacoa okupa",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "description",
+					"value": "THe best plaace fro all the okupas around the world",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "localization",
+					"value": "Av. Roma, 49, Barcelona, Spain",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "eventdate",
+					"value": "05/10/2016",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "image",
+					"value": "xTg98ExTA.png",
+					"type": "file",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"name": "http://localhost:8080/okupainfo/casals/6F20EB5E2E7011E6B96F08002764EE77",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1465498533138,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "4b08febf-d0bb-839d-9a79-c301a95276dd",
+			"headers": "",
+			"url": "http://localhost:8080/okupainfo/users",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "53bd5e3d-0676-3f0a-6017-9a0cbc651bc7",
+			"data": [
+				{
+					"key": "loginid",
+					"value": "piromano",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "fuego",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "PIromano@okupainfo.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "fullname",
+					"value": "Guillermo Riverola",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "description",
+					"value": "Guillermo es piromano",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:8080/okupainfo/users",
+			"description": "Resgistrarse",
+			"descriptionFormat": "html",
+			"time": 1464712723277,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "705a0663-f840-4ae2-8895-aea459a7dc97",
+			"headers": "X-Auth-Token: B40AB0FF272D11E6BB4508002764EE77\n",
+			"url": "http://localhost:8080/okupainfo/casals/F333E653272D11E6BB4508002764EE77/events",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "53bd5e3d-0676-3f0a-6017-9a0cbc651bc7",
+			"data": [
+				{
+					"key": "title",
+					"value": "Visca la independencia",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "description",
+					"value": "Siguem indepes, siguem feliÃ§os",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "localization",
+					"value": "Passeig de Gracia, 223, 08010, Barcelona, Spain",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "eventdate",
+					"value": "1491991200",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:8080/okupainfo/casals/F333E653272D11E6BB4508002764EE77/events",
+			"description": "Crear un casal campechano",
+			"descriptionFormat": "html",
+			"time": 1464704371581,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "7e94d871-bafc-c16a-d3cb-2c6bc0a3db74",
+			"headers": "X-Auth-Token: F8CF3547258811E6B6F808002764EE77\n",
+			"url": "http://localhost:8080/okupainfo/casals/0025AC58265A11E6A40B08002764EE77/events",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "53bd5e3d-0676-3f0a-6017-9a0cbc651bc7",
+			"data": [
+				{
+					"key": "title",
+					"value": "Defensem Gracia 22634634763",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "description",
+					"value": "Okupem el banc de nou i siguem feliÃ§os",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "localization",
+					"value": "Passeig de Gracia, 223, 08010, Barcelona, Spain",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "eventdate",
+					"value": "1491991200",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:8080/okupainfo/casals/0025AC58265A11E6A40B08002764EE77/events",
+			"description": "Creat evento\n",
+			"descriptionFormat": "html",
+			"time": 1464686742316,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "88a49b2b-a276-5a2d-d13a-7bbb39e5e607",
+			"headers": "X-Auth-Token: FD9EA6E1274D11E6BB4508002764EE77\n",
+			"url": "http://localhost:8088/okupainfo/casals/2EFA6C09272D11E6BB4508002764EE77/comments",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "53bd5e3d-0676-3f0a-6017-9a0cbc651bc7",
+			"data": [
+				{
+					"key": "title",
+					"value": "Defensem Gracia 2",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "description",
+					"value": "Okupem el banc de nou i siguem feliÃ§os",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "localization",
+					"value": "Passeig de Gracia, 223, 08010, Barcelona, Spain",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "eventdate",
+					"value": "1491991200",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:8088/okupainfo/casals/2EFA6C09272D11E6BB4508002764EE77/comments",
+			"description": "Ver comentarios de un casal concreto",
+			"descriptionFormat": "html",
+			"time": 1464768028421,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "8c5340df-893b-1997-8ea3-e314e9081b16",
+			"headers": "X-Auth-Token: EABBF24E274F11E6BB4508002764EE77\n",
+			"url": "http://localhost:8088/okupainfo/events/2EFACF0B272D11E6BB4508002764EE77/2EF9E5F5272D11E6BB4508002764EE77",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "53bd5e3d-0676-3f0a-6017-9a0cbc651bc7",
+			"data": [],
+			"dataMode": "params",
+			"name": "http://localhost:8088/okupainfo/events/2EFACF0B272D11E6BB4508002764EE77/2EF9E5F5272D11E6BB4508002764EE77",
+			"description": "Add assistance to Event",
+			"descriptionFormat": "html",
+			"time": 1464770371557,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "a48867b4-bd69-b8dc-3c3f-b8bb0d5668f8",
+			"headers": "",
+			"url": "http://localhost:8080/okupainfo/users",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "53bd5e3d-0676-3f0a-6017-9a0cbc651bc7",
+			"data": [
+				{
+					"key": "loginid",
+					"value": "Limon",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "limonero",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "limo@limon.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "fullname",
+					"value": "Limon Verdadero",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "description",
+					"value": "Aquie viene el okupa amante de los limones",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:8080/okupainfo/users",
+			"description": "OkupaInfo   ",
+			"descriptionFormat": "html",
+			"time": 1464268647099,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "a801ef84-cdb9-abc7-a07f-1fd4dfa4aad5",
+			"headers": "",
+			"url": "http://localhost:8080/okupainfo/casals/6F20EB5E2E7011E6B96F08002764EE77",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "title",
+					"value": "Barbacoa okupa",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "description",
+					"value": "THe best plaace fro all the okupas around the world",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "localization",
+					"value": "Av. Roma, 49, Barcelona, Spain",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "eventdate",
+					"value": "05/10/2016",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "image",
+					"value": "xTg98ExTA.png",
+					"type": "file",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1465498517496,
+			"name": "http://{{servername}}:8080/okupainfo/casals",
+			"description": "",
+			"collectionId": "53bd5e3d-0676-3f0a-6017-9a0cbc651bc7",
+			"responses": []
+		},
+		{
+			"id": "aa717959-5d1d-b1d8-fd3b-0b159aacbb5d",
+			"headers": "",
+			"url": "http://{{servername}}:8080/okupainfo/casals",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "53bd5e3d-0676-3f0a-6017-9a0cbc651bc7",
+			"data": [
+				{
+					"key": "adminid",
+					"value": "6F1FF6032E7011E6B96F08002764EE77",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "localization",
+					"value": "Av. Roma, 49, Barcelona, Spain",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "okupa@palace.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "name",
+					"value": "Okupa's Palace",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "description",
+					"value": "THe best plaace fro all the okupas around the world",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"name": "http://{{servername}}:8080/okupainfo/casals",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1465497347810,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "b0fb2816-8220-abf9-5eca-c61c508064b3",
+			"headers": "X-Auth-Token: B40AB0FF272D11E6BB4508002764EE77\n",
+			"url": "http://localhost:8080/okupainfo/casals/F333E653272D11E6BB4508002764EE77/events/233CAEDE273A11E6BB4508002764EE77",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "53bd5e3d-0676-3f0a-6017-9a0cbc651bc7",
+			"data": [
+				{
+					"key": "title",
+					"value": "Visca la independencia",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "description",
+					"value": "Siguem indepes, siguem feliÃ§os",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "localization",
+					"value": "Passeig de Gracia, 223, 08010, Barcelona, Spain",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "eventdate",
+					"value": "1491991200",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:8080/okupainfo/casals/F333E653272D11E6BB4508002764EE77/events/233CAEDE273A11E6BB4508002764EE77",
+			"description": "Get de un solo casal de un evento",
+			"descriptionFormat": "html",
+			"time": 1464704357224,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "bb81494e-63e2-b74b-d150-91312b71014d",
+			"headers": "",
+			"url": "http://localhost:8080/okupainfo/users",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "53bd5e3d-0676-3f0a-6017-9a0cbc651bc7",
+			"data": [
+				{
+					"key": "loginid",
+					"value": "Limon",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "limonero",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "limo@limon.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "fullname",
+					"value": "Limon Verdadero",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "description",
+					"value": "Aquie viene el okupa amante de los limones",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:8080/okupainfo/users",
+			"description": "Get de users",
+			"descriptionFormat": "html",
+			"time": 1464712626659,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "bc67b1b7-e00e-dee3-ac60-ab5bc6814092",
+			"headers": "X-Auth-Token: B40AB0FF272D11E6BB4508002764EE77\n",
+			"url": "http://localhost:8080/okupainfo/casals/F333E653272D11E6BB4508002764EE77/events",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "53bd5e3d-0676-3f0a-6017-9a0cbc651bc7",
+			"data": [
+				{
+					"key": "title",
+					"value": "Visca la independencia",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "description",
+					"value": "Siguem indepes, siguem feliÃ§os",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "localization",
+					"value": "Passeig de Gracia, 223, 08010, Barcelona, Spain",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "eventdate",
+					"value": "1491991200",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:8080/okupainfo/casals/F333E653272D11E6BB4508002764EE77/events",
+			"description": "Obtener eventos de un casal",
+			"descriptionFormat": "html",
+			"time": 1464704389006,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "bdbb4eab-4c7a-e87a-03da-83a1a7d9b63d",
+			"headers": "X-Auth-Token: EABBF24E274F11E6BB4508002764EE77\n",
+			"url": "http://localhost:8088/okupainfo/casals/AE769E99275011E6BB4508002764EE77/events/62719E9B275311E6BB4508002764EE77/comments",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "53bd5e3d-0676-3f0a-6017-9a0cbc651bc7",
+			"data": [
+				{
+					"key": "content",
+					"value": "Este evento es el sueÃ±o de cualquier okupa feliz",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:8088/okupainfo/casals/AE769E99275011E6BB4508002764EE77/events/62719E9B275311E6BB4508002764EE77/comments",
+			"description": "crear un comentario a un evento",
+			"descriptionFormat": "html",
+			"time": 1464859010902,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "d99d30e5-4512-2ffd-3a1f-15587d6987cb",
+			"headers": "Content-Type: application/vnd.dsa.okupainfo.comments_casals+json\nX-Auth-Token: FD9EA6E1274D11E6BB4508002764EE77\n",
+			"url": "http://localhost:8088/okupainfo/casals/2EFA6C09272D11E6BB4508002764EE77/comments/0378986027D011E6BB4508002764EE77",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "PUT",
+			"collectionId": "53bd5e3d-0676-3f0a-6017-9a0cbc651bc7",
+			"data": [],
+			"dataMode": "raw",
+			"name": "http://localhost:8088/okupainfo/casals/2EFA6C09272D11E6BB4508002764EE77/comments",
+			"description": "Actualizar comentario",
+			"descriptionFormat": "html",
+			"time": 1464769117290,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n  \"id\": \"0378986027D011E6BB4508002764EE77\",\n  \"creatorid\": \"2EF9E5F5272D11E6BB4508002764EE77\",\n  \"casalid\": \"2EFA6C09272D11E6BB4508002764EE77\",\n  \"creationTimestamp\": 0,\n  \"lastModified\": 0,\n  \"content\": \"Life is though for the Okupa but I can get through it\"\n}"
+		},
+		{
+			"id": "eca9e56b-a243-784c-73b0-e854918268f9",
+			"headers": "Content-Type: application/vnd.dsa.okupainfo.user+json\nX-Auth-Token: B40AB0FF272D11E6BB4508002764EE77\n",
+			"url": "http://localhost:8080/okupainfo/users/B4098DB6272D11E6BB4508002764EE77",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "PUT",
+			"collectionId": "53bd5e3d-0676-3f0a-6017-9a0cbc651bc7",
+			"data": [],
+			"dataMode": "raw",
+			"name": "http://localhost:8080/okupainfo/users/B4098DB6272D11E6BB4508002764EE77",
+			"description": "Actualizacion del perfil",
+			"descriptionFormat": "html",
+			"time": 1464713008348,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n  \"id\": \"B4098DB6272D11E6BB4508002764EE77\",\n  \"loginid\": \"palindormo\",\n  \"email\": \"PIromano@okupainfo.com\",\n  \"fullname\": \"Guillermo Riverola\",\n  \"description\": \"Pues va a ser que se puede hacer el update del perfil\"\n}\n"
+		},
+		{
+			"id": "fd54cb50-d60d-3380-aa48-204d55214311",
+			"headers": "Content-Type: application/vnd.dsa.okupainfo.casal+json\nX-Auth-Token: FD9EA6E1274D11E6BB4508002764EE77\n",
+			"url": "http://localhost:8088/okupainfo/casals/AE769E99275011E6BB4508002764EE77",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "PUT",
+			"collectionId": "53bd5e3d-0676-3f0a-6017-9a0cbc651bc7",
+			"data": [],
+			"dataMode": "raw",
+			"name": "http://localhost:8088/okupainfo/casals/AE769E99275011E6BB4508002764EE77",
+			"description": "Actualizar perfil de Casal conseguido",
+			"descriptionFormat": "html",
+			"time": 1464781753511,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n  \"casalid\": \"AE769E99275011E6BB4508002764EE77\",\n  \"adminid\": \"FD9CCA3B274D11E6BB4508002764EE77\",\n  \"email\": \"now@okupaplis.com\",\n  \"name\": \"superokupa\",\n  \"description\": \"muy feliz con mi okupacion de okupa profesional\",\n  \"localization\": \"Passeig de Gracia, 300, 08010, Barcelona, Spain\",\n  \"validated\": true\n}"
+		}
+	]
+}

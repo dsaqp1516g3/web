@@ -1,6 +1,7 @@
 /* aqí van les funcions de get, post, etc */
 
-var API_BASE_URL = "http://147.83.7.204:8080/okupainfo";
+var API_BASE_URL = "http://eetacdsa1c.upc.es:8080/okupainfo";
+//var API_BASE_URL = "http://localhost:8080/okupainfo";
 
 /*
 $.ajaxSetup({

@@ -53,7 +53,7 @@ function HTMLMenu(){
   només editem el fitxer menu.html, i els canvis s'apliquen a totes les pàgines */
   $(document).ready(function(e) {
       $('#HTMLMenu').load('HTMLMenu.html',function(){
-        EmergencyBar();
+        //EmergencyBar();
       });
   });
 
@@ -502,7 +502,6 @@ crearevent.html
 
 function OnLoadCrearEvent(){
   OnLoadDefault();
-  EmergencyBar();
 }
 function OnClickBtnCrearEvent(){
   toastr.warning("funcionalitat a implementar");

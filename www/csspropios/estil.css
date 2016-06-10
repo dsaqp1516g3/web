@@ -372,3 +372,7 @@ body { /* sense marges ni padding */
   margin-right: auto;
   max-width: 500px;
 }
+
+.own-hidden{
+  display: none;
+}

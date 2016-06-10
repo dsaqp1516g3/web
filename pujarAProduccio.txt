@@ -1,0 +1,10 @@
+>ssh dsa3@eetacdsa1c.upc.es
+pass
+>ls
+
+per pujar cosa nova:
+>sudo rm -rf /web
+>git clone urlweb
+
+anar fins la carpeta www
+scp -r . /var/www/okupa-web/
