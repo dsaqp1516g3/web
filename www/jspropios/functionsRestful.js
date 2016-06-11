@@ -414,6 +414,7 @@ function getCommentsCasalByCasalid(CasalByCasalid) {
 		url : url,
 		type : 'GET',
 		crossDomain : true,
+    headers: {"X-Auth-Token": localStorage.getItem("token")},
 		dataType : 'json',
 	}).done(function(data, status, jqxhr) {
 
@@ -429,6 +430,7 @@ function postComment2Restful(data){
     type : 'POST',
     crossDomain : true,
     contentType : 'application/x-www-form-urlencoded',
+    headers: {"X-Auth-Token": localStorage.getItem("token")},
     dataType : 'json',
     data : data
   }).done(function(data, status, jqxhr) {
