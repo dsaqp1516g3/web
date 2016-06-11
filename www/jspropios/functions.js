@@ -44,16 +44,17 @@ function OnLoadDefault(){
   }
   HTMLMenu();
 
-  setTimeout(function(){ HTMLMenuUser(); }, 0);//afegeixo un delay de 0 ms pq sinó encara no ho ha carregat bé
+  setTimeout(function(){ HTMLMenuUser(); }, 500);//afegeixo un delay de 0 ms pq sinó encara no ho ha carregat bé
   HTMLFooter();
   //EmergencyBar();
 }
 function HTMLMenu(){
   /* carrega l'html del menú i el pinta al <div id="HTMLMenu">, d'aquesta manera
   només editem el fitxer menu.html, i els canvis s'apliquen a totes les pàgines */
-  $(document).ready(function(e) {
+  $(window).load(function(){
       $('#HTMLMenu').load('HTMLMenu.html',function(){
         //EmergencyBar();
+        //HTMLMenuUser();
       });
   });
 
@@ -63,8 +64,8 @@ function HTMLMenuUser(){
   //si està false, mostra el botó de signin i login
   if(logged=="true")
   {
-    document.getElementById("loginlogoutbox").innerHTML="";
     $(document).ready(function(e) {
+      document.getElementById("loginlogoutbox").innerHTML="";
         $('#loginlogoutbox').load('HTMLMenuUserLogged.html',function(){
           document.getElementById("usernameid").innerHTML=localStorage.getItem("username");
           if(localStorage.getItem("username")=="admin")
@@ -75,8 +76,8 @@ function HTMLMenuUser(){
         });
     });
   }else{
-    document.getElementById("loginlogoutbox").innerHTML="";
     $(document).ready(function(e) {
+      document.getElementById("loginlogoutbox").innerHTML="";
         $('#loginlogoutbox').load('HTMLMenuUserUnlogged.html',function(){
 
         });
@@ -245,6 +246,9 @@ function DisplayHTMLCommentsCasal(data){
   for(var i=0; i<data.comments_casals.length; i++)
   {
     content+="<div class='panel panel-default'>";
+    content+="<div class='panel-heading'>";
+    content+=getUserById(data.comments_casals[i].creatorid);
+    content+="</div>";
     content+="<div class='panel-body'>";
     content+=data.comments_casals[i].content;
     content+="</div>";

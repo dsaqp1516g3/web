@@ -407,6 +407,22 @@ function getEventByEventid(EventByEventid) {
         toastr.warning("event no trobat");
     	});
 }
+function getUserById(idg){
+  var url = API_BASE_URL + "/users/" + idg; //En el servidor se accede mediante /casals/{Casalid}
+  var loginidaux="";
+  $.ajax({
+    url : url,
+    type : 'GET',
+    crossDomain : true,
+    dataType : 'json',
+  }).done(function(data, status, jqxhr) {
+
+      loginidaux=data.loginid;
+    }).fail(function() {
+      loginidaux="no user";
+    });
+    return(loginidaux);
+}
 function getCommentsCasalByCasalid(CasalByCasalid) {
 	var url = API_BASE_URL + "/casals/" + CasalByCasalid + "/comments"; //En el servidor se accede mediante /casals/{Casalid}
 
