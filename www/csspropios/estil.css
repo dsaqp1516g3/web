@@ -376,3 +376,8 @@ body { /* sense marges ni padding */
 .own-hidden{
   display: none;
 }
+
+.own-spanids{
+  display:inline-block!important;
+  margin-right: 5px!important;
+}

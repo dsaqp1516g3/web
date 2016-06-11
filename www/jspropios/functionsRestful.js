@@ -9,7 +9,7 @@ $.ajaxSetup({
 });*/
 
 
-
+var unvalidatedAux, validatedAux;
 
 function crearCasal2Restful(data){
   var url = API_BASE_URL + '/casals';
@@ -18,6 +18,9 @@ function crearCasal2Restful(data){
     type : 'POST',
     crossDomain : true,
     contentType : 'application/x-www-form-urlencoded',
+    //application/vnd.dsa.okupainfo.casal+json
+    headers: {"X-Auth-Token": localStorage.getItem("token"),
+  "Content-Type": "application/vnd.dsa.okupainfo.casal+json"},
     dataType : 'json',
     data : data
   }).done(function(data, status, jqxhr) {
@@ -108,7 +111,9 @@ function getCasalsListValidated() {
 		dataType : 'json',
 	}).done(function(data, status, jqxhr) {
 				console.log(data);
+        validatedAux=data;
         ValidationHTMLValidated(data);
+
 
 	}).fail(function() {
 		$("#repos_result").text("No repositories.");
@@ -129,6 +134,7 @@ function getCasalsListUnvalidated() {
 		dataType : 'json',
 	}).done(function(data, status, jqxhr) {
 				console.log(data);
+        unvalidatedAux=data;
         ValidationHTMLUnvalidated(data);
 
 	}).fail(function() {
@@ -143,8 +149,9 @@ function validate2Restful(data){
     url : url,
     type : 'PUT',
     crossDomain : true,
-    contentType : 'application/x-www-form-urlencoded',
-    headers: {"X-Auth-Token": "41c46d242e5a11e69a23dc85de8e365f"},
+    contentType : 'application/x-www-form-urlencoded',//application/vnd.dsa.okupainfo.casal+json
+    headers: {"X-Auth-Token": localStorage.getItem("token"),
+  "Content-Type": "application/vnd.dsa.okupainfo.casal+json"},
     dataType : 'json',
     data : data
   }).done(function(data, status, jqxhr) {
@@ -357,7 +364,10 @@ function logOut2Restful(data){
 
 
 	}).fail(function() {
-    toastr.error("oooops, no has pogut fer log out");
+    //toastr.error("oooops, no has pogut fer log out");
+    localStorage.removeItem("token");
+    localStorage.removeItem("userid");
+    toastr.success("logged out");
 	});
 
   setTimeout(function(){

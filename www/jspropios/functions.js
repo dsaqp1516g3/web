@@ -67,6 +67,11 @@ function HTMLMenuUser(){
     $(document).ready(function(e) {
         $('#loginlogoutbox').load('HTMLMenuUserLogged.html',function(){
           document.getElementById("usernameid").innerHTML=localStorage.getItem("username");
+          if(localStorage.getItem("username")=="admin")
+          {
+            document.getElementById("liCrearEventMenu").className="";
+            document.getElementById("liValidateCasals").className="";
+          }
         });
     });
   }else{
@@ -522,6 +527,8 @@ function ValidationHTMLValidated(d){
     aux+="<div class='panel panel-default'>";
     aux+="<div class='panel-body'>";
     aux+=d.casals[i].name;
+    aux+="<br><span class='label label-info own-spanids'>casalid:  "+ d.casals[i].casalid + "</span>";
+    aux+="<br><span class='label label-success own-spanids'>adminid:  "+ d.casals[i].adminid + "</span>";
     aux+="<div id='"+d.casals[i].casalid+"' onclick='Unvalidate(this.id)' class='btn btn-danger pull-right'> Unvalidate </div>";
     aux+="</div>";
     aux+="</div>";
@@ -536,6 +543,8 @@ function ValidationHTMLUnvalidated(d){
     aux+="<div class='panel panel-default'>";
     aux+="<div class='panel-body'>";
     aux+=d.casals[i].name;
+    aux+="<br><span class='label label-info own-spanids'>casalid:  "+ d.casals[i].casalid + "</span>";
+    aux+="<br><span class='label label-success own-spanids'>adminid:  "+ d.casals[i].adminid + "</span>";
     aux+="<div id='"+d.casals[i].casalid+"' onclick='Validate(this.id)' class='btn btn-success pull-right'> Validate </div>";
     aux+="</div>";
     aux+="</div>";
@@ -555,14 +564,26 @@ function Unvalidate(idg){
   validate2Restful(d);
 }
 function Validate(idg){
-  var d;
+  var d, casalaux;
   d={
     casalid: "",
-    adminid:"",
-    validated:""
+    casal:""
   };
   d.casalid=idg;
-  d.adminid=localStorage.getItem("userid");
-  d.validated=true;
+
+
+  for(var i=0; i<unvalidatedAux.casals.length; i++)
+  {
+    if(unvalidatedAux.casals[i].casalid==idg)
+    {
+      casalaux=unvalidatedAux.casals[i];
+    }
+  }
+  casalaux.validated=true;
+  delete casalaux["longitude"];
+  delete casalaux["latitude"];
+  delete casalaux["links"];
+
+  d.casal=casalaux;
   validate2Restful(d);
 }
