@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>OkupaInfo - Event View</title>
+    <title>OkupaInfo - User View</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -44,46 +44,26 @@
 
 </head>
 
-<body onload="OnLoadEvent();">
+<body onload="OnLoadUser();">
 
 <div id="HTMLMenu"></div>
 
     <!-- Page Content -->
     <div class="container">
 
-        <!-- Portfolio Item Heading -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 id="eventTitle" class="page-header"></h1>
-                <div onclick='AssistirEvent()' class='btn btn-info pull-right'>Assistiré</div>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <!-- Portfolio Item Row -->
-        <div class="row">
-
-            <div class="col-md-8">
-                <img class="img-responsive" src="http://placehold.it/600x800" alt="">
-            </div>
-
-            <div class="col-md-4">
-                <h3>Informació event</h3>
-                <h6 id="eventHora"></h6>
-                Casal creador: <div id="casalName" onclick='LinkAlCasal()' class="btn btn-primary"></div>
-                <p id="eventDescription"></p>
-                <h5 id="eventLocalization"></h5>
-                <iframe id='iframeMap' width="350" height="280" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://www.openstreetmap.org/export/embed.html?bbox=2.1449947357177734%2C41.371849151666204%2C2.1689414978027344%2C41.38136509656854&amp;layer=mapnik&amp;marker=41.37659924742821%2C2.156968116760254" style="border: 1px solid black"></iframe><br/><small><a href="http://www.openstreetmap.org/?mlat=41.3766&amp;mlon=2.1570#map=16/41.3766/2.1570&amp;layers=N">View Larger Map</a></small>
-            </div>
-
-        </div>
-        <!-- /.row -->
-
-
-
-        <hr>
-
-
+      <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 id="loginid" class="panel-title"></h3>
+      </div>
+      <div class="panel-body">
+        <img id='imgUser' class='pull-right' src="" />
+        <div id='email'></div><br>
+        <div id='fullname'></div><br>
+        <div id='description'></div>
+        <div id='assistance'></div>
+        <div id='comments'></div>
+      </div>
+    </div>
 
     </div>
     <!-- /.container -->
@@ -91,11 +71,11 @@
     <div id="HTMLFooter"></div>
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+  <!--  <script src="js/jquery.js"></script>
+	<script src="js/jquery.cookie.js"></script>-->
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
 </body>
 
 </html>

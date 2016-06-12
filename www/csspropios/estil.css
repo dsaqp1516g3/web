@@ -381,3 +381,6 @@ body { /* sense marges ni padding */
   display:inline-block!important;
   margin-right: 5px!important;
 }
+.own-cursorPointer{
+  cursor: pointer;
+}

@@ -257,6 +257,28 @@ function getEventsList() {
 	});
 
 }
+function getUsersList() {
+	var url = API_BASE_URL + '/users';
+	//$("#repos_result").text('');
+
+
+	$.ajax({
+		url : url,
+		type : 'GET',
+		crossDomain : true,
+		dataType : 'json',
+	}).done(function(data, status, jqxhr) {
+
+        DisplayHtmlUsersList(data);
+
+
+	}).fail(function(data) {
+		toastr.warning("no events");
+
+	});
+
+}
+
 function getEventsListByCasal() {
 	var url = 'https://api.github.com/users/idoctnef/repos'; // del github de moment
 	//$("#repos_result").text('');
@@ -487,6 +509,45 @@ function getUserById(idg, idhtml){
     });
     return(loginidaux);
 }
+function getUserByIdUserHtml(iduser){
+  var url = API_BASE_URL + "/users/" + iduser;
+  $.ajax({
+    url : url,
+    type : 'GET',
+    crossDomain : true,
+    dataType : 'json',
+  }).done(function(data, status, jqxhr) {
+
+      document.getElementById("loginid").innerHTML="user: <b>" + data.loginid + "</b>";
+      document.getElementById("email").innerHTML="email: <b>" + data.email + "</b>";
+      document.getElementById("fullname").innerHTML="nom complet: <b>" + data.fullname + "</b>";
+      document.getElementById("description").innerHTML="descripció: <b>" + data.description + "</b>";
+      if(data.image)
+      {
+        document.getElementById("imgUser").src=data.image;
+      }
+
+    }).fail(function() {
+      loginidaux="no user";
+    });
+}
+function getEventsAssistanceByUserId(iduser){
+  var url = API_BASE_URL + "/events/assistance/" + iduser;
+  $.ajax({
+    url : url,
+    type : 'GET',
+    crossDomain : true,
+    dataType : 'json',
+  }).done(function(data, status, jqxhr) {
+    for(var i=0; i<data.events.length; i++)
+    {
+      document.getElementById("assistance").innerHTML=data.events[i].title;
+    }
+
+    }).fail(function() {
+      loginidaux="no user";
+    });
+}
 function getCommentsCasalByCasalid(CasalByCasalid) {
 	var url = API_BASE_URL + "/casals/" + CasalByCasalid + "/comments"; //En el servidor se accede mediante /casals/{Casalid}
 
@@ -670,4 +731,50 @@ function crearEvent2Restful(d){
     }, 1000);
 
   });
+}
+function assistirEvent2Restful(idevent, userid){
+  var url = API_BASE_URL + '/events/' + idevent+"/"+userid;
+  var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": url,
+  "method": "POST",
+  "headers": {
+    "x-auth-token": localStorage.getItem("token"),
+    "cache-control": "no-cache",
+    "postman-token": "e9fc3076-4e8a-ffae-f02a-a597ec9bfc28"
+  }
+}
+
+$.ajax(settings).done(function (response) {
+  toastr.info("assistiràs a l'event");
+});
+}
+
+function getCasalsCommentsByUserId(userid){
+  var url = API_BASE_URL + "/casals/comments/" + userid; //En el servidor se accede mediante /casals/{Casalid}
+
+	$.ajax({
+		url : url,
+		type : 'GET',
+		crossDomain : true,
+    headers: {"X-Auth-Token": localStorage.getItem("token")},
+		dataType : 'json',
+	}).done(function(data, status, jqxhr) {
+    document.getElementById("comments").innerHTML="";
+    var h;
+    h="<hr><b>Comentaris de l'user:</b><br>";
+    h+="<ul class='list-group'>";
+		for(var i=0; i<data.comments_casals.length; i++)
+    {
+      h+="<li class='list-group-item'>";
+      h+=data.comments_casals[i].content;
+      h+="</li>";
+    }
+    h+="</ul>";
+    document.getElementById("comments").innerHTML=h;
+
+	}).fail(function() {
+    document.getElementById("llistaEventsByCasal").innerHTML="sense esdeveniments";
+	});
 }

@@ -409,6 +409,7 @@ function OnLoadEvent(){
   getEventByEventid(ideventaux, idcasalaux);
   getCasalNameByCasalid(idcasalaux);
   //DisplayHTMLEvent(objEvent);
+  getLlistaAssistencia();
 }
 function returnedCasalNameByCasalid(data){
   document.getElementById("casalName").innerHTML=data.name;
@@ -436,6 +437,11 @@ function DisplayHTMLEvent(oE){
 function LinkAlCasal(){
   var idcasaux= window.location.href.split("?value=")[1].split("_")[1];
   window.open("casal.html?value="+idcasaux, "_self");
+}
+
+function AssistirEvent(){
+  var idevent=window.location.href.split("?value=")[1].split("_")[0];
+  assistirEvent2Restful(idevent, localStorage.getItem("userid"));
 }
 /* ------------------------------------SIGNUP--------------------------------
 funcions de la pàgina
@@ -657,4 +663,42 @@ function ComprovaCasalDeUser(idusergiv){
   {
     document.getElementById("titolCasal").innerHTML=nomCasalDeUser;
   }
+}
+
+
+/* -------- users ------------ */
+function OnLoadLlistaUsers(){
+  OnLoadDefault();
+  getUsersList();
+}
+function DisplayHtmlUsersList(data){
+  var h;
+  document.getElementById("listUsers").innerHTML="";
+  h="";
+  h+="<div class='list-group'>";
+  for(var i=0; i<data.users.length; i++)
+  {
+    h+="<div id='"+data.users[i].id+"' onclick='ChargeUserById(this.id)' class='own-cursorPointer'><a class='list-group-item'>";
+    h+="<h3>" + data.users[i].loginid + "</h3>";
+    h+=" - ";
+    h+=data.users[i].email;
+    h+=" - ";
+    h+=data.users[i].fullname;
+    h+=" - ";
+    h+=data.users[i].description;
+    h+="</a></div>";
+  }
+  h+="</div>";
+
+  document.getElementById("listUsers").innerHTML=h;
+}
+function ChargeUserById(iduser){
+  window.open("user.html?value="+iduser, "_self");
+}
+
+function OnLoadUser(){
+  OnLoadDefault();
+  getUserByIdUserHtml(window.location.href.split("?value=")[1]);
+  getEventsAssistanceByUserId(window.location.href.split("?value=")[1]);
+  getCasalsCommentsByUserId(window.location.href.split("?value=")[1]);
 }
