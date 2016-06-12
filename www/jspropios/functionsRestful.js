@@ -9,11 +9,11 @@ $.ajaxSetup({
 });*/
 
 
-var unvalidatedAux, validatedAux;
+var unvalidatedAux, validatedAux, llistacasalsSimple, nomCasalDeUser, idCasalDeUser;
 
 function crearCasal2Restful(data){
   var url = API_BASE_URL + '/casals';
-  $.ajax({
+  /*$.ajax({
     url : url,
     type : 'POST',
     crossDomain : true,
@@ -32,6 +32,37 @@ function crearCasal2Restful(data){
 
     }).fail(function() {
       toastr.error("error al crear casal");
+  });*/
+  var form = new FormData();
+  form.append("image", "null");
+  form.append("localization", data.localization);
+  form.append("email", data.email);
+  form.append("name", data.name);
+  form.append("description", data.description);
+
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": url,
+  "method": "POST",
+  "headers": {
+    "x-auth-token": localStorage.getItem("token"),
+    "cache-control": "no-cache",
+    "postman-token": "d7530090-3506-a39b-207e-61e10cf75e78"
+  },
+  "processData": false,
+  "contentType": false,
+  "mimeType": "multipart/form-data",
+  "data": form
+};
+
+$.ajax(settings).done(function (data) {
+    toastr.success("casal creat correctament, falta que el validin");
+    setTimeout(function(){
+      window.open("index.html", "_self");
+    }, 1000);
+  }).fail(function() {
+    toastr.error("error al crear casal");
   });
 }
 function getCasalsList() {
@@ -93,10 +124,27 @@ function getCasalsList() {
 
 
 	}).fail(function() {
-		$("#repos_result").text("No repositories.");
+		//$("#repos_result").text("No repositories.");
 	});
 
 
+}
+function getCasalsListSimplePerComprovar() {
+	var url = API_BASE_URL + '/casals';
+
+	$.ajax({
+		url : url,
+		type : 'GET',
+		crossDomain : true,
+		dataType : 'json',
+	}).done(function(data, status, jqxhr) {
+				console.log(data);
+        llistacasalsSimple=data;
+        ComprovaCasalDeUser(localStorage.getItem("userid"));
+
+	}).fail(function() {
+		console.log("no casals");
+	});
 }
 function getCasalsListValidated() {
 	var url = API_BASE_URL + '/casals/validated';
@@ -121,6 +169,7 @@ function getCasalsListValidated() {
 
 
 }
+
 function getCasalsListUnvalidated() {
 	var url = API_BASE_URL + '/casals/unvalidated';
 	//$("#repos_result").text('');
@@ -482,7 +531,25 @@ function getCommentsCasalByCasalid(CasalByCasalid) {
 
 				DisplayHTMLCommentsCasal(data);
 			}).fail(function() {
-        toastr.warning("error als comentaris");
+        //toastr.warning("error als comentaris");
+        toastr.warning("per veure els comentaris has d'estar dins");
+        document.getElementById("caixaComments").className=" own-hidden";
+    	});
+}
+function getEventsByCasalId(casalid){
+  var url = API_BASE_URL + "/casals/" + casalid + "/events"; //En el servidor se accede mediante /casals/{Casalid}
+
+	$.ajax({
+		url : url,
+		type : 'GET',
+		crossDomain : true,
+    headers: {"X-Auth-Token": localStorage.getItem("token")},
+		dataType : 'json',
+	}).done(function(data, status, jqxhr) {
+
+				DisplayHtmlEventsListByCasal(data);
+			}).fail(function() {
+        document.getElementById("llistaEventsByCasal").innerHTML="sense esdeveniments";
     	});
 }
 function postComment2Restful(data){

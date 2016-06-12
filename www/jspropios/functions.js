@@ -43,10 +43,19 @@ function OnLoadDefault(){
     logged="false";
   }
   HTMLMenu();
+  if(logged=="true")
+  {
+    //getCasalsListValidated();
+    //getCasalsList();
+    getCasalsListSimplePerComprovar();
 
-  setTimeout(function(){ HTMLMenuUser(); }, 500);//afegeixo un delay de 0 ms pq sinó encara no ho ha carregat bé
+  }else{
+    setTimeout(function(){ HTMLMenuUser(); }, 500);
+  }
+  //setTimeout(function(){ HTMLMenuUser(); }, 2500);//afegeixo un delay de 0 ms pq sinó encara no ho ha carregat bé
   HTMLFooter();
   //EmergencyBar();
+
 }
 function HTMLMenu(){
   /* carrega l'html del menú i el pinta al <div id="HTMLMenu">, d'aquesta manera
@@ -72,6 +81,8 @@ function HTMLMenuUser(){
           {
             document.getElementById("liCrearEventMenu").className="";
             document.getElementById("liValidateCasals").className="";
+          }else if(nomCasalDeUser!="noCasal"){
+            document.getElementById("liCrearEventMenu").className="";
           }
         });
     });
@@ -212,7 +223,7 @@ function OnLoadCasal(){
   getCasalByCasalid(window.location.href.split("?value=")[1]);
 
   //ara cal posar els esdeveniments del casal
-
+  getEventsByCasalId(window.location.href.split("?value=")[1]);
 
   //i ara els comments del casal
   getCommentsCasalByCasalid(window.location.href.split("?value=")[1]);
@@ -269,7 +280,7 @@ function DisplayHtmlEventsListByCasal(eventsListFromServer){
   var el; //EventsList
   var itemrow;
   itemrow=0;
-  el=eventsListFromServer;
+  el=eventsListFromServer.events;
   document.getElementById("llistaEventsByCasal").innerHTML="";
   content="";
   content+="<div class='row'>";
@@ -521,6 +532,7 @@ crearevent.html
 
 function OnLoadCrearEvent(){
   OnLoadDefault();
+  document.getElementById("titolCasal").innerHTML=nomCasalDeUser;
 }
 function OnClickBtnCrearEvent(){
   toastr.warning("funcionalitat a implementar");
@@ -613,4 +625,28 @@ function Validate(idg){
 
   d=casalaux;
   validate2Restful(d);
+}
+
+
+function ComprovaCasalDeUser(idusergiv){
+  idCasalDeUser="noCasal";
+  nomCasalDeUser="noCasal";
+  if(llistacasalsSimple)
+  {
+
+    for(var i=0; i<llistacasalsSimple.casals.length; i++)
+    {
+      if(llistacasalsSimple.casals[i].adminid==idusergiv)
+      {
+        idCasalDeUser=llistacasalsSimple.casals[i].casalid;
+        nomCasalDeUser=llistacasalsSimple.casals[i].name;
+      }
+    }
+  }
+  toastr.info(nomCasalDeUser);
+  setTimeout(function(){ HTMLMenuUser(); }, 500);
+  if(document.getElementById("titolCasal"))
+  {
+    document.getElementById("titolCasal").innerHTML=nomCasalDeUser;
+  }
 }
