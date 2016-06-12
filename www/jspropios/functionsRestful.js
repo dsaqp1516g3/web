@@ -240,28 +240,6 @@ function getEventsList() {
 	var url = API_BASE_URL + '/events';
 	//$("#repos_result").text('');
 
-  el=[{
-    id:"",
-    title:"",
-    description:"",
-    localization:"",
-    latitude:"",
-    longitude:"",
-    eventdate:"",
-    creationTimestamp:"",
-    lastModified:""
-  }];
-  elAux={
-    id:"",
-    title:"",
-    description:"",
-    localization:"",
-    latitude:"",
-    longitude:"",
-    eventdate:"",
-    creationTimestamp:"",
-    lastModified:""
-  };
 
 	$.ajax({
 		url : url,
@@ -269,32 +247,8 @@ function getEventsList() {
 		crossDomain : true,
 		dataType : 'json',
 	}).done(function(data, status, jqxhr) {
-				var repos = data.events;
-        var n=0;
-				$.each(repos, function(i, v) {
-					var repo = v;
 
-          elAux.id=repo.id;
-          elAux.title=repo.title;
-          elAux.description=repo.description;
-          elAux.localization=repo.localization;
-          elAux.latitude=repo.latitude;
-          elAux.longitude=repo.longitude;
-          elAux.eventdate=repo.eventdate;
-          elAux.creationTimestamp=repo.creationTimestamp;
-          elAux.lastModified=repo.lastModified;
-          el.push(JSON.parse(JSON.stringify(elAux)));
-					/*$('<br><strong> Name: ' + repo.name + '</strong><br>').appendTo($('#repos_result'));
-					$('<strong> ID: </strong> ' + repo.id + '<br>').appendTo($('#repos_result'));
-					$('<strong> URL: </strong> ' + repo.html_url + '<br>').appendTo($('#repos_result'));
-					$('<strong> Description: </strong> ' + repo.description + '<br>').appendTo($('#repos_result'));
-          */
-          n++;
-
-				});
-        //return(el);
-        el.shift(); //elimina el primer element q està buit de l'array
-        DisplayHtmlEventsList(el);
+        DisplayHtmlEventsList(data);
 
 
 	}).fail(function(data) {
@@ -487,8 +441,22 @@ function getCasalByCasalid(CasalByCasalid) {
         toastr.warning("casal no trobat");
     	});
 }
-function getEventByEventid(EventByEventid) {
-	var url = API_BASE_URL + '/events/' + EventByEventid; //En el servidor se accede mediante /casals/{Casalid}
+function getCasalNameByCasalid(CasalByCasalid) {
+	var url = API_BASE_URL + '/casals/' + CasalByCasalid; //En el servidor se accede mediante /casals/{Casalid}
+
+	$.ajax({
+		url : url,
+		type : 'GET',
+		crossDomain : true,
+		dataType : 'json',
+	}).done(function(data, status, jqxhr) {
+    returnedCasalNameByCasalid(data);
+			}).fail(function() {
+        toastr.warning("casal no trobat");
+    	});
+}
+function getEventByEventid(EventByEventid, idcasalaux) {
+	var url = API_BASE_URL + '/casals/'+idcasalaux+'/events/' + EventByEventid; //En el servidor se accede mediante /casals/{Casalid}
 
 	$.ajax({
 		url : url,
@@ -502,7 +470,7 @@ function getEventByEventid(EventByEventid) {
         toastr.warning("event no trobat");
     	});
 }
-function getUserById(idg){
+function getUserById(idg, idhtml){
   var url = API_BASE_URL + "/users/" + idg; //En el servidor se accede mediante /casals/{Casalid}
   var loginidaux="";
   $.ajax({
@@ -513,6 +481,7 @@ function getUserById(idg){
   }).done(function(data, status, jqxhr) {
 
       loginidaux=data.loginid;
+      document.getElementById(idhtml).innerHTML=loginidaux;
     }).fail(function() {
       loginidaux="no user";
     });

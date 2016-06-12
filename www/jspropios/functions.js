@@ -257,14 +257,15 @@ function DisplayHTMLCommentsCasal(data){
   for(var i=0; i<data.comments_casals.length; i++)
   {
     content+="<div class='panel panel-default'>";
-    content+="<div class='panel-heading'>";
-    content+=getUserById(data.comments_casals[i].creatorid);
+    content+="<div id='"+data.comments_casals[i].id+"' class='panel-heading'>";
+    //content+=getUserById(data.comments_casals[i].creatorid);
     content+="</div>";
     content+="<div class='panel-body'>";
     content+=data.comments_casals[i].content;
     content+="</div>";
     content+="</div>";
   }
+
 /*
 <div class="panel panel-default">
   <div class="panel-body">
@@ -273,18 +274,21 @@ function DisplayHTMLCommentsCasal(data){
 </div>
 */
   document.getElementById("commentsByCasal").innerHTML=content;
+
+  for(var i=0; i<data.comments_casals.length; i++)
+  {
+    getUserById(data.comments_casals[i].creatorid, data.comments_casals[i].id);
+  }
 }
 
 
-function DisplayHtmlEventsListByCasal(eventsListFromServer){
-  var el; //EventsList
+function DisplayHtmlEventsListByCasal(data){
   var itemrow;
   itemrow=0;
-  el=eventsListFromServer.events;
   document.getElementById("llistaEventsByCasal").innerHTML="";
   content="";
   content+="<div class='row'>";
-  for(var i=0; i<el.length; i++)
+  for(var i=0; i<data.events.length; i++)
   {
     if(itemrow>3)
     {/* cada 3 canvia de row */
@@ -294,29 +298,21 @@ function DisplayHtmlEventsListByCasal(eventsListFromServer){
         content+="";
         content+="";
     }
-    content+="<div id='"+el[i].name+"_Box' class='col-sm-3 col-xs-6'>";
+    content+="<div id='"+data.events[i].title+"_Box' class='col-sm-3 col-xs-6'>";
     content+="<div class='panel panel-primary paddings-lateral fonsgris2'>";
     //content+="<div class='panel-heading'>";
     content+="  <a href='event.html'>";
-    content+="    <h4 id='"+el[i].name+"' class='text-info'>"+el[i].name;//al badge surtirà el dia de l'events
-    content+="      <text id='actDia' class='label label-info pull-right'>"+el[i].dia+"</text>";
+    content+="    <h4 id='"+data.events[i].title+"' class='text-info'>"+data.events[i].title;//al badge surtirà el dia de l'events
+    content+="      <text id='actDia' class='label label-info pull-right'>"+data.events[i].eventdate+"</text>";
     content+="    </h4>";
     //content+="  </div>";// </panel-heading
     content+="    <img class='img-responsive portfolio-item borderradius5' src='http://placehold.it/500x300' alt=''>";
     content+="  </a>";
-    content+="    <p id='actDescripcio'>"+el[i].descr+"</p>";
+    content+="    <p id='actDescripcio'>"+data.events[i].description+"</p>";
 
     //content+="    <p id='actHorari'>11h</p>";
     content+="</div>";// </ panel panel-info
     content+="</div>";// </ el[i].name+"_Box'
-      /*content+="<div id='"+el[i].name+"_Box' class='col-sm-3 col-xs-6'>";
-      content+="<a href='event.html'>";
-      content+="    <h4 id='"+el[i].name+"'>"+el[i].name+"</h4>";
-      content+="        <img class='img-responsive portfolio-item' src='http://placehold.it/500x300' alt=''>";
-      content+="    </a>";
-      content+="    <p id='actDescripcio'>"+el[i].descr+"</p>";
-      content+="    <p id='actDia'>"+el[i].dia+"</p>";
-      content+="</div>";*/
 
       itemrow++;
   }
@@ -324,7 +320,7 @@ function DisplayHtmlEventsListByCasal(eventsListFromServer){
   document.getElementById("llistaEventsByCasal").innerHTML=content;
 
   //afegeix el núm d'events al badge del títol de l'inici de mostrar els events del casal
-  document.getElementById("badgeNumEvents").innerHTML=el.length;
+  document.getElementById("badgeNumEvents").innerHTML=data.events.length;
 }
 
 function OnClickBtnShowAddComment(idbtn){
@@ -335,10 +331,12 @@ function OnClickBtnAddComment(){
   var d;
   d={
     casalid:"",
-    content:""
-  }
+    content:"",
+    creatorid:""
+  };
   d.casalid=window.location.href.split("?value=")[1];
   d.content=document.getElementById("textAreaComment").value;
+  d.creatorid=localStorage.getItem("userid");
   postComment2Restful(d);
 }
 /* ---------------------------------LLISTAEVENTS-----------------------------------
@@ -350,15 +348,13 @@ function OnLoadLlistaEvents(){
   getEventsList();
 
 }
-function DisplayHtmlEventsList(eventsListFromServer){
-  var el; //EventsList
+function DisplayHtmlEventsList(d){
   var itemrow;
   itemrow=0;
-  el=eventsListFromServer;
   document.getElementById("espaiBoxEventListEvents").innerHTML="";
   content="";
   content+="<div class='row'>";
-  for(var i=0; i<el.length; i++)
+  for(var i=0; i<d.events.length; i++)
   {
     if(itemrow>3)
     {/* cada 3 canvia de row */
@@ -368,40 +364,33 @@ function DisplayHtmlEventsList(eventsListFromServer){
         content+="";
         content+="";
     }
-      content+="<div id='"+el[i].id+"_Box' onclick='OnClickOverEventBox(this.id)' class='col-sm-3 col-xs-6'>";
+      content+="<div id='"+d.events[i].id+"_"+d.events[i].casalid+"' onclick='OnClickOverEventBox(this.id)' class='col-sm-3 col-xs-6'>";
       content+="<div class='panel panel-primary paddings-lateral fonsgris2'>";
       //content+="<div class='panel-heading'>";
       content+="  <a href='event.html'>";
-      content+="    <h4 id='"+el[i].title+"' class=''>"+el[i].title;//al badge surtirà el dia de l'events
-      content+="      <text id='actDia' class='label label-primary pull-right'>"+el[i].eventdate+"</text>";
+      content+="    <h4 id='"+d.events[i].title+"' class=''>"+d.events[i].title;//al badge surtirà el dia de l'events
+      content+="      <text id='actDia' class='label label-primary pull-right'>"+d.events[i].eventdate+"</text>";
       content+="    </h4>";
       //content+="  </div>";// </panel-heading
       content+="    <img class='img-responsive portfolio-item borderradius5' src='http://placehold.it/500x300' alt=''>";
       content+="  </a>";
-      content+="    <p id='actDescripcio'>"+el[i].description+"</p>";
+      content+="    <p id='actDescripcio'>"+d.events[i].description+"</p>";
 
-      //content+="    <p id='actHorari'>11h</p>";
       content+="</div>";// </ panel panel-info
-      content+="</div>";// </ el[i].name+"_Box'
-      /*content+="<img class='img-responsive' src='http://placehold.it/700x400' alt=''>";
-      content+="</a>";
-      content+="<h3>";
-      content+="<a class='linknegre' href='#'>"+el[i].name+"</a>";
-      content+="</h3>";
-      content+="<p>"+el[i].descr+"</p>";
-      content+="<p>"+el[i].web+"</p>";
-      content+="<p>"+el[i].dir+"</p>";
-      content+="</div>";*/
+      content+="</div>";
       itemrow++;
   }
   content+="</div>";
   document.getElementById("espaiBoxEventListEvents").innerHTML=content;
 
   //afegeix el núm d'events al badge del títol
-  document.getElementById("badgeNumEvents").innerHTML=el.length;
+  document.getElementById("badgeNumEvents").innerHTML=d.events.length;
 }
 function OnClickOverEventBox(idevent){
-  idevent=idevent.replace("_Box", "");
+  //idevent=idevent.replace("_Box", "");v
+  /*var idcasalaux;
+  idevent=idevent.split("_")[0];
+  idcasalaux=idevent.split("_")[1];*/
   //getCasalByCasalid(idcasal);
   //localStorage.setItem("idCasal",idcasal);
   window.open("event.html?value="+idevent, "_self");
@@ -413,22 +402,16 @@ Event.html
 */
 function OnLoadEvent(){
   OnLoadDefault();
-  // aquí va la crida a la funció que agafa del sessionstorage la uri on anar a buscar la info del Event
+  var ideventaux, idcasalaux;
+  ideventaux=window.location.href.split("?value=")[1].split("_")[0];
+  idcasalaux=window.location.href.split("?value=")[1].split("_")[1];
 
-//  getEventById(idEvent); <-- funcio q encara no està, és la que pilla del restful
-          /* mentre no tenim la api a punt, poso l'objecte hardcoded */
-            var objEvent={
-              title: "Taller de reparació bicis",
-              description: "<b>Vine a apendre a reparar la teva bici!</b> <br> Material necessari: <br>-bici",
-              localization: "c/ Av.Mistral 33 baixos",
-              mail: "ateneulaporka@riseup.net",
-              casalsid: "idcasalcreador",
-              hora: "18h-20h"
-            };
-            /* quan tinguem la api a punt, s'elimina això, i s'afegeix la crida a la funció q pilla el data del restful */
-  getEventByEventid(window.location.href.split("?value=")[1]);
-
+  getEventByEventid(ideventaux, idcasalaux);
+  getCasalNameByCasalid(idcasalaux);
   //DisplayHTMLEvent(objEvent);
+}
+function returnedCasalNameByCasalid(data){
+  document.getElementById("casalName").innerHTML=data.name;
 }
 function DisplayHTMLEvent(oE){
   /* 'oC' és la variable objecte on va tota la info del Event */
@@ -439,10 +422,21 @@ function DisplayHTMLEvent(oE){
   document.getElementById("eventDescription").innerHTML=oE.description;
   document.getElementById("eventLocalization").innerHTML=oE.localization;
   // aqí a partir de les coordenades es monta la url a la api q mostra el lloc
-  document.getElementById("eventMap").src="http://www.openstreetmap.org/export/embed.html?bbox=2.1449947357177734%2C41.371849151666204%2C2.1689414978027344%2C41.38136509656854&amp;layer=mapnik&amp;marker=41.37659924742821%2C2.156968116760254";
-
+  //document.getElementById("eventMap").src="http://www.openstreetmap.org/export/embed.html?bbox=2.1449947357177734%2C41.371849151666204%2C2.1689414978027344%2C41.38136509656854&amp;layer=mapnik&amp;marker=41.37659924742821%2C2.156968116760254";
+  var urlMap, marc1, marc2, marc3, marc4;
+  //urlMap="http://www.openstreetmap.org/export/embed.html?bbox=2.1449947357177734%2C41.371849151666204%2C2.1689414978027344%2C41.38136509656854&amp;layer=mapnik&amp;marker=41.37659924742821%2C2.156968116760254";
+  marc1=oE.latitude-0.00475009576;//longitude
+  marc2=oE.longitude-0.00475009576;
+  marc3=oE.latitude+0.00475009576;
+  marc4=oE.longitude+0.00475009576;
+  urlMap="http://www.openstreetmap.org/export/embed.html?bbox="+marc1+"%2C"+marc2+"%2C"+marc3+"%2C"+marc4+"&amp;layer=mapnik&amp;marker="+oE.longitude+"%2C"+oE.latitude;
+  //                                                                                                    NaN %2C   41.26815520.01     %2C  1.96617210.01&amp;layer=mapnik&amp;marker=1.9661721%2C41.2681552
+  document.getElementById("iframeMap").src=urlMap;
 }
-
+function LinkAlCasal(){
+  var idcasaux= window.location.href.split("?value=")[1].split("_")[1];
+  window.open("casal.html?value="+idcasaux, "_self");
+}
 /* ------------------------------------SIGNUP--------------------------------
 funcions de la pàgina
 signup.html
