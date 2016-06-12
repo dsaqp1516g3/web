@@ -145,7 +145,7 @@ function getCasalsListUnvalidated() {
 }
 function validate2Restful(data){
   var url = API_BASE_URL + '/casals/'+data.casalid;
-  $.ajax({
+  /*$.ajax({
     url : url,
     type : 'PUT',
     crossDomain : true,
@@ -162,6 +162,28 @@ function validate2Restful(data){
         }, 1000);
     }).fail(function() {
       toastr.error("error al update");
+  });*/
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": url,
+    "method": "PUT",
+    "headers": {
+      "content-type": "application/vnd.dsa.okupainfo.casal+json",
+      "cache-control": "no-cache",
+      "postman-token": "83c2adbc-ec51-e525-d2f4-471689c05cf0"
+    },
+      "data": "{\n  \"casalid\": \""+data.casalid+"\",\n  \"adminid\": \""+data.adminid+"\",\n  \"email\": \""+data.email+"\",\n  \"name\": \""+data.name+"\",\n  \"description\": \""+data.description+"\",\n  \"validated\": "+data.validated+",\n  \"localization\": \""+data.localization+"\"\n}"
+  };
+
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+    toastr.success("actualitzat");
+    setTimeout(function(){
+      window.open("validation.html", "_self");
+    }, 1000);
+  }).fail(function() {
+    toastr.error("error al update");
   });
 }
 
@@ -294,11 +316,11 @@ function getEventsListByCasal() {
 
 function signUp2Restful(data){
   var url = API_BASE_URL + '/users';
-  $.ajax({
+  /*$.ajax({
     url : url,
     type : 'POST',
     crossDomain : true,
-    contentType : 'application/x-www-form-urlencoded',
+    mimeType : 'multipart/form-data',
     dataType : 'json',
     data : data
   }).done(function(data, status, jqxhr) {
@@ -310,7 +332,29 @@ function signUp2Restful(data){
 
     }).fail(function() {
       toastr.error("error al signup");
-  });
+  });*/
+  var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "http://eetacdsa1c.upc.es:8080/okupainfo/users",
+  "method": "POST",
+  "headers": {
+    "cache-control": "no-cache",
+    "postman-token": "1566ec8e-cf16-ed71-0c45-0235309e523b"
+  },
+  "processData": false,
+  "contentType": false,
+  "mimeType": "multipart/form-data",
+  "data": data
+}
+
+$.ajax(settings).done(function (data) {
+  var inf = data;
+  toastr.success("registrat correctament");
+  setTimeout(function(){
+    window.open("login.html", "_self");
+  }, 1000);
+});
 }
 
 

@@ -453,9 +453,19 @@ function OnBtnSignUp(){
   d.email=getValById("email");
   d.fullname=getValById("fullname");
   d.description=getValById("description");
+  d.image="null";
+
+  var form = new FormData();
+  form.append("loginid", d.loginid);
+  form.append("password", d.password);
+  form.append("email", d.email);
+  form.append("fullname", d.fullname);
+  form.append("description", d.description);
+  form.append("image", "null");
+
   if((d.email.indexOf("@") > -1)&&(d.email.indexOf(".") > -1))
   {
-    signUp2Restful(d);
+    signUp2Restful(form);
   }else{
     toastr.error("format email incorrecte");
   }
