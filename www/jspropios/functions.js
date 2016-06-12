@@ -535,7 +535,21 @@ function OnLoadCrearEvent(){
   document.getElementById("titolCasal").innerHTML=nomCasalDeUser;
 }
 function OnClickBtnCrearEvent(){
-  toastr.warning("funcionalitat a implementar");
+  //toastr.warning("funcionalitat a implementar");
+  var d={
+    casalid:"",
+    title:"",
+    description:"",
+    localization:"",
+    eventdate: "",
+    image: ""
+  };
+  d.casalid=idCasalDeUser;
+  d.title=document.getElementById("title").value;
+  d.description=document.getElementById("description").value;
+  d.localization=document.getElementById("localization").value;
+  d.image="null";
+  crearEvent2Restful(d);
 }
 
 

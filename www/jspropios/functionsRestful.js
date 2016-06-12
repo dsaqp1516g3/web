@@ -666,3 +666,39 @@ function getCasalByUserId(CasalByUserId) {
 				$('<div class="alert alert-danger"> No existe un evento con este userid </div>').appendTo($("#result_getCasalByUserId"));
 	});
 }
+
+
+function crearEvent2Restful(d){
+  var url = API_BASE_URL + '/casals/' + d.casalid; //En el servidor se accede mediante /eventos/{userid}
+
+  var form = new FormData();
+  form.append("title", d.title);
+  form.append("description", d.description);
+  form.append("localization", d.localization);
+  form.append("image", "null");
+  form.append("eventdate", "26012016");
+
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": url,
+    "method": "POST",
+    "headers": {
+      "x-auth-token": localStorage.getItem("token"),
+      "cache-control": "no-cache",
+      "postman-token": "49c22e67-2087-f58b-7dfc-cbe386b419e6"
+    },
+    "processData": false,
+    "contentType": false,
+    "mimeType": "multipart/form-data",
+    "data": form
+  }
+
+  $.ajax(settings).done(function (data) {
+    toastr.success("event creat");
+    setTimeout(function(){
+      window.open("llistaevents.html", "_self");
+    }, 1000);
+
+  });
+}
