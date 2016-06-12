@@ -149,9 +149,10 @@ function validate2Restful(data){
     url : url,
     type : 'PUT',
     crossDomain : true,
-    contentType : 'application/x-www-form-urlencoded',//application/vnd.dsa.okupainfo.casal+json
-    headers: {"X-Auth-Token": localStorage.getItem("token"),
-  "Content-Type": "application/vnd.dsa.okupainfo.casal+json"},
+    //ontentType : 'application/x-www-form-urlencoded',//application/vnd.dsa.okupainfo.casal+json
+    headers: {
+      "Content-Type": "application/vnd.dsa.okupainfo.casal+json"
+    },
     dataType : 'json',
     data : data
   }).done(function(data, status, jqxhr) {
@@ -348,6 +349,7 @@ function logOut2Restful(data){
 //aquestes dues següents linies estan aquí temporalment
   localStorage.removeItem("token");
   localStorage.removeItem("userid");
+  localStorage.removeItem("username");
 	$.ajax({
 		url : url,
 		type : 'DELETE',

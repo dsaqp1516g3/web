@@ -519,9 +519,14 @@ function OnClickBtnCrearEvent(){
 
 /* -------------------------- validation ----------------------------------*/
 function OnLoadValidation(){
-  OnLoadDefault();
-  getCasalsListValidated();
-  getCasalsListUnvalidated();
+  if(localStorage.getItem("username")=="admin")
+  {
+    OnLoadDefault();
+    getCasalsListValidated();
+    getCasalsListUnvalidated();
+  }else{
+    window.open("index.html", "_self");
+  }
 }
 function ValidationHTMLValidated(d){
   var aux="";
@@ -557,23 +562,29 @@ function ValidationHTMLUnvalidated(d){
 }
 function Unvalidate(idg){
   var d;
-  d={
-    casalid: "",
-    adminid:"",
-    validated:""
-  };
-  d.casalid=idg;
-  d.adminid=localStorage.getItem("userid");
-  d.validated=false;
-  validate2Restful(d);
+
+    for(var i=0; i<validatedAux.casals.length; i++)
+    {
+      if(validatedAux.casals[i].casalid==idg)
+      {
+        casalaux=validatedAux.casals[i];
+      }
+    }
+    casalaux.validated=false;
+    delete casalaux["longitude"];
+    delete casalaux["latitude"];
+    delete casalaux["links"];
+
+    d=casalaux;
+    validate2Restful(d);
 }
 function Validate(idg){
   var d, casalaux;
-  d={
+/*  d={
     casalid: "",
     casal:""
   };
-  d.casalid=idg;
+  d.casalid=idg;*/
 
 
   for(var i=0; i<unvalidatedAux.casals.length; i++)
@@ -588,6 +599,8 @@ function Validate(idg){
   delete casalaux["latitude"];
   delete casalaux["links"];
 
-  d.casal=casalaux;
+
+
+  d=casalaux;
   validate2Restful(d);
 }
