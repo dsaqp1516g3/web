@@ -155,7 +155,7 @@ function DisplayHtmlCasalsList(casalsListFromServer){
       }
       content+="<div id='"+cl[i].casalid+"_Box' onclick='OnClickOverCasalBox(this.id)' class='col-md-4 portfolio-item own-casalBox'>";
       //content+="<a href='casal.html'>";
-      content+="<img class='img-responsive' src='uploadFolder/"+cl[i].image+".png' alt=''>";
+      content+="<img class='img-responsive' src='"+URL_IMAGE + "/uploadFolder/"+cl[i].image+".png' alt=''>";
       //content+="</a>";
       content+="<h3>";
       content+=cl[i].name;
@@ -236,9 +236,9 @@ function OnLoadCasal(){
 function valoracion2HTML(data){
   if(data.valoraciones.length>0)
   {
-
+    toastr.warning(data.valoraciones[0]);
   }else{
-    toastr.warning("casal sense valoracions");
+    //toastr.warning("casal sense valoracions");
   }
 }
 function DisplayHTMLCasal(oC){
@@ -250,7 +250,7 @@ function DisplayHTMLCasal(oC){
   document.getElementById("casalWeb").innerHTML=oC.email;
   document.getElementById("casalDireccio").innerHTML=oC.description;
   document.getElementById("casalMail").innerHTML=oC.mail;
-  document.getElementById("image").src="uploadFolder/"+oC.image+".png";
+  document.getElementById("image").src=URL_IMAGE + "/uploadFolder/"+oC.image+".png";
   // aqí a partir de les coordenades es monta la url a la api q mostra el lloc
   var urlMap, marc1, marc2, marc3, marc4;
   //urlMap="http://www.openstreetmap.org/export/embed.html?bbox=2.1449947357177734%2C41.371849151666204%2C2.1689414978027344%2C41.38136509656854&amp;layer=mapnik&amp;marker=41.37659924742821%2C2.156968116760254";
@@ -459,6 +459,7 @@ function DisplayHTMLEvent(oE){
   urlMap="http://www.openstreetmap.org/export/embed.html?bbox="+marc1+"%2C"+marc2+"%2C"+marc3+"%2C"+marc4+"&amp;layer=mapnik&amp;marker="+oE.longitude+"%2C"+oE.latitude;
   //                                                                                                    NaN %2C   41.26815520.01     %2C  1.96617210.01&amp;layer=mapnik&amp;marker=1.9661721%2C41.2681552
   document.getElementById("iframeMap").src=urlMap;
+  document.getElementById('image').src=URL_IMAGE + "/uploadFolder/" + oE.image + ".png";
 }
 function LinkAlCasal(){
   var idcasaux= window.location.href.split("?value=")[1].split("_")[1];
