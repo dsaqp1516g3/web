@@ -155,7 +155,7 @@ function DisplayHtmlCasalsList(casalsListFromServer){
       }
       content+="<div id='"+cl[i].casalid+"_Box' onclick='OnClickOverCasalBox(this.id)' class='col-md-4 portfolio-item own-casalBox'>";
       //content+="<a href='casal.html'>";
-      content+="<img class='img-responsive' src='"+cl[i].image+"' alt=''>";
+      content+="<img class='img-responsive' src='uploadFolder/"+cl[i].image+".png' alt=''>";
       //content+="</a>";
       content+="<h3>";
       content+=cl[i].name;
@@ -230,6 +230,16 @@ function OnLoadCasal(){
   //i ara els comments del casal
   getCommentsCasalByCasalid(window.location.href.split("?value=")[1]);
 
+  getValoracion(window.location.href.split("?value=")[1]);
+
+}
+function valoracion2HTML(data){
+  if(data.valoraciones.length>0)
+  {
+
+  }else{
+    toastr.warning("casal sense valoracions");
+  }
 }
 function DisplayHTMLCasal(oC){
   /* 'oC' és la variable objecte on va tota la info del casal */
@@ -240,7 +250,7 @@ function DisplayHTMLCasal(oC){
   document.getElementById("casalWeb").innerHTML=oC.email;
   document.getElementById("casalDireccio").innerHTML=oC.description;
   document.getElementById("casalMail").innerHTML=oC.mail;
-  document.getElementById("image").src=oC.image;
+  document.getElementById("image").src="uploadFolder/"+oC.image+".png";
   // aqí a partir de les coordenades es monta la url a la api q mostra el lloc
   var urlMap, marc1, marc2, marc3, marc4;
   //urlMap="http://www.openstreetmap.org/export/embed.html?bbox=2.1449947357177734%2C41.371849151666204%2C2.1689414978027344%2C41.38136509656854&amp;layer=mapnik&amp;marker=41.37659924742821%2C2.156968116760254";

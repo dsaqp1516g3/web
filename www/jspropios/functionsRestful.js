@@ -1,6 +1,7 @@
 /* aqí van les funcions de get, post, etc */
 
 var API_BASE_URL = "http://eetacdsa1c.upc.es:8080/okupainfo";
+var URL_IMAGE = "http://eetacdsa1c.upc.es";
 //var API_BASE_URL = "http://localhost:8080/okupainfo";
 
 /*
@@ -525,7 +526,7 @@ function getUserByIdUserHtml(iduser){
       document.getElementById("description").innerHTML="descripció: <b>" + data.description + "</b>";
       if(data.image)
       {
-        document.getElementById("imgUser").src=data.image;
+        document.getElementById("imgUser").src=URL_IMAGE + "/uploadFolder/" + data.image + ".png";
       }
 
     }).fail(function() {
@@ -553,16 +554,16 @@ function getUserByIdUserHtmlEdit(iduser){
 }
 function getEventsAssistanceByUserId(iduser){
   var url = API_BASE_URL + "/events/assistance/" + iduser;
-  $.ajax({
+  /*$.ajax({
     url : url,
     type : 'GET',
     crossDomain : true,
     dataType : 'json',
   }).done(function(data, status, jqxhr) {
-    /*for(var i=0; i<data.events.length; i++)
-    {
-      document.getElementById("assistance").innerHTML=data.events[i].title;
-    }*/
+    //for(var i=0; i<data.events.length; i++)
+  //  {
+//      document.getElementById("assistance").innerHTML=data.events[i].title;
+//    }
     document.getElementById("assistance").innerHTML="";
     var h;
     h="<hr><b>Esdeveniments on assisteix l'user:</b><br>";
@@ -578,7 +579,33 @@ function getEventsAssistanceByUserId(iduser){
 
 
     }).fail(function() {
-      loginidaux="no user";
+      toastr.warning("no user");
+    });*/
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": url,
+      "method": "GET",
+      "headers": {
+        "x-auth-token": localStorage.getItem("token"),
+        "cache-control": "no-cache",
+        "postman-token": "b92dfac5-efdd-d311-4e85-8384abfbd176"
+      }
+    }
+
+    $.ajax(settings).done(function (data) {
+      document.getElementById("assistance").innerHTML="";
+      var h;
+      h="<hr><b>Esdeveniments on assisteix l'user:</b><br>";
+      h+="<ul class='list-group'>";
+  		for(var i=0; i<data.events.length; i++)
+      {
+        h+="<li class='list-group-item'>";
+        h+=data.events[i].title;
+        h+="</li>";
+      }
+      h+="</ul>";
+      document.getElementById("assistance").innerHTML=h;
     });
 }
 function getCommentsCasalByCasalid(CasalByCasalid) {
@@ -782,6 +809,8 @@ function assistirEvent2Restful(idevent, userid){
 
 $.ajax(settings).done(function (response) {
   toastr.info("assistiràs a l'event");
+
+  window.open("event.html?value=" + window.location.href.split("?value=")[1], "_self");
 });
 }
 
@@ -858,4 +887,40 @@ function userAsiste(eventid, userid){
     }
       }).fail(function() {
       });
+}
+
+function getValoracion(casalid){
+  var url = API_BASE_URL + '/casals/' + casalid + "/valoracion";
+  $.ajax({
+    url : url,
+    type : 'GET',
+    crossDomain : true,
+    dataType : 'json',
+  }).done(function(data, status, jqxhr) {
+    //userAlreadyAssists(data);
+    valoracion2HTML(data);
+      }).fail(function() {
+      });
+}
+
+function AddValoracionPos(){
+  var url = API_BASE_URL + '/casals/' + window.location.href.split("?value=")[1] + '/valoracion';
+  var data={
+    creatorid: localStorage.getItem("userid"),
+    valoracion: true
+  };
+  $.ajax({
+    url : url,
+    type : 'POST',
+    crossDomain : true,
+    contentType : 'application/x-www-form-urlencoded',
+    dataType : 'json',
+    data : data
+  }).done(function(data, status, jqxhr) {
+
+    alert(data);
+
+  }).fail(function() {
+    toastr.error("no s'ha pogut afegir la valoració");
+  });
 }
