@@ -145,7 +145,7 @@ function DisplayHtmlCasalsList(casalsListFromServer){
   content+="<div class='row'>";
   for(var i=0; i<cl.length; i++)
   {
-      if(itemrow>2)
+      if(itemrow>3)
       {/* cada 3 canvia de row */
           itemrow=0;
           content+="</div><br>";
@@ -155,7 +155,7 @@ function DisplayHtmlCasalsList(casalsListFromServer){
       }
       content+="<div id='"+cl[i].casalid+"_Box' onclick='OnClickOverCasalBox(this.id)' class='col-md-4 portfolio-item own-casalBox'>";
       //content+="<a href='casal.html'>";
-      content+="<img class='img-responsive' src='http://placehold.it/700x400' alt=''>";
+      content+="<img class='img-responsive' src='"+cl[i].image+"' alt=''>";
       //content+="</a>";
       content+="<h3>";
       content+=cl[i].name;
@@ -186,7 +186,8 @@ function OnBtnValidateCasal(){
     description:"",
     email:"",
     localization:"",
-    validated:""
+    validated:"",
+    image:""
   };
   d.adminid=localStorage.getItem("userid");
   d.name=getValById("name");
@@ -194,6 +195,7 @@ function OnBtnValidateCasal(){
   d.email=getValById("email");
   d.localization=getValById("localization");
   d.validated=false;
+  d.image=document.getElementById("image").files;
   if((d.email.indexOf("@") > -1)&&(d.email.indexOf(".") > -1))
   {
     crearCasal2Restful(d);
@@ -238,6 +240,7 @@ function DisplayHTMLCasal(oC){
   document.getElementById("casalWeb").innerHTML=oC.email;
   document.getElementById("casalDireccio").innerHTML=oC.description;
   document.getElementById("casalMail").innerHTML=oC.mail;
+  document.getElementById("image").src=oC.image;
   // aqí a partir de les coordenades es monta la url a la api q mostra el lloc
   var urlMap, marc1, marc2, marc3, marc4;
   //urlMap="http://www.openstreetmap.org/export/embed.html?bbox=2.1449947357177734%2C41.371849151666204%2C2.1689414978027344%2C41.38136509656854&amp;layer=mapnik&amp;marker=41.37659924742821%2C2.156968116760254";
@@ -256,7 +259,7 @@ function DisplayHTMLCommentsCasal(data){
   var content="";
   for(var i=0; i<data.comments_casals.length; i++)
   {
-    content+="<div class='panel panel-default'>";
+    content+="<div id='"+data.comments_casals[i].creatorid+"' onclick='ChargeUserById(this.id)' class='panel panel-default own-cursorPointer'>";
     content+="<div id='"+data.comments_casals[i].id+"' class='panel-heading'>";
     //content+=getUserById(data.comments_casals[i].creatorid);
     content+="</div>";
@@ -298,12 +301,12 @@ function DisplayHtmlEventsListByCasal(data){
         content+="";
         content+="";
     }
-    content+="<div id='"+data.events[i].title+"_Box' class='col-sm-3 col-xs-6'>";
+    content+="<div id='"+data.events[i].id+"_"+data.events[i].casalid+"' onclick='OnClickOverEventBox(this.id)'  class='col-sm-3 col-xs-6'>";
     content+="<div class='panel panel-primary paddings-lateral fonsgris2'>";
     //content+="<div class='panel-heading'>";
     content+="  <a href='event.html'>";
     content+="    <h4 id='"+data.events[i].title+"' class='text-info'>"+data.events[i].title;//al badge surtirà el dia de l'events
-    content+="      <text id='actDia' class='label label-info pull-right'>"+data.events[i].eventdate+"</text>";
+    //content+="      <text id='actDia' class='label label-info pull-right'>"+data.events[i].eventdate/1000+"</text>";
     content+="    </h4>";
     //content+="  </div>";// </panel-heading
     content+="    <img class='img-responsive portfolio-item borderradius5' src='http://placehold.it/500x300' alt=''>";
@@ -369,7 +372,7 @@ function DisplayHtmlEventsList(d){
       //content+="<div class='panel-heading'>";
       content+="  <a href='event.html'>";
       content+="    <h4 id='"+d.events[i].title+"' class=''>"+d.events[i].title;//al badge surtirà el dia de l'events
-      content+="      <text id='actDia' class='label label-primary pull-right'>"+d.events[i].eventdate+"</text>";
+      //content+="      <text id='actDia' class='label label-primary pull-right'>"+d.events[i].eventdate+"</text>";
       content+="    </h4>";
       //content+="  </div>";// </panel-heading
       content+="    <img class='img-responsive portfolio-item borderradius5' src='http://placehold.it/500x300' alt=''>";
@@ -408,8 +411,12 @@ function OnLoadEvent(){
 
   getEventByEventid(ideventaux, idcasalaux);
   getCasalNameByCasalid(idcasalaux);
-  //DisplayHTMLEvent(objEvent);
-  getLlistaAssistencia();
+  //getLlistaAssistencia();
+  if(logged=="true")
+  {
+  }else{
+    document.getElementById("assistireBtn").className+=" own-hidden";
+  }
 }
 function returnedCasalNameByCasalid(data){
   document.getElementById("casalName").innerHTML=data.name;
@@ -457,14 +464,15 @@ function OnBtnSignUp(){
     password: "",
     email: "",
     fullname: "",
-    description: ""
+    description: "",
+    image:""
   };
   d.loginid=getValById("username");
   d.password=getValById("password");
   d.email=getValById("email");
   d.fullname=getValById("fullname");
   d.description=getValById("description");
-  d.image="null";
+  d.image=document.getElementById("image").files;
 
   var form = new FormData();
   form.append("loginid", d.loginid);
@@ -472,7 +480,7 @@ function OnBtnSignUp(){
   form.append("email", d.email);
   form.append("fullname", d.fullname);
   form.append("description", d.description);
-  form.append("image", "null");
+  form.append("image", d.image);
 
   if((d.email.indexOf("@") > -1)&&(d.email.indexOf(".") > -1))
   {
@@ -701,4 +709,9 @@ function OnLoadUser(){
   getUserByIdUserHtml(window.location.href.split("?value=")[1]);
   getEventsAssistanceByUserId(window.location.href.split("?value=")[1]);
   getCasalsCommentsByUserId(window.location.href.split("?value=")[1]);
+}
+
+function OnLoadEditarUser(){
+  OnLoadDefault();
+  getUserByIdUserHtmlEdit(localStorage.getItem("userid"));
 }

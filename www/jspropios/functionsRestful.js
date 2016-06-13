@@ -34,7 +34,7 @@ function crearCasal2Restful(data){
       toastr.error("error al crear casal");
   });*/
   var form = new FormData();
-  form.append("image", "null");
+  form.append("image", data.image);
   form.append("localization", data.localization);
   form.append("email", data.email);
   form.append("name", data.name);
@@ -108,6 +108,7 @@ function getCasalsList() {
           clAux.description=repo.description;
           clAux.latitude=repo.latitude;
           clAux.longitude=repo.longitude;
+          clAux.image=repo.image;
 
           cl.push(JSON.parse(JSON.stringify(clAux)));
 					/*$('<br><strong> Name: ' + repo.name + '</strong><br>').appendTo($('#repos_result'));
@@ -531,6 +532,25 @@ function getUserByIdUserHtml(iduser){
       loginidaux="no user";
     });
 }
+function getUserByIdUserHtmlEdit(iduser){
+  var url = API_BASE_URL + "/users/" + iduser;
+  $.ajax({
+    url : url,
+    type : 'GET',
+    crossDomain : true,
+    dataType : 'json',
+  }).done(function(data, status, jqxhr) {
+
+      document.getElementById("username").value=data.loginid;
+      document.getElementById("email").value=data.email;
+      document.getElementById("fullname").value=data.fullname;
+      document.getElementById("description").value=data.description;
+
+
+    }).fail(function() {
+      loginidaux="no user";
+    });
+}
 function getEventsAssistanceByUserId(iduser){
   var url = API_BASE_URL + "/events/assistance/" + iduser;
   $.ajax({
@@ -539,10 +559,23 @@ function getEventsAssistanceByUserId(iduser){
     crossDomain : true,
     dataType : 'json',
   }).done(function(data, status, jqxhr) {
-    for(var i=0; i<data.events.length; i++)
+    /*for(var i=0; i<data.events.length; i++)
     {
       document.getElementById("assistance").innerHTML=data.events[i].title;
+    }*/
+    document.getElementById("assistance").innerHTML="";
+    var h;
+    h="<hr><b>Esdeveniments on assisteix l'user:</b><br>";
+    h+="<ul class='list-group'>";
+		for(var i=0; i<data.events[i].length; i++)
+    {
+      h+="<li class='list-group-item'>";
+      h+=data.events[i].title;
+      h+="</li>";
     }
+    h+="</ul>";
+    document.getElementById("comments").innerHTML=h;
+
 
     }).fail(function() {
       loginidaux="no user";
@@ -775,6 +808,37 @@ function getCasalsCommentsByUserId(userid){
     document.getElementById("comments").innerHTML=h;
 
 	}).fail(function() {
-    document.getElementById("llistaEventsByCasal").innerHTML="sense esdeveniments";
+    if(document.getElementById("llistaEventsByCasal"))
+    {
+      document.getElementById("llistaEventsByCasal").innerHTML="sense esdeveniments";
+    }
 	});
+}
+
+
+function OnBtnActualitzaUser(){
+  var url = API_BASE_URL + '/users/'+localStorage.getItem("userid");
+
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": url,
+    "method": "PUT",
+    "headers": {
+      "content-type": "application/vnd.dsa.okupainfo.casal+json",
+      "cache-control": "no-cache",
+      "postman-token": "83c2adbc-ec51-e525-d2f4-471689c05cf0"
+    },
+      "data": "{\n  \"casalid\": \""+data.casalid+"\",\n  \"adminid\": \""+data.adminid+"\",\n  \"email\": \""+data.email+"\",\n  \"name\": \""+data.name+"\",\n  \"description\": \""+data.description+"\",\n  \"validated\": "+data.validated+",\n  \"localization\": \""+data.localization+"\"\n}"
+  };
+
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+    toastr.success("actualitzat");
+    setTimeout(function(){
+      window.open("validation.html", "_self");
+    }, 1000);
+  }).fail(function() {
+    toastr.error("error al update");
+  });
 }
