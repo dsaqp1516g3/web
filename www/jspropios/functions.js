@@ -195,7 +195,7 @@ function OnBtnValidateCasal(){
   d.email=getValById("email");
   d.localization=getValById("localization");
   d.validated=false;
-  d.image=document.getElementById("image").files;
+  d.image=document.getElementById("image").files[0];
   if((d.email.indexOf("@") > -1)&&(d.email.indexOf(".") > -1))
   {
     crearCasal2Restful(d);
@@ -385,7 +385,7 @@ function DisplayHtmlEventsList(d){
       //content+="      <text id='actDia' class='label label-primary pull-right'>"+d.events[i].eventdate+"</text>";
       content+="    </h4>";
       //content+="  </div>";// </panel-heading
-      content+="    <img class='img-responsive portfolio-item borderradius5' src='http://placehold.it/500x300' alt=''>";
+      content+="    <img class='img-responsive portfolio-item borderradius5' src='"+ URL_IMAGE + "/uploadFolder/" + d.events[i].image + ".png' alt=''>";
       content+="  </a>";
       content+="    <p id='actDescripcio'>"+d.events[i].description+"</p>";
 
@@ -491,7 +491,7 @@ function OnBtnSignUp(){
   d.email=getValById("email");
   d.fullname=getValById("fullname");
   d.description=getValById("description");
-  d.image=document.getElementById("image").files;
+  d.image=document.getElementById("image").files[0];
 
   var form = new FormData();
   form.append("loginid", d.loginid);
@@ -575,7 +575,8 @@ function OnClickBtnCrearEvent(){
   d.title=document.getElementById("title").value;
   d.description=document.getElementById("description").value;
   d.localization=document.getElementById("localization").value;
-  d.image="null";
+  d.image=document.getElementById("image").files[0];
+
   crearEvent2Restful(d);
 }
 

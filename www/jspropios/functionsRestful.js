@@ -765,7 +765,7 @@ function crearEvent2Restful(d){
   form.append("title", d.title);
   form.append("description", d.description);
   form.append("localization", d.localization);
-  form.append("image", "null");
+  form.append("image", d.image);
   form.append("eventdate", "26012016");
 
   var settings = {
