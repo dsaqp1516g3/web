@@ -414,8 +414,17 @@ function OnLoadEvent(){
   //getLlistaAssistencia();
   if(logged=="true")
   {
+    //userAlreadyAssists();
+    userAsiste(window.location.href.split("?value=")[1].split("_")[0], localStorage.getItem("userid"));
   }else{
     document.getElementById("assistireBtn").className+=" own-hidden";
+  }
+
+}
+function userAlreadyAssists(data){
+  if(data=="true"){
+    document.getElementById("assistireBtn").className+=" own-hidden";
+    toastr.success("assisteixes a l'event");
   }
 }
 function returnedCasalNameByCasalid(data){

@@ -767,6 +767,7 @@ function crearEvent2Restful(d){
 }
 function assistirEvent2Restful(idevent, userid){
   var url = API_BASE_URL + '/events/' + idevent+"/"+userid;
+
   var settings = {
   "async": true,
   "crossDomain": true,
@@ -841,4 +842,20 @@ function OnBtnActualitzaUser(){
   }).fail(function() {
     toastr.error("error al update");
   });
+}
+function userAsiste(eventid, userid){
+  var url = API_BASE_URL + '/events/' + eventid + "/" + userid;
+  $.ajax({
+    url : url,
+    type : 'GET',
+    crossDomain : true,
+    dataType : 'json',
+  }).done(function(data, status, jqxhr) {
+    //userAlreadyAssists(data);
+    if(data==true){
+      document.getElementById("assistireBtn").className+=" own-hidden";
+      toastr.success("assisteixes a l'event");
+    }
+      }).fail(function() {
+      });
 }
